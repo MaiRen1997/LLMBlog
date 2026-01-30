@@ -1,8 +1,8 @@
 const nav = require('./nav.js')
 module.exports = {
-  base: '/MyEnglishBlog/',// 提交时使用该配置
-  title: "麦仁英语博客",
-  description: "记录英语学习",
+  base: '/LLMBlog/',// 提交时使用该配置
+  title: "麦仁大模型博客",
+  description: "记录大模型学习",
   dest: 'docs/.vuepress/dist/',
   markdown: {
     lineNumbers: true,
