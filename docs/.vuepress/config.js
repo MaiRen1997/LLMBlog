@@ -19,6 +19,6 @@ module.exports = {
   },
   // 使目录栏支持h2~h6
   markdown: {
-    extractHeaders: [ 'h2', 'h3', 'h4', 'h5', 'h6' ]
+    extractHeaders: [ 'h1','h2', 'h3', 'h4', 'h5', 'h6' ]
   }
 };

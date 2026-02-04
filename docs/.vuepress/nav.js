@@ -15,10 +15,6 @@ module.exports = [
     ],
   },
   {
-    text: '提示词工程',
-    link: '/technology/',
-  },
-  {
     text: 'RAG',
     link: '/RAG/',
   },
