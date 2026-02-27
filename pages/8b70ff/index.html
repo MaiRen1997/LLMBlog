@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>(原生)绑定自定义工具 | 麦仁大模型博客</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="记录大模型学习">
+    
+    <link rel="preload" href="/LLMBlog/assets/css/0.styles.1c990687.css" as="style"><link rel="preload" href="/LLMBlog/assets/js/app.ff17da13.js" as="script"><link rel="preload" href="/LLMBlog/assets/js/2.ba391ffa.js" as="script"><link rel="preload" href="/LLMBlog/assets/js/27.9cc54af0.js" as="script"><link rel="prefetch" href="/LLMBlog/assets/js/10.19dfe007.js"><link rel="prefetch" href="/LLMBlog/assets/js/11.5d9f955a.js"><link rel="prefetch" href="/LLMBlog/assets/js/12.4b9efd28.js"><link rel="prefetch" href="/LLMBlog/assets/js/13.254de717.js"><link rel="prefetch" href="/LLMBlog/assets/js/14.e63b5b34.js"><link rel="prefetch" href="/LLMBlog/assets/js/15.f344742a.js"><link rel="prefetch" href="/LLMBlog/assets/js/16.7d58fc7f.js"><link rel="prefetch" href="/LLMBlog/assets/js/17.5cbb2dc2.js"><link rel="prefetch" href="/LLMBlog/assets/js/18.90726f3f.js"><link rel="prefetch" href="/LLMBlog/assets/js/19.c068ab3e.js"><link rel="prefetch" href="/LLMBlog/assets/js/20.c0816684.js"><link rel="prefetch" href="/LLMBlog/assets/js/21.81609118.js"><link rel="prefetch" href="/LLMBlog/assets/js/22.fa49fa7c.js"><link rel="prefetch" href="/LLMBlog/assets/js/23.cf166c0c.js"><link rel="prefetch" href="/LLMBlog/assets/js/24.0c4802ff.js"><link rel="prefetch" href="/LLMBlog/assets/js/25.b88f05c1.js"><link rel="prefetch" href="/LLMBlog/assets/js/26.5265d199.js"><link rel="prefetch" href="/LLMBlog/assets/js/28.d0e015e6.js"><link rel="prefetch" href="/LLMBlog/assets/js/29.3849962c.js"><link rel="prefetch" href="/LLMBlog/assets/js/3.a026143a.js"><link rel="prefetch" href="/LLMBlog/assets/js/30.a3cd6c5f.js"><link rel="prefetch" href="/LLMBlog/assets/js/31.06baa8fa.js"><link rel="prefetch" href="/LLMBlog/assets/js/32.ffbf7cfa.js"><link rel="prefetch" href="/LLMBlog/assets/js/33.3bffe434.js"><link rel="prefetch" href="/LLMBlog/assets/js/34.180eea75.js"><link rel="prefetch" href="/LLMBlog/assets/js/35.593a1c64.js"><link rel="prefetch" href="/LLMBlog/assets/js/4.6b2c893c.js"><link rel="prefetch" href="/LLMBlog/assets/js/5.8d021ce3.js"><link rel="prefetch" href="/LLMBlog/assets/js/6.69947064.js"><link rel="prefetch" href="/LLMBlog/assets/js/7.b7881b4b.js"><link rel="prefetch" href="/LLMBlog/assets/js/8.c846d111.js"><link rel="prefetch" href="/LLMBlog/assets/js/9.1f0479b7.js">
+    <link rel="stylesheet" href="/LLMBlog/assets/css/0.styles.1c990687.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LLMBlog/" class="home-link router-link-active"><!----> <span class="site-name">麦仁大模型博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/LLMBlog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/LLMBlog/Transformer/" class="nav-link">Transformer</a></div><div class="nav-item"><a href="/LLMBlog/promptEngineer/" class="nav-link">提示词工程</a></div><div class="nav-item"><a href="/LLMBlog/RAG/" class="nav-link">RAG</a></div><div class="nav-item"><a href="/LLMBlog/LangChain/" class="nav-link">LangChain</a></div><div class="nav-item"><a href="/LLMBlog/Agent/" class="nav-link">Agent</a></div><div class="nav-item"><a href="/LLMBlog/Fine-tuning/" class="nav-link">微调</a></div><div class="nav-item"><a href="/LLMBlog/Multimodal/" class="nav-link">多模态</a></div><div class="nav-item"><a href="/LLMBlog/PrivateDeploy/" class="nav-link">私有化部署</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/LLMBlog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/LLMBlog/Transformer/" class="nav-link">Transformer</a></div><div class="nav-item"><a href="/LLMBlog/promptEngineer/" class="nav-link">提示词工程</a></div><div class="nav-item"><a href="/LLMBlog/RAG/" class="nav-link">RAG</a></div><div class="nav-item"><a href="/LLMBlog/LangChain/" class="nav-link">LangChain</a></div><div class="nav-item"><a href="/LLMBlog/Agent/" class="nav-link">Agent</a></div><div class="nav-item"><a href="/LLMBlog/Fine-tuning/" class="nav-link">微调</a></div><div class="nav-item"><a href="/LLMBlog/Multimodal/" class="nav-link">多模态</a></div><div class="nav-item"><a href="/LLMBlog/PrivateDeploy/" class="nav-link">私有化部署</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LLMBlog/pages/33d462/" class="sidebar-link">LangChain的基本使用</a></li><li><a href="/LLMBlog/pages/8b70ff/" aria-current="page" class="active sidebar-link">(原生)绑定自定义工具</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/8b70ff/#开发工具函数" class="sidebar-link">开发工具函数</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/8b70ff/#将工具函数转为langchain-tool对象" class="sidebar-link">将工具函数转为LangChain Tool对象</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/8b70ff/#将大模型和tool对象绑定" class="sidebar-link">将大模型和Tool对象绑定</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/8b70ff/#调用大模型-尝试让大模型调用工具" class="sidebar-link">调用大模型，尝试让大模型调用工具</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/8b70ff/#第五步-调用工具" class="sidebar-link">第五步：调用工具</a></li></ul></li><li><a href="/LLMBlog/pages/1bd4e4/" class="sidebar-link">Agent绑定工具</a></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/LLMBlog/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><a href="/LLMBlog/LangChain/#LangChain&amp;LangGraph" data-v-06225672>LangChain&amp;LangGraph</a></li></ul> <div class="info" data-v-06225672><!----> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2026-02-27</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABKFJREFUSA3tVl1oFVcQnrMbrak3QUgkya1akpJYcrUtIqW1JvFBE9LiQ5v6JmJpolbMg32rVrhgoYK0QiMY6i9Y6EMaW5D+xFJaTYItIuK2Kr3+BJNwkxBj05sQY3b3nM6cs2dv9t7NT/vQJw/sndk5M/PNzJkzewGerP+pAmy+ON8lLzUJgA8ZYxYIYZmGYRnctDaWvJJAmTtfP1pvXsBCCPP8QFcCaRkZYACgDZFO4stNIcBCajEOlmmC9XpJ9bAGCaPaPmzPl32dvLSVu3BWCTQs0XQQ6g0DYgwLIoAZbBCdW/i+781o1VVlm/410mw4h06Y7bIPHNyWDyL4FHkX03Q8SrzNhZTZriieckWt7cL6MM85YcLpsi/7O9/iXFT6MswI0DmmpkSaJ0qLxFIm3+i1THHB3zmBH3PYx9CcykcLOeQVVa7QtdxTgQgEleX2AjHYfwA+2ddV77ruGoJUbhGDI09YSNXyMpUt5ylOzxgbUmtOp7NmbNt8v3arjTBfYELmLUV+M+nSawNNAUqpT3ClJWg5I3BLT+cGW/DXNGCa6tx1aakCGEigArTn4TDIPdrXXYKCZNrHLMCOEPvHBlLQ99s9eHB7EB6NTki73CVPQ2F5MSx/uRQixfmq7rK0wYD8w8E905bnPDfwoWs/rfv93NWN/ZfvwsLIU7A09gxECyISeGJkHAau98L97tuw7NXnoPyNF8FcYGLGKsOs0mN3OEyec9esGW/ZEl945dTP34wlR2FZVQWU1q0Cw8Tr7p+hgLLNL0FPxx/Q35mA8aEUrH6nCgwEl0tn7wUiZYJnNRh6DK4UH/k0lfyrsBKdPVv/AriGIQcEDQZ65LBAGe2Rzui9Ybjz7XUppz1/uKBbyVPGkN3ZAeC6hr0x7Nr38N5+EqkoOm17xpoqR9ohQF55ERSvr4Dkr3chNfC3DMzGJlNBElW8w9nsGQvhNGIzDkXzCg8cLK951xHsFBlTJspJNi3ZFIMF2AeDV3q8DNOB+YHi6QTrChDIWDBRi5U5f+ZMfJLu3ccrqxtdxk4SKH336LFxSmkqefwU5T8fhdSdQf9IVKD6aNiwI/hnmcAZ91isYMJIaCUCx9W098+LgruikeTqzqqxKPUwqJyCPJiyemVVZBOijDGjD38Os0jOiSPL1z3SPjXNANbiNPXAdzTfukjjuknNBbyz3nwgTd3AVFqUJ5hpHlq9MveLnWwttUfoygBmvVjuikxND3znrhsELnZk7k+OjIGxeNEkomyLVta0xxn+HZhjBc4YZ/AFjHjz9u3xRZl2BN4aq9nFwWh16IrQ1aHHEd3j1+4/dB9OtH4e29A2H1DyHQRmOSfQZ1Fy7MHBTGB6J/Djq6p3OxyO2cB+4Car7v/o3GXgfAkj23+x9ID1Teoamo/SXcbvSf2PX7Vc8DdCmE1vN9di+32P9/5YR3vLnhCVGUWBjEkr3yh4H8v9CzmsbdhzOKzsJKM90iFdaTMjRPhGVsakRvOaRidljo6H6G7j+ctrJpsP+4COhDIl0La2+FS4+5mlocBaXY5QnGZysIBYoeSsl5qQzrSj/cgNrfuEzlWBfwA+EjrZyWUvpAAAAABJRU5ErkJggg==">(原生)绑定自定义工具<!----></h1> <!----> <div class="theme-vdoing-content content__default"><h2 id="开发工具函数"><a href="#开发工具函数" class="header-anchor">#</a> 开发工具函数</h2> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b
+</code></pre></div><h2 id="将工具函数转为langchain-tool对象"><a href="#将工具函数转为langchain-tool对象" class="header-anchor">#</a> 将工具函数转为LangChain Tool对象</h2> <h3 id="概述"><a href="#概述" class="header-anchor">#</a> 概述</h3> <p>LangChain中的工具（Tool）是一个封装了特定功能的类，它包含四个核心组成部分：</p> <ul><li>名称（name）：名称是工具在工具集合中的<strong>唯一标识符</strong>，必须确保在同一工具集中不重复</li> <li>描述（description）：描述用于说明工具的功能，为LLM或代理提供上下文信息，<strong>帮助模型理解何时以及如何调用该工具</strong></li> <li>参数模式（args_schema）：是使用Pydantic BaseModel定义的输入参数结构，用于验证和解析工具调用的参数</li> <li>是否直接返回（return_direct）：布尔值属性，当设置为True时，智能体会在调用工具后立即返回结果给用户，而不继续调用其他工具</li></ul> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment">#common函数</span>
+<span class="token keyword">from</span> langchain_openai <span class="token keyword">import</span> ChatOpenAI
+<span class="token keyword">from</span> langchain_core<span class="token punctuation">.</span>prompts <span class="token keyword">import</span> ChatMessagePromptTemplate<span class="token punctuation">,</span> ChatPromptTemplate
+
+llm <span class="token operator">=</span> ChatOpenAI<span class="token punctuation">(</span>
+    model<span class="token operator">=</span><span class="token string">&quot;qwen-max&quot;</span><span class="token punctuation">,</span>
+    <span class="token comment"># model=&quot;qwen3-235b-a22b&quot;,</span>
+    base_url<span class="token operator">=</span><span class="token string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span><span class="token punctuation">,</span>
+    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">&quot;BAILIAN_API_KEY&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    streaming<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+system_message_template <span class="token operator">=</span> ChatMessagePromptTemplate<span class="token punctuation">.</span>from_template<span class="token punctuation">(</span>
+    template<span class="token operator">=</span><span class="token string">&quot;你是一位{role}专家，擅长回答{domain}领域的问题&quot;</span><span class="token punctuation">,</span>
+    role<span class="token operator">=</span><span class="token string">&quot;system&quot;</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+
+human_message_template <span class="token operator">=</span> ChatMessagePromptTemplate<span class="token punctuation">.</span>from_template<span class="token punctuation">(</span>
+    template<span class="token operator">=</span><span class="token string">&quot;用户问题：{question}&quot;</span><span class="token punctuation">,</span>
+    role<span class="token operator">=</span><span class="token string">&quot;user&quot;</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+<span class="token comment"># 创建提示词模板</span>
+chat_prompt_template <span class="token operator">=</span> ChatPromptTemplate<span class="token punctuation">.</span>from_messages<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    system_message_template<span class="token punctuation">,</span>
+    human_message_template<span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre></div><div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> langchain_core<span class="token punctuation">.</span>tools <span class="token keyword">import</span> tool
+<span class="token keyword">from</span> pydantic <span class="token keyword">import</span> BaseModel
+<span class="token keyword">from</span> app<span class="token punctuation">.</span>bailian<span class="token punctuation">.</span>common <span class="token keyword">import</span> chat_prompt_template<span class="token punctuation">,</span> llm
+
+<span class="token keyword">class</span> <span class="token class-name">AddInputArgs</span><span class="token punctuation">(</span>BaseModel<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    a<span class="token punctuation">:</span> <span class="token builtin">int</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">&quot;first number&quot;</span><span class="token punctuation">)</span> <span class="token comment"># 这里的 int 或者str，大模型会参考，然后决定是字符拼接，还是数字相加</span>
+    b<span class="token punctuation">:</span> <span class="token builtin">int</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">&quot;second number&quot;</span><span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@tool</span><span class="token punctuation">(</span>
+    description<span class="token operator">=</span><span class="token string">&quot;add two numbers&quot;</span><span class="token punctuation">,</span>
+    args_schema<span class="token operator">=</span>AddInputArgs<span class="token punctuation">,</span> <span class="token comment"># 定义工具输入的类型</span>
+    return_direct<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;add two numbers&quot;&quot;&quot;</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b
+
+
+tool_dict <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;add&quot;</span><span class="token punctuation">:</span> add
+<span class="token punctuation">}</span>
+
+llm_with_tools <span class="token operator">=</span> llm<span class="token punctuation">.</span>bind_tools<span class="token punctuation">(</span><span class="token punctuation">[</span>add<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+chain <span class="token operator">=</span> chat_prompt_template <span class="token operator">|</span> llm_with_tools
+
+resp <span class="token operator">=</span> chain<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">&quot;role&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;计算&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;domain&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;数学计算&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;question&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;使用工具计算：100+100=?&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>resp<span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> tool_calls <span class="token keyword">in</span> resp<span class="token punctuation">.</span>tool_calls<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>tool_calls<span class="token punctuation">)</span>
+
+    args <span class="token operator">=</span> tool_calls<span class="token punctuation">[</span><span class="token string">&quot;args&quot;</span><span class="token punctuation">]</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span>
+
+    func_name <span class="token operator">=</span> tool_calls<span class="token punctuation">[</span><span class="token string">&quot;name&quot;</span><span class="token punctuation">]</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>func_name<span class="token punctuation">)</span>
+
+    tool_func <span class="token operator">=</span> tool_dict<span class="token punctuation">[</span>func_name<span class="token punctuation">]</span>
+
+    tool_content <span class="token operator">=</span> tool_func<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>args<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>tool_content<span class="token punctuation">)</span>
+
+</code></pre></div><h3 id="定义方法"><a href="#定义方法" class="header-anchor">#</a> 定义方法</h3> <ol><li><p>方法一：使用Tool.from_function生成</p> <div class="language-python extra-class"><pre class="language-python"><code>add_tools <span class="token operator">=</span> Tool<span class="token punctuation">.</span>from_function<span class="token punctuation">(</span>
+    func<span class="token operator">=</span>add<span class="token punctuation">,</span>
+    name<span class="token operator">=</span><span class="token string">&quot;add&quot;</span><span class="token punctuation">,</span>
+    description<span class="token operator">=</span><span class="token string">&quot;计算两个数相加&quot;</span>
+<span class="token punctuation">)</span>
+</code></pre></div></li> <li><p>方法2：使用@tool装饰器生成</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token decorator annotation punctuation">@tool</span>
+<span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;add two numbers&quot;&quot;&quot;</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b
+</code></pre></div></li></ol> <h2 id="将大模型和tool对象绑定"><a href="#将大模型和tool对象绑定" class="header-anchor">#</a> 将大模型和Tool对象绑定</h2> <div class="language-python extra-class"><pre class="language-python"><code>llm_with_tools <span class="token operator">=</span> llm<span class="token punctuation">.</span>bind_tools<span class="token punctuation">(</span><span class="token punctuation">[</span>add_tools<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="调用大模型-尝试让大模型调用工具"><a href="#调用大模型-尝试让大模型调用工具" class="header-anchor">#</a> 调用大模型，尝试让大模型调用工具</h2> <ol><li>大模型不会调用工具</li> <li>大模型是解析工具函数吗，然后告诉我们如何调用工具</li></ol> <div class="language-python extra-class"><pre class="language-python"><code>prompt <span class="token operator">=</span> ChatPromptTemplate<span class="token punctuation">.</span>from_messages<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token punctuation">(</span><span class="token string">&quot;system&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;你是一名资深的开发工程师，叫做小慕&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token string">&quot;human&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;{user_input}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+chain <span class="token operator">=</span> prompt <span class="token operator">|</span> llm_with_tools
+
+response <span class="token operator">=</span> chain<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;user_input&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;计算100+100&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="第五步-调用工具"><a href="#第五步-调用工具" class="header-anchor">#</a> 第五步：调用工具</h2> <p>根据大模型解析返回的Tools结果执行函数：</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">for</span> tool_calls <span class="token keyword">in</span> resp<span class="token punctuation">.</span>tool_calls<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>tool_calls<span class="token punctuation">)</span>
+
+    args <span class="token operator">=</span> tool_calls<span class="token punctuation">[</span><span class="token string">'args'</span><span class="token punctuation">]</span>
+    func_name <span class="token operator">=</span> tool_calls<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span>
+
+    func <span class="token operator">=</span> tools_dict<span class="token punctuation">[</span>func_name<span class="token punctuation">]</span>
+    tool_content <span class="token operator">=</span> func<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>args<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>tool_content<span class="token punctuation">)</span>
+</code></pre></div></div></div> <!----> <div class="page-edit"><!----> <!----> <!----></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/LLMBlog/pages/33d462/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">LangChain的基本使用</div></a> <a href="/LLMBlog/pages/1bd4e4/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">Agent绑定工具</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/LLMBlog/pages/33d462/" class="prev">LangChain的基本使用</a></span> <span class="next"><a href="/LLMBlog/pages/1bd4e4/">Agent绑定工具</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/LLMBlog/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/LLMBlog/pages/1bd4e4/"><div>
+            Agent绑定工具
+            <!----></div></a> <span class="date">02-27</span></dt></dl><dl><dd>02</dd> <dt><a href="/LLMBlog/pages/33d462/"><div>
+            LangChain的基本使用
+            <!----></div></a> <span class="date">02-24</span></dt></dl><dl><dd>03</dd> <dt><a href="/LLMBlog/pages/c24827/"><div>
+            百炼模型的使用
+            <!----></div></a> <span class="date">02-24</span></dt></dl> <dl><dd></dd> <dt><a href="/LLMBlog/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><!----> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> <!----></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <!----></div><div class="global-ui"></div></div>
+    <script src="/LLMBlog/assets/js/app.ff17da13.js" defer></script><script src="/LLMBlog/assets/js/2.ba391ffa.js" defer></script><script src="/LLMBlog/assets/js/27.9cc54af0.js" defer></script>
+  </body>
+</html>
