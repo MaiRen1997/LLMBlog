@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>输出解析器 | 麦仁大模型博客</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="记录大模型学习">
+    
+    <link rel="preload" href="/LLMBlog/assets/css/0.styles.1c990687.css" as="style"><link rel="preload" href="/LLMBlog/assets/js/app.43101dfd.js" as="script"><link rel="preload" href="/LLMBlog/assets/js/2.9b733baf.js" as="script"><link rel="preload" href="/LLMBlog/assets/js/28.dba535d6.js" as="script"><link rel="prefetch" href="/LLMBlog/assets/js/10.92696c9f.js"><link rel="prefetch" href="/LLMBlog/assets/js/100.638c62f0.js"><link rel="prefetch" href="/LLMBlog/assets/js/101.7cf64c16.js"><link rel="prefetch" href="/LLMBlog/assets/js/102.0dae68b6.js"><link rel="prefetch" href="/LLMBlog/assets/js/103.548534a1.js"><link rel="prefetch" href="/LLMBlog/assets/js/104.70b721b4.js"><link rel="prefetch" href="/LLMBlog/assets/js/105.e9663d85.js"><link rel="prefetch" href="/LLMBlog/assets/js/106.e76d3c30.js"><link rel="prefetch" href="/LLMBlog/assets/js/107.f7a97667.js"><link rel="prefetch" href="/LLMBlog/assets/js/108.37056467.js"><link rel="prefetch" href="/LLMBlog/assets/js/109.676cd6c0.js"><link rel="prefetch" href="/LLMBlog/assets/js/11.9136dd33.js"><link rel="prefetch" href="/LLMBlog/assets/js/110.900c2634.js"><link rel="prefetch" href="/LLMBlog/assets/js/111.982fda51.js"><link rel="prefetch" href="/LLMBlog/assets/js/112.d285e895.js"><link rel="prefetch" href="/LLMBlog/assets/js/113.4261eb63.js"><link rel="prefetch" href="/LLMBlog/assets/js/114.2de9e865.js"><link rel="prefetch" href="/LLMBlog/assets/js/115.619d0229.js"><link rel="prefetch" href="/LLMBlog/assets/js/116.519eb898.js"><link rel="prefetch" href="/LLMBlog/assets/js/117.b4fa3157.js"><link rel="prefetch" href="/LLMBlog/assets/js/118.bc647600.js"><link rel="prefetch" href="/LLMBlog/assets/js/119.365d3ceb.js"><link rel="prefetch" href="/LLMBlog/assets/js/12.27fc005c.js"><link rel="prefetch" href="/LLMBlog/assets/js/120.61662690.js"><link rel="prefetch" href="/LLMBlog/assets/js/121.297f3dbb.js"><link rel="prefetch" href="/LLMBlog/assets/js/122.87481d5e.js"><link rel="prefetch" href="/LLMBlog/assets/js/123.db34947c.js"><link rel="prefetch" href="/LLMBlog/assets/js/124.2b8a39f1.js"><link rel="prefetch" href="/LLMBlog/assets/js/125.d3cb8395.js"><link rel="prefetch" href="/LLMBlog/assets/js/126.11ca917b.js"><link rel="prefetch" href="/LLMBlog/assets/js/127.a1b711c2.js"><link rel="prefetch" href="/LLMBlog/assets/js/128.ffd5e009.js"><link rel="prefetch" href="/LLMBlog/assets/js/129.4c876ddb.js"><link rel="prefetch" href="/LLMBlog/assets/js/13.30751f34.js"><link rel="prefetch" href="/LLMBlog/assets/js/130.697f5636.js"><link rel="prefetch" href="/LLMBlog/assets/js/131.1beebefc.js"><link rel="prefetch" href="/LLMBlog/assets/js/132.33948b3f.js"><link rel="prefetch" href="/LLMBlog/assets/js/133.a10c1e65.js"><link rel="prefetch" href="/LLMBlog/assets/js/134.d4e5d7ef.js"><link rel="prefetch" href="/LLMBlog/assets/js/135.020ce715.js"><link rel="prefetch" href="/LLMBlog/assets/js/136.b4e6fce4.js"><link rel="prefetch" href="/LLMBlog/assets/js/137.9b28a07f.js"><link rel="prefetch" href="/LLMBlog/assets/js/138.86fb769a.js"><link rel="prefetch" href="/LLMBlog/assets/js/139.43594758.js"><link rel="prefetch" href="/LLMBlog/assets/js/14.f8d3dbff.js"><link rel="prefetch" href="/LLMBlog/assets/js/140.f1590a64.js"><link rel="prefetch" href="/LLMBlog/assets/js/141.0c4d1bdc.js"><link rel="prefetch" href="/LLMBlog/assets/js/142.3ed49dd1.js"><link rel="prefetch" href="/LLMBlog/assets/js/143.a7159904.js"><link rel="prefetch" href="/LLMBlog/assets/js/144.98e3fcfd.js"><link rel="prefetch" href="/LLMBlog/assets/js/145.d528e9e7.js"><link rel="prefetch" href="/LLMBlog/assets/js/146.f215e4df.js"><link rel="prefetch" href="/LLMBlog/assets/js/147.8b05cb63.js"><link rel="prefetch" href="/LLMBlog/assets/js/148.791c4a91.js"><link rel="prefetch" href="/LLMBlog/assets/js/149.e70c0a7a.js"><link rel="prefetch" href="/LLMBlog/assets/js/15.79c3e30d.js"><link rel="prefetch" href="/LLMBlog/assets/js/150.3784f05a.js"><link rel="prefetch" href="/LLMBlog/assets/js/151.d0f38faf.js"><link rel="prefetch" href="/LLMBlog/assets/js/152.4df93273.js"><link rel="prefetch" href="/LLMBlog/assets/js/153.d2402b5b.js"><link rel="prefetch" href="/LLMBlog/assets/js/154.da5a5db4.js"><link rel="prefetch" href="/LLMBlog/assets/js/16.35eead57.js"><link rel="prefetch" href="/LLMBlog/assets/js/17.39f9e647.js"><link rel="prefetch" href="/LLMBlog/assets/js/18.cff8362f.js"><link rel="prefetch" href="/LLMBlog/assets/js/19.f60374d9.js"><link rel="prefetch" href="/LLMBlog/assets/js/20.139d3806.js"><link rel="prefetch" href="/LLMBlog/assets/js/21.d5a67f81.js"><link rel="prefetch" href="/LLMBlog/assets/js/22.23165e0b.js"><link rel="prefetch" href="/LLMBlog/assets/js/23.2a5fe6b9.js"><link rel="prefetch" href="/LLMBlog/assets/js/24.51a2f470.js"><link rel="prefetch" href="/LLMBlog/assets/js/25.d61115ec.js"><link rel="prefetch" href="/LLMBlog/assets/js/26.42e0bb50.js"><link rel="prefetch" href="/LLMBlog/assets/js/27.2df68b85.js"><link rel="prefetch" href="/LLMBlog/assets/js/29.b7406706.js"><link rel="prefetch" href="/LLMBlog/assets/js/3.54472d98.js"><link rel="prefetch" href="/LLMBlog/assets/js/30.c88d3c2e.js"><link rel="prefetch" href="/LLMBlog/assets/js/31.2e819b47.js"><link rel="prefetch" href="/LLMBlog/assets/js/32.9df53d8e.js"><link rel="prefetch" href="/LLMBlog/assets/js/33.dbc3228c.js"><link rel="prefetch" href="/LLMBlog/assets/js/34.31d58fc0.js"><link rel="prefetch" href="/LLMBlog/assets/js/35.9980e584.js"><link rel="prefetch" href="/LLMBlog/assets/js/36.0a77ea75.js"><link rel="prefetch" href="/LLMBlog/assets/js/37.e8fb663a.js"><link rel="prefetch" href="/LLMBlog/assets/js/38.1c119bd1.js"><link rel="prefetch" href="/LLMBlog/assets/js/39.5483a4b0.js"><link rel="prefetch" href="/LLMBlog/assets/js/4.0e8379cb.js"><link rel="prefetch" href="/LLMBlog/assets/js/40.2260ba1f.js"><link rel="prefetch" href="/LLMBlog/assets/js/41.3502247a.js"><link rel="prefetch" href="/LLMBlog/assets/js/42.d0b8a7d6.js"><link rel="prefetch" href="/LLMBlog/assets/js/43.5cfca0a1.js"><link rel="prefetch" href="/LLMBlog/assets/js/44.11215291.js"><link rel="prefetch" href="/LLMBlog/assets/js/45.b58205b7.js"><link rel="prefetch" href="/LLMBlog/assets/js/46.e519ec87.js"><link rel="prefetch" href="/LLMBlog/assets/js/47.a45de693.js"><link rel="prefetch" href="/LLMBlog/assets/js/48.a3ed7af6.js"><link rel="prefetch" href="/LLMBlog/assets/js/49.8993cdca.js"><link rel="prefetch" href="/LLMBlog/assets/js/5.8eee4575.js"><link rel="prefetch" href="/LLMBlog/assets/js/50.b43a1f10.js"><link rel="prefetch" href="/LLMBlog/assets/js/51.94623d09.js"><link rel="prefetch" href="/LLMBlog/assets/js/52.bfb9def4.js"><link rel="prefetch" href="/LLMBlog/assets/js/53.62ed7e0a.js"><link rel="prefetch" href="/LLMBlog/assets/js/54.1162eac1.js"><link rel="prefetch" href="/LLMBlog/assets/js/55.82d4013b.js"><link rel="prefetch" href="/LLMBlog/assets/js/56.f583681f.js"><link rel="prefetch" href="/LLMBlog/assets/js/57.004f4bb6.js"><link rel="prefetch" href="/LLMBlog/assets/js/58.c68c55fc.js"><link rel="prefetch" href="/LLMBlog/assets/js/59.288a540b.js"><link rel="prefetch" href="/LLMBlog/assets/js/6.371da1ed.js"><link rel="prefetch" href="/LLMBlog/assets/js/60.bc26c6b7.js"><link rel="prefetch" href="/LLMBlog/assets/js/61.2c607993.js"><link rel="prefetch" href="/LLMBlog/assets/js/62.55fba4d4.js"><link rel="prefetch" href="/LLMBlog/assets/js/63.0c06495c.js"><link rel="prefetch" href="/LLMBlog/assets/js/64.66989384.js"><link rel="prefetch" href="/LLMBlog/assets/js/65.d9657661.js"><link rel="prefetch" href="/LLMBlog/assets/js/66.ed860f06.js"><link rel="prefetch" href="/LLMBlog/assets/js/67.aa3144be.js"><link rel="prefetch" href="/LLMBlog/assets/js/68.75a7fabf.js"><link rel="prefetch" href="/LLMBlog/assets/js/69.59c9246f.js"><link rel="prefetch" href="/LLMBlog/assets/js/7.9f959d53.js"><link rel="prefetch" href="/LLMBlog/assets/js/70.125d4b14.js"><link rel="prefetch" href="/LLMBlog/assets/js/71.3f59f039.js"><link rel="prefetch" href="/LLMBlog/assets/js/72.5b2b900f.js"><link rel="prefetch" href="/LLMBlog/assets/js/73.f50d04c6.js"><link rel="prefetch" href="/LLMBlog/assets/js/74.da93586e.js"><link rel="prefetch" href="/LLMBlog/assets/js/75.9d78217c.js"><link rel="prefetch" href="/LLMBlog/assets/js/76.6af44929.js"><link rel="prefetch" href="/LLMBlog/assets/js/77.96912824.js"><link rel="prefetch" href="/LLMBlog/assets/js/78.d7ed14b8.js"><link rel="prefetch" href="/LLMBlog/assets/js/79.1fc975c8.js"><link rel="prefetch" href="/LLMBlog/assets/js/8.87efe56e.js"><link rel="prefetch" href="/LLMBlog/assets/js/80.c66c7a40.js"><link rel="prefetch" href="/LLMBlog/assets/js/81.a0e9ebd5.js"><link rel="prefetch" href="/LLMBlog/assets/js/82.097952b6.js"><link rel="prefetch" href="/LLMBlog/assets/js/83.3803ebdc.js"><link rel="prefetch" href="/LLMBlog/assets/js/84.c9c3b152.js"><link rel="prefetch" href="/LLMBlog/assets/js/85.15e196fb.js"><link rel="prefetch" href="/LLMBlog/assets/js/86.0641d7ec.js"><link rel="prefetch" href="/LLMBlog/assets/js/87.0e270bc7.js"><link rel="prefetch" href="/LLMBlog/assets/js/88.65ec8eec.js"><link rel="prefetch" href="/LLMBlog/assets/js/89.1eb43621.js"><link rel="prefetch" href="/LLMBlog/assets/js/9.92ea265e.js"><link rel="prefetch" href="/LLMBlog/assets/js/90.348bfd1f.js"><link rel="prefetch" href="/LLMBlog/assets/js/91.11e03ce0.js"><link rel="prefetch" href="/LLMBlog/assets/js/92.36698c26.js"><link rel="prefetch" href="/LLMBlog/assets/js/93.bedd35c1.js"><link rel="prefetch" href="/LLMBlog/assets/js/94.2eb376b2.js"><link rel="prefetch" href="/LLMBlog/assets/js/95.81d7afb1.js"><link rel="prefetch" href="/LLMBlog/assets/js/96.0de7e424.js"><link rel="prefetch" href="/LLMBlog/assets/js/97.00d809cd.js"><link rel="prefetch" href="/LLMBlog/assets/js/98.9e2eb456.js"><link rel="prefetch" href="/LLMBlog/assets/js/99.1cb34c8c.js">
+    <link rel="stylesheet" href="/LLMBlog/assets/css/0.styles.1c990687.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LLMBlog/" class="home-link router-link-active"><!----> <span class="site-name">麦仁大模型博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/LLMBlog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/LLMBlog/HelloAgent/" class="nav-link">HelloAgent</a></div><div class="nav-item"><a href="/LLMBlog/FastAPI/" class="nav-link">FastAPI</a></div><div class="nav-item"><a href="/LLMBlog/promptEngineer/" class="nav-link">提示词工程</a></div><div class="nav-item"><a href="/LLMBlog/RAG/" class="nav-link">RAG</a></div><div class="nav-item"><a href="/LLMBlog/LangChain/" class="nav-link">LangChain</a></div><div class="nav-item"><a href="/LLMBlog/Agent/" class="nav-link">Agent</a></div><div class="nav-item"><a href="/LLMBlog/Fine-tuning/" class="nav-link">微调</a></div><div class="nav-item"><a href="/LLMBlog/Multimodal/" class="nav-link">多模态</a></div><div class="nav-item"><a href="/LLMBlog/PrivateDeploy/" class="nav-link">私有化部署</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/LLMBlog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/LLMBlog/HelloAgent/" class="nav-link">HelloAgent</a></div><div class="nav-item"><a href="/LLMBlog/FastAPI/" class="nav-link">FastAPI</a></div><div class="nav-item"><a href="/LLMBlog/promptEngineer/" class="nav-link">提示词工程</a></div><div class="nav-item"><a href="/LLMBlog/RAG/" class="nav-link">RAG</a></div><div class="nav-item"><a href="/LLMBlog/LangChain/" class="nav-link">LangChain</a></div><div class="nav-item"><a href="/LLMBlog/Agent/" class="nav-link">Agent</a></div><div class="nav-item"><a href="/LLMBlog/Fine-tuning/" class="nav-link">微调</a></div><div class="nav-item"><a href="/LLMBlog/Multimodal/" class="nav-link">多模态</a></div><div class="nav-item"><a href="/LLMBlog/PrivateDeploy/" class="nav-link">私有化部署</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>理论</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>代码</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/LLMBlog/pages/c30386/" class="sidebar-link">langChain基础使用</a></li><li><a href="/LLMBlog/pages/74ebf8/" class="sidebar-link">模型的使用(具体查看langChain官网)</a></li><li><a href="/LLMBlog/pages/527493/" class="sidebar-link">langChain调用ollama</a></li><li><a href="/LLMBlog/pages/8c2c86/" class="sidebar-link">模型调用的6大方法</a></li><li><a href="/LLMBlog/pages/9a45f7/" class="sidebar-link">Prompt的使用</a></li><li><a href="/LLMBlog/pages/f7733d/" aria-current="page" class="active sidebar-link">输出解析器</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/f7733d/#背景" class="sidebar-link">背景</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/f7733d/#解析器分类" class="sidebar-link">解析器分类</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/f7733d/#输出解析器两大方法" class="sidebar-link">输出解析器两大方法</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/f7733d/#stroutputparser" class="sidebar-link">StrOutputParser</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/f7733d/#with-structured-output" class="sidebar-link">withstructuredoutput</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/f7733d/#pydanticoutputparser" class="sidebar-link">PydanticOutputParser</a></li></ul></li><li><a href="/LLMBlog/pages/147ff6/" class="sidebar-link">输出解析器2</a></li><li><a href="/LLMBlog/pages/23ae31/" class="sidebar-link">Rnnnable统一接口和方法</a></li><li><a href="/LLMBlog/pages/749999/" class="sidebar-link">记忆缓存(短期记忆)</a></li><li><a href="/LLMBlog/pages/36a10a/" class="sidebar-link">工具调用</a></li><li><a href="/LLMBlog/pages/34a93a/" class="sidebar-link">向量化</a></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/LLMBlog/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><a href="/LLMBlog/LangChain/#LangChain&amp;LangGraph" data-v-06225672>LangChain&amp;LangGraph</a></li><li data-v-06225672><a href="/LLMBlog/LangChain/#代码" data-v-06225672>代码</a></li></ul> <div class="info" data-v-06225672><!----> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2026-04-09</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABGpJREFUSA3tVVtoXFUU3fvOI53UlmCaKIFmwEhsE7QK0ipFEdHEKpXaZGrp15SINsXUWvBDpBgQRKi0+KKoFeJHfZA+ED9KKoIU2gYD9UejTW4rVIzm0VSTziPzuNu1z507dibTTjL4U/DAzLn3nL3X2o91ziX6f9wMFdh6Jvbm9nNSV0msViVO6tN1Rm7NMu2OpeJ9lWBUTDxrJbYTS0hInuwciu9eLHlFxCLCZEk3MegsJmZ5K/JD6t7FkFdEvGUo1g7qJoG3MHImqRIn8/nzY1K9UPKKiJmtnUqHVE3Gbuay6vJE/N2FEmuxFjW2nUuE0yQXRRxLiTUAzs36zhZvOXJPdX850EVnnLZkB8prodQoM5JGj7Xk2mvC7JB8tG04Ef5PiXtG0UtxupRQSfTnBoCy554x18yJHI6I+G5Eru4LHmPJZEQsrvPUbMiA8G/WgMK7w7I+ez7++o2ANfbrjvaOl1tFMs+htG3IrZH9/hDX1Pr8Tc0UvH8tcX29KzAgIGcEkINyW5BF9x891hw6VYqgJHEk0huccS7vh3C6gTiODL+26huuBtbct8eZnqLML8PkxGYpuPZBqtqwkSjgc4mB5gbgig5i+y0UDK35LMxXisn9xQtK+nd26gTIHsHe/oblK/b29fUmN/8Y+9jAQrnBp56m1LcDlDp9irKTExSKduXJVWSqdBMA08pEJnEIOB3FPPMybu/oeV8zFeYN3xx576Q6RH+VmplE4ncQV5v+5rzSoyOU7PuEAg8g803PwBJ0CExno/jcMbN8tONYeOmHiuUNryvm3fRUy4tMPVLdAGkUhNWuggGrJcXPv+ouCjz0MKUHz1J2/E8IC9nqTabcxgaBYM0hPhD5Y65FsbxRQKxCQrDjDctW7PUM3HuZunFyifSAqEfuzCp48Il24luWUWZoyJCaPR82jE0+kFA643wRFVni4RYSq3ohJO2pZ7B5dO4xkDWbEpossJPLSrPjYID8rS2UHTlvyNxqIGsg674XJJ7vnh5L7PNwC4hh2sjCI96mzszOTpxLF0T7l88Yz7lAuK6OnL8gXLOnTvpzSb22YG8W7us3jSebFHeeqnXRG1vt+MoUM84LQIBmMsCTAcOauTh0T0l0neQK7m2bLMt2mGxU3HYssS0J2cdv5wljlPsrIuZLAG/2DOZIXgCYT8uMGZN+e2kSirfxZOPCsC0f24nTZzspnVn9VePS1Z5vubmAGGXG8ZFno9Hel0yfA5ZPhF7Dh972BQJ2qCpgH67lmWtBYbvk6sz02wjky2vXyz0XErP/kFB619js1BtwfOV4OPRqOQBjy3Qbk18vigUPPSD5ceHnwck7W9bhAqZdd7SuG7w4/P2F/GaJh8c7e9qgow+Q7cGBo+98WsLkuktFqiZabtXuQTu/Y5ETbR0v7tNSFnvrmu6pjdoan2KjMu8q/Hmj1EfCO2ZGfEIbIXKUlw8qaX9/b2oeSJmFksSeT/Fn0V3nSypChh4Gjh74ybO9aeZ/AN2dwciu2/MhAAAAAElFTkSuQmCC">输出解析器<!----></h1> <!----> <div class="theme-vdoing-content content__default"><h2 id="背景"><a href="#背景" class="header-anchor">#</a> 背景</h2> <p>语言模型<code>返回的内容通常都是字符串的格式(文本格式)</code>，但在实际AI应用开发过程中，往往希望大模型可以返回更直观、更格式化的内容，以确保应用能够顺利进行后续的逻辑处理
+此时，LangChain提供的输出解析器就派上用场了</p> <p>输出解析器(Output Parser) 负责获取model的输出，并将其转换为更合适的格式，这在应用开发中及其重要</p> <p>作用：<code>将大模型的输出转换为JSON、XML、YAML等结构化数据</code></p> <h2 id="解析器分类"><a href="#解析器分类" class="header-anchor">#</a> 解析器分类</h2> <ol><li>最常用的就是前三个</li></ol> <table><thead><tr><th>解析器类型</th> <th>适用场景</th> <th>输出格式</th></tr></thead> <tbody><tr><td>StrOutputParser</td> <td>简单文本输出</td> <td>字符串</td></tr> <tr><td>JSONOutputParser</td> <td>JSON格式数据</td> <td>字典/列表</td></tr> <tr><td>PydanticOutputParser</td> <td>复杂结构化数据</td> <td>Pydantic模型对象</td></tr> <tr><td>ListOutputParser</td> <td>列表数据</td> <td>Python列表</td></tr> <tr><td>DatetimeOutputParser</td> <td>时间日期数据</td> <td>datetime对象</td></tr> <tr><td>BooleanOutputParser</td> <td>布尔输出</td> <td>True/False</td></tr></tbody></table> <h2 id="输出解析器两大方法"><a href="#输出解析器两大方法" class="header-anchor">#</a> 输出解析器两大方法</h2> <h3 id="jsonoutputparser"><a href="#jsonoutputparser" class="header-anchor">#</a> JsonOutputParser</h3> <p>将大模输出的内容，格式化成指定的格式返回</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token triple-quoted-string string">&quot;&quot;&quot;
+JsonOutputParser，即JSON输出解析器，
+是一种用于将大模型的自由文本输出转换为结构化JSON数据的工具。
+
+本案例是：指定提示词指明返回 json 格式
+&quot;&quot;&quot;</span>
+
+<span class="token keyword">from</span> langchain_core<span class="token punctuation">.</span>output_parsers <span class="token keyword">import</span> StrOutputParser<span class="token punctuation">,</span> JsonOutputParser
+<span class="token keyword">from</span> langchain_core<span class="token punctuation">.</span>prompts <span class="token keyword">import</span> ChatPromptTemplate
+<span class="token keyword">import</span> os
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chat_models <span class="token keyword">import</span> init_chat_model
+<span class="token keyword">from</span> loguru <span class="token keyword">import</span> logger
+
+<span class="token comment"># 创建聊天提示模板，包含系统角色设定和用户问题输入</span>
+chat_prompt <span class="token operator">=</span> ChatPromptTemplate<span class="token punctuation">.</span>from_messages<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token punctuation">(</span><span class="token string">&quot;system&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;你是一个{role}，请简短回答我提出的问题，结果返回json格式，q字段表示问题，a字段表示答案。&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token string">&quot;human&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;请回答:{question}&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 使用指定的角色和问题生成具体的提示内容</span>
+prompt <span class="token operator">=</span> chat_prompt<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;role&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;AI助手&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;question&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;什么是LangChain，简洁回答100字以内&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+
+<span class="token comment"># 初始化模型</span>
+model <span class="token operator">=</span> init_chat_model<span class="token punctuation">(</span>
+    model<span class="token operator">=</span><span class="token string">&quot;qwen-plus&quot;</span><span class="token punctuation">,</span>
+    model_provider<span class="token operator">=</span><span class="token string">&quot;openai&quot;</span><span class="token punctuation">,</span>
+    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;aliQwen-api&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    base_url<span class="token operator">=</span><span class="token string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 调用模型获取回答结果</span>
+result <span class="token operator">=</span> model<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;模型原始输出:\n</span><span class="token interpolation"><span class="token punctuation">{</span>result<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;*&quot;</span> <span class="token operator">*</span>  <span class="token number">60</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># 创建JSON输出解析器实例</span>
+parser <span class="token operator">=</span> JsonOutputParser<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 调用解析器处理结果数据，将输入转换为JSON格式的响应</span>
+response <span class="token operator">=</span> parser<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;解析后的结构化结果:\n</span><span class="token interpolation"><span class="token punctuation">{</span>response<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">)</span>
+<span class="token comment"># 打印类型</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;结果类型: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">type</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span> <span class="token comment"># &lt;class 'dict'&gt;</span>
+</code></pre></div><p><img src="/LLMBlog/assets/img/JsonOutputParse1.844aa7fa.png" alt=""></p> <h3 id="get-format-instructions"><a href="#get-format-instructions" class="header-anchor">#</a> get_format_instructions</h3> <p>会返回一段清晰的格式说明字符串，<strong>告诉model希望输出成什么格式</strong>(比如JSON，或者特定格式)，不一定是JSON，也<strong>可以是其他格式</strong></p> <ol><li><p>定义一个Person类</p></li> <li><p>JsonOutputParser增加参数，要求pydantic_object为定义的Person<code>parser = JsonOutputParser(pydantic_object=Person)</code></p></li> <li><p>对转换器调用get_format_instructions方法<code>format_instructions = parser.get_format_instructions()</code></p></li> <li><p>将转换后得到的结果，传到prompt中</p> <p><code>prompt = chat_prompt.format_messages(topic=&quot;小米su7跑车&quot;, format_instructions=format_instructions)</code></p></li></ol> <div class="language-python extra-class"><pre class="language-python"><code><span class="token triple-quoted-string string">&quot;&quot;&quot;
+JsonOutputParser，即JSON输出解析器，
+是一种用于将大模型的自由文本输出转换为结构化JSON数据的工具。
+
+本案例是：借助JsonOutputParser的get_format_instructions() ，
+生成格式说明，指导模型输出JSON 结构
+&quot;&quot;&quot;</span>
+
+<span class="token keyword">from</span> langchain_core<span class="token punctuation">.</span>output_parsers <span class="token keyword">import</span> StrOutputParser<span class="token punctuation">,</span> JsonOutputParser
+<span class="token keyword">from</span> langchain_core<span class="token punctuation">.</span>prompts <span class="token keyword">import</span> ChatPromptTemplate
+<span class="token keyword">import</span> os
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chat_models <span class="token keyword">import</span> init_chat_model
+<span class="token keyword">from</span> loguru <span class="token keyword">import</span> logger
+<span class="token keyword">from</span> pydantic <span class="token keyword">import</span> BaseModel<span class="token punctuation">,</span> Field
+
+<span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">(</span>BaseModel<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;
+    定义一个新闻结构化的数据模型类
+    属性:
+        time (str): 新闻发生的时间
+        person (str): 新闻涉及的人物
+        event (str): 发生的具体事件
+    &quot;&quot;&quot;</span>
+    time<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">&quot;时间&quot;</span><span class="token punctuation">)</span> <span class="token comment">#</span>
+    person<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">&quot;人物&quot;</span><span class="token punctuation">)</span>
+    event<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">&quot;事件&quot;</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 创建JSON输出解析器，用于将model输出解析为Person对象</span>
+parser <span class="token operator">=</span> JsonOutputParser<span class="token punctuation">(</span>pydantic_object<span class="token operator">=</span>Person<span class="token punctuation">)</span>
+
+<span class="token comment"># 获取格式化指令，告诉model如何输出符合要求的JSON格式</span>
+format_instructions <span class="token operator">=</span> parser<span class="token punctuation">.</span>get_format_instructions<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 创建聊天提示模板，定义系统角色和用户输入格式</span>
+chat_prompt <span class="token operator">=</span> ChatPromptTemplate<span class="token punctuation">.</span>from_messages<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token punctuation">(</span><span class="token string">&quot;system&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;你是一个AI助手，你只能输出结构化JSON数据。&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token string">&quot;human&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;请生成一个关于{topic}的新闻。{format_instructions}&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 格式化提示词，填入具体主题和格式化指令</span>
+prompt <span class="token operator">=</span> chat_prompt<span class="token punctuation">.</span>format_messages<span class="token punctuation">(</span>topic<span class="token operator">=</span><span class="token string">&quot;小米su7跑车&quot;</span><span class="token punctuation">,</span> format_instructions<span class="token operator">=</span>format_instructions<span class="token punctuation">)</span>
+
+<span class="token comment"># 记录格式化后的提示词信息</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+
+
+<span class="token comment"># 初始化大语言模型实例</span>
+model <span class="token operator">=</span> init_chat_model<span class="token punctuation">(</span>
+    model<span class="token operator">=</span><span class="token string">&quot;qwen-plus&quot;</span><span class="token punctuation">,</span>
+    model_provider<span class="token operator">=</span><span class="token string">&quot;openai&quot;</span><span class="token punctuation">,</span>
+    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;aliQwen-api&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    base_url<span class="token operator">=</span><span class="token string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+<span class="token punctuation">)</span>
+
+
+<span class="token comment"># 调用大语言模型获取响应结果</span>
+result <span class="token operator">=</span> model<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+
+<span class="token comment"># 记录模型返回的结果</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;模型原始输出:\n</span><span class="token interpolation"><span class="token punctuation">{</span>result<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># 使用解析器将模型输出解析为结构化数据</span>
+response <span class="token operator">=</span> parser<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;解析后的结构化结果:\n</span><span class="token interpolation"><span class="token punctuation">{</span>response<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+
+<span class="token comment"># 打印类型</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;结果类型: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">type</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+
+
+</code></pre></div><p><img src="/LLMBlog/assets/img/JsonOutputParse2.a4715611.png" alt=""></p> <h2 id="stroutputparser"><a href="#stroutputparser" class="header-anchor">#</a> StrOutputParser</h2> <div class="language-python extra-class"><pre class="language-python"><code><span class="token triple-quoted-string string">&quot;&quot;&quot;
+字符串解析器StrOutputParser
+它是LangChain中最简单的输出解析器，它可以简单地将任何输入转换为字符串。
+从结果中提取content字段转换为字符串输出。
+&quot;&quot;&quot;</span>
+<span class="token keyword">from</span> langchain_core<span class="token punctuation">.</span>output_parsers <span class="token keyword">import</span> StrOutputParser
+<span class="token keyword">from</span> langchain_core<span class="token punctuation">.</span>prompts <span class="token keyword">import</span> ChatPromptTemplate
+<span class="token keyword">import</span> os
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chat_models <span class="token keyword">import</span> init_chat_model
+<span class="token keyword">from</span> loguru <span class="token keyword">import</span> logger
+
+<span class="token comment"># 创建聊天提示模板，包含系统角色设定和用户问题输入</span>
+chat_prompt <span class="token operator">=</span> ChatPromptTemplate<span class="token punctuation">.</span>from_messages<span class="token punctuation">(</span>
+    <span class="token punctuation">[</span>
+        <span class="token punctuation">(</span><span class="token string">&quot;system&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;你是一个{role}，请简短回答我提出的问题&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token string">&quot;human&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;请回答:{question}&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 使用指定的角色和问题生成具体的提示内容</span>
+prompt <span class="token operator">=</span> chat_prompt<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;role&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;AI助手&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;question&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;什么是LangChain，简洁回答100字以内&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+
+<span class="token comment"># 初始化聊天模型</span>
+model <span class="token operator">=</span> init_chat_model<span class="token punctuation">(</span>
+    model<span class="token operator">=</span><span class="token string">&quot;qwen-plus&quot;</span><span class="token punctuation">,</span>
+    model_provider<span class="token operator">=</span><span class="token string">&quot;openai&quot;</span><span class="token punctuation">,</span>
+    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;aliQwen-api&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    base_url<span class="token operator">=</span><span class="token string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 调用模型获取回答结果</span>
+result <span class="token operator">=</span> model<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;模型原始输出:\n</span><span class="token interpolation"><span class="token punctuation">{</span>result<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+<span class="token comment"># 创建字符串输出解析器，用于解析模型返回的结果</span>
+parser <span class="token operator">=</span> StrOutputParser<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 打印解析后的结构化结果</span>
+response <span class="token operator">=</span> parser<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;解析后的结构化结果:\n</span><span class="token interpolation"><span class="token punctuation">{</span>response<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">)</span>
+<span class="token comment"># 打印类型</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;结果类型: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">type</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="with-structured-output"><a href="#with-structured-output" class="header-anchor">#</a> with_structured_output</h2> <p>将模型和定义的类绑定，以要求模型按照格式输出</p> <p>按照代码中的步骤来进行：</p> <ol><li>定义你希望LLM输出的数据结构</li> <li>将这个定义好的 <code>AnimalList</code> 类传给模型的 <code>with_structured_output</code> 方法</li> <li>调用并获取对象 (Invoke)</li></ol> <div class="language-python extra-class"><pre class="language-python"><code>
+<span class="token keyword">import</span> os
+<span class="token keyword">from</span> typing <span class="token keyword">import</span> TypedDict<span class="token punctuation">,</span> Annotated
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chat_models <span class="token keyword">import</span> init_chat_model
+
+llm <span class="token operator">=</span> init_chat_model<span class="token punctuation">(</span>
+    model<span class="token operator">=</span><span class="token string">&quot;qwen-plus&quot;</span><span class="token punctuation">,</span>
+    model_provider<span class="token operator">=</span><span class="token string">&quot;openai&quot;</span><span class="token punctuation">,</span>
+    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;aliQwen-api&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    base_url<span class="token operator">=</span><span class="token string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+<span class="token punctuation">)</span>
+<span class="token comment"># 1.定义你希望LLM输出的数据结构</span>
+<span class="token keyword">class</span> <span class="token class-name">Animal</span><span class="token punctuation">(</span>TypedDict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    animal<span class="token punctuation">:</span> Annotated<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">,</span> <span class="token string">&quot;动物&quot;</span><span class="token punctuation">]</span>
+    emoji<span class="token punctuation">:</span> Annotated<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">,</span> <span class="token string">&quot;表情&quot;</span><span class="token punctuation">]</span>
+
+<span class="token keyword">class</span> <span class="token class-name">AnimalList</span><span class="token punctuation">(</span>TypedDict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    animals<span class="token punctuation">:</span> Annotated<span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">[</span>Animal<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">&quot;动物与表情列表&quot;</span><span class="token punctuation">]</span> <span class="token comment"># List&lt;Animal&gt;</span>
+
+messages <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">&quot;role&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;user&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;content&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;任意生成三种动物，以及他们的 emoji 表情&quot;</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token comment"># 将这个定义好的 `AnimalList` 类传给模型的 `with_structured_output` 方法</span>
+llm_with_structured_output <span class="token operator">=</span> llm<span class="token punctuation">.</span>with_structured_output<span class="token punctuation">(</span>AnimalList<span class="token punctuation">)</span>
+<span class="token comment"># 调用并获取对象 (Invoke)</span>
+resp <span class="token operator">=</span> llm_with_structured_output<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>messages<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>resp<span class="token punctuation">)</span>
+
+
+
+</code></pre></div><h2 id="pydanticoutputparser"><a href="#pydanticoutputparser" class="header-anchor">#</a> PydanticOutputParser</h2> <p>对于结构更复杂、具有强类型约束的需求，PydanticOutputParser 则是最佳选择。
+它结合了Pydantic模型的强大功能，提供了类型验证、数据转换等高级功能</p> <p>也需要使用与JsonOutputParser相同，也使用<code>get_format_instructions</code></p> <p>唯一不同就是在定义类的方式上，使用Pydantic</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token triple-quoted-string string">&quot;&quot;&quot;
+PydanticOutputParser 是 LangChain 输出解析器体系中最常用、最强大的结构化解析器之一。
+它与 JsonOutputParser 类似，但功能更强 —— 能直接基于 Pydantic 模型 定义输出结构，
+并利用其类型校验与自动文档能力。
+对于结构更复杂、具有强类型约束的需求，PydanticOutputParser 则是最佳选择。
+它结合了Pydantic模型的强大功能，提供了类型验证、数据转换等高级功能
+&quot;&quot;&quot;</span>
+
+<span class="token keyword">import</span> os
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chat_models <span class="token keyword">import</span> init_chat_model
+<span class="token keyword">from</span> langchain_core<span class="token punctuation">.</span>output_parsers <span class="token keyword">import</span> PydanticOutputParser
+<span class="token keyword">from</span> langchain_core<span class="token punctuation">.</span>prompts <span class="token keyword">import</span> ChatPromptTemplate
+<span class="token keyword">from</span> loguru <span class="token keyword">import</span> logger
+<span class="token keyword">from</span> pydantic <span class="token keyword">import</span> BaseModel<span class="token punctuation">,</span> Field<span class="token punctuation">,</span> field_validator
+
+
+<span class="token keyword">class</span> <span class="token class-name">Product</span><span class="token punctuation">(</span>BaseModel<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;
+    产品信息模型类，用于定义产品的结构化数据格式
+
+    属性:
+        name (str): 产品名称
+        category (str): 产品类别
+        description (str): 产品简介，长度必须大于等于10个字符
+    &quot;&quot;&quot;</span>
+    name<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">&quot;产品名称&quot;</span><span class="token punctuation">)</span>
+    category<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">&quot;产品类别&quot;</span><span class="token punctuation">)</span>
+    description<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">&quot;产品简介&quot;</span><span class="token punctuation">)</span>
+
+    <span class="token decorator annotation punctuation">@field_validator</span><span class="token punctuation">(</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">validate_description</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">&quot;&quot;&quot;
+        验证产品简介字段的长度
+        参数:
+            value (str): 待验证的产品简介文本
+        返回:
+            str: 验证通过的产品简介文本
+        异常:
+            ValueError: 当产品简介长度小于10个字符时抛出
+        &quot;&quot;&quot;</span>
+        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">'产品简介长度必须大于等于10'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> value
+
+<span class="token comment"># 创建Pydantic输出解析器实例，用于解析模型输出为Product对象</span>
+parser <span class="token operator">=</span> PydanticOutputParser<span class="token punctuation">(</span>pydantic_object<span class="token operator">=</span>Product<span class="token punctuation">)</span>
+
+<span class="token comment"># 获取格式化指令，用于指导模型输出符合Product模型的JSON格式</span>
+format_instructions <span class="token operator">=</span> parser<span class="token punctuation">.</span>get_format_instructions<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 创建聊天提示模板，包含系统消息和人类消息</span>
+prompt_template <span class="token operator">=</span> ChatPromptTemplate<span class="token punctuation">.</span>from_messages<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token punctuation">(</span><span class="token string">&quot;system&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;你是一个AI助手，你只能输出结构化的json数据\n{format_instructions}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token string">&quot;human&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;请你输出标题为：{topic}的新闻内容&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 格式化提示消息，填充主题和格式化指令</span>
+prompt <span class="token operator">=</span> prompt_template<span class="token punctuation">.</span>format_messages<span class="token punctuation">(</span>topic<span class="token operator">=</span><span class="token string">&quot;华为Mate X7&quot;</span><span class="token punctuation">,</span> format_instructions<span class="token operator">=</span>format_instructions<span class="token punctuation">)</span>
+
+<span class="token comment"># 记录格式化后的提示消息</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+
+<span class="token comment"># 创建模型</span>
+model <span class="token operator">=</span> init_chat_model<span class="token punctuation">(</span>
+    model<span class="token operator">=</span><span class="token string">&quot;qwen-plus&quot;</span><span class="token punctuation">,</span>
+    model_provider<span class="token operator">=</span><span class="token string">&quot;openai&quot;</span><span class="token punctuation">,</span>
+    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;aliQwen-api&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    base_url<span class="token operator">=</span><span class="token string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 调用模型获取结果</span>
+result <span class="token operator">=</span> model<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+
+<span class="token comment"># 记录模型返回的结果</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;模型原始输出:\n</span><span class="token interpolation"><span class="token punctuation">{</span>result<span class="token punctuation">.</span>content<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+
+<span class="token comment"># 使用解析器将模型结果解析为Product对象</span>
+response <span class="token operator">=</span> parser<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+
+<span class="token comment"># 打印解析后的结构化结果</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;解析后的结构化结果:\n</span><span class="token interpolation"><span class="token punctuation">{</span>response<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+
+<span class="token comment"># 打印类型</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;结果类型: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">type</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+</code></pre></div></div></div> <!----> <div class="page-edit"><!----> <!----> <!----></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/LLMBlog/pages/9a45f7/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">Prompt的使用</div></a> <a href="/LLMBlog/pages/147ff6/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">输出解析器2</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/LLMBlog/pages/9a45f7/" class="prev">Prompt的使用</a></span> <span class="next"><a href="/LLMBlog/pages/147ff6/">输出解析器2</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/LLMBlog/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/LLMBlog/pages/a5e958/"><div>
+            Python调用Dify平台工作流
+            <!----></div></a> <span class="date">04-10</span></dt></dl><dl><dd>02</dd> <dt><a href="/LLMBlog/pages/5f321a/"><div>
+            Python调用Coze平台工作流
+            <!----></div></a> <span class="date">04-10</span></dt></dl><dl><dd>03</dd> <dt><a href="/LLMBlog/pages/e97e08/"><div>
+            企业级大模型的部署
+            <!----></div></a> <span class="date">04-10</span></dt></dl> <dl><dd></dd> <dt><a href="/LLMBlog/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><!----> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> <!----></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <!----></div><div class="global-ui"></div></div>
+    <script src="/LLMBlog/assets/js/app.43101dfd.js" defer></script><script src="/LLMBlog/assets/js/2.9b733baf.js" defer></script><script src="/LLMBlog/assets/js/28.dba535d6.js" defer></script>
+  </body>
+</html>
