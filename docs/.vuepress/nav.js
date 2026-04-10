@@ -1,14 +1,6 @@
 module.exports = [
   { text: '首页', link: '/' },
   {
-    text: 'HelloAgent',
-    link: '/HelloAgent/', //目录页链接，此处link是vdoing主题新增的配置项，有二级导航时，可以点击一级导航跳到目录页
-  },
-  {
-    text: 'FastAPI',
-    link: '/FastAPI/',
-  },
-  {
     text: '提示词工程',
     link: '/promptEngineer/',
     items: [
@@ -27,7 +19,7 @@ module.exports = [
     link: '/LangChain/',
   },
   {
-    text: 'Agent',
+    text: 'Agent&工作流',
     link: '/Agent/',
   },
   {
@@ -41,5 +33,17 @@ module.exports = [
   {
     text: '私有化部署',
     link: '/PrivateDeploy/',
+  },
+  {
+    text: 'HelloAgent',
+    link: '/HelloAgent/', //目录页链接，此处link是vdoing主题新增的配置项，有二级导航时，可以点击一级导航跳到目录页
+  },
+  {
+    text: 'FastAPI',
+    link: '/FastAPI/',
+  },
+  {
+    text: '知识复盘',
+    link: '/reviewKnnowledge/',
   },
 ];
