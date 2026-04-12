@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>嵌套子图 | 麦仁大模型博客</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="记录大模型学习">
+    
+    <link rel="preload" href="/LLMBlog/assets/css/0.styles.1c990687.css" as="style"><link rel="preload" href="/LLMBlog/assets/js/app.da45477a.js" as="script"><link rel="preload" href="/LLMBlog/assets/js/2.e2dd6c91.js" as="script"><link rel="preload" href="/LLMBlog/assets/js/43.d28690a4.js" as="script"><link rel="prefetch" href="/LLMBlog/assets/js/10.0ffbcad3.js"><link rel="prefetch" href="/LLMBlog/assets/js/100.f58998ac.js"><link rel="prefetch" href="/LLMBlog/assets/js/101.f5c22e84.js"><link rel="prefetch" href="/LLMBlog/assets/js/102.a38864f1.js"><link rel="prefetch" href="/LLMBlog/assets/js/103.af23c9d1.js"><link rel="prefetch" href="/LLMBlog/assets/js/104.c0ca9ecb.js"><link rel="prefetch" href="/LLMBlog/assets/js/105.f6a0707e.js"><link rel="prefetch" href="/LLMBlog/assets/js/106.0ee26652.js"><link rel="prefetch" href="/LLMBlog/assets/js/107.329a3f2f.js"><link rel="prefetch" href="/LLMBlog/assets/js/108.9231c7b2.js"><link rel="prefetch" href="/LLMBlog/assets/js/109.fce069e1.js"><link rel="prefetch" href="/LLMBlog/assets/js/11.812a2c27.js"><link rel="prefetch" href="/LLMBlog/assets/js/110.7177f9df.js"><link rel="prefetch" href="/LLMBlog/assets/js/111.d5f8d36e.js"><link rel="prefetch" href="/LLMBlog/assets/js/112.afbc9cd5.js"><link rel="prefetch" href="/LLMBlog/assets/js/113.d5f14180.js"><link rel="prefetch" href="/LLMBlog/assets/js/114.6b6adb6d.js"><link rel="prefetch" href="/LLMBlog/assets/js/115.bf96aa1e.js"><link rel="prefetch" href="/LLMBlog/assets/js/116.1dc461da.js"><link rel="prefetch" href="/LLMBlog/assets/js/117.ce526bf2.js"><link rel="prefetch" href="/LLMBlog/assets/js/118.b001bc86.js"><link rel="prefetch" href="/LLMBlog/assets/js/119.551f48a9.js"><link rel="prefetch" href="/LLMBlog/assets/js/12.5a58aaba.js"><link rel="prefetch" href="/LLMBlog/assets/js/120.3936fe99.js"><link rel="prefetch" href="/LLMBlog/assets/js/121.5b9c0fe6.js"><link rel="prefetch" href="/LLMBlog/assets/js/122.e040c032.js"><link rel="prefetch" href="/LLMBlog/assets/js/123.ac063942.js"><link rel="prefetch" href="/LLMBlog/assets/js/124.b6579988.js"><link rel="prefetch" href="/LLMBlog/assets/js/125.46e37d24.js"><link rel="prefetch" href="/LLMBlog/assets/js/126.70f19ea0.js"><link rel="prefetch" href="/LLMBlog/assets/js/127.0f7ff559.js"><link rel="prefetch" href="/LLMBlog/assets/js/128.1cedddd1.js"><link rel="prefetch" href="/LLMBlog/assets/js/129.99866563.js"><link rel="prefetch" href="/LLMBlog/assets/js/13.3da07cb6.js"><link rel="prefetch" href="/LLMBlog/assets/js/130.1026e2a7.js"><link rel="prefetch" href="/LLMBlog/assets/js/131.a8cde129.js"><link rel="prefetch" href="/LLMBlog/assets/js/132.bedbd0fe.js"><link rel="prefetch" href="/LLMBlog/assets/js/133.97971828.js"><link rel="prefetch" href="/LLMBlog/assets/js/134.8a3975d1.js"><link rel="prefetch" href="/LLMBlog/assets/js/135.1a760f1e.js"><link rel="prefetch" href="/LLMBlog/assets/js/136.22409e38.js"><link rel="prefetch" href="/LLMBlog/assets/js/137.3f918387.js"><link rel="prefetch" href="/LLMBlog/assets/js/138.7057afe8.js"><link rel="prefetch" href="/LLMBlog/assets/js/139.7cb41739.js"><link rel="prefetch" href="/LLMBlog/assets/js/14.8be7a7ef.js"><link rel="prefetch" href="/LLMBlog/assets/js/140.3f45a72b.js"><link rel="prefetch" href="/LLMBlog/assets/js/141.91be77fe.js"><link rel="prefetch" href="/LLMBlog/assets/js/142.55a4319a.js"><link rel="prefetch" href="/LLMBlog/assets/js/143.49d104a2.js"><link rel="prefetch" href="/LLMBlog/assets/js/144.aff6dd8e.js"><link rel="prefetch" href="/LLMBlog/assets/js/145.0d0027f7.js"><link rel="prefetch" href="/LLMBlog/assets/js/146.a317746d.js"><link rel="prefetch" href="/LLMBlog/assets/js/147.bd62472e.js"><link rel="prefetch" href="/LLMBlog/assets/js/148.0c4b5a06.js"><link rel="prefetch" href="/LLMBlog/assets/js/149.56e98720.js"><link rel="prefetch" href="/LLMBlog/assets/js/15.e48be1b7.js"><link rel="prefetch" href="/LLMBlog/assets/js/150.43c8b482.js"><link rel="prefetch" href="/LLMBlog/assets/js/151.89af5502.js"><link rel="prefetch" href="/LLMBlog/assets/js/152.94a8035f.js"><link rel="prefetch" href="/LLMBlog/assets/js/153.94d670d3.js"><link rel="prefetch" href="/LLMBlog/assets/js/154.7b2d7eb4.js"><link rel="prefetch" href="/LLMBlog/assets/js/155.ff744e99.js"><link rel="prefetch" href="/LLMBlog/assets/js/156.ac220cdb.js"><link rel="prefetch" href="/LLMBlog/assets/js/157.c81ffb69.js"><link rel="prefetch" href="/LLMBlog/assets/js/158.f800b325.js"><link rel="prefetch" href="/LLMBlog/assets/js/159.371798eb.js"><link rel="prefetch" href="/LLMBlog/assets/js/16.8a5cbbd6.js"><link rel="prefetch" href="/LLMBlog/assets/js/160.64411684.js"><link rel="prefetch" href="/LLMBlog/assets/js/161.c119f6a9.js"><link rel="prefetch" href="/LLMBlog/assets/js/162.bdd50366.js"><link rel="prefetch" href="/LLMBlog/assets/js/163.15a02ac9.js"><link rel="prefetch" href="/LLMBlog/assets/js/17.d862d7f3.js"><link rel="prefetch" href="/LLMBlog/assets/js/18.f61362b8.js"><link rel="prefetch" href="/LLMBlog/assets/js/19.c27a1164.js"><link rel="prefetch" href="/LLMBlog/assets/js/20.93aa8846.js"><link rel="prefetch" href="/LLMBlog/assets/js/21.183f2155.js"><link rel="prefetch" href="/LLMBlog/assets/js/22.7824048b.js"><link rel="prefetch" href="/LLMBlog/assets/js/23.94294016.js"><link rel="prefetch" href="/LLMBlog/assets/js/24.05fe83a6.js"><link rel="prefetch" href="/LLMBlog/assets/js/25.ee49c0a1.js"><link rel="prefetch" href="/LLMBlog/assets/js/26.5dc0b986.js"><link rel="prefetch" href="/LLMBlog/assets/js/27.906b13ca.js"><link rel="prefetch" href="/LLMBlog/assets/js/28.cf0b60a1.js"><link rel="prefetch" href="/LLMBlog/assets/js/29.66ba4bf7.js"><link rel="prefetch" href="/LLMBlog/assets/js/3.8be44125.js"><link rel="prefetch" href="/LLMBlog/assets/js/30.692fe45d.js"><link rel="prefetch" href="/LLMBlog/assets/js/31.e6ad4dad.js"><link rel="prefetch" href="/LLMBlog/assets/js/32.48e67e3f.js"><link rel="prefetch" href="/LLMBlog/assets/js/33.64aefcee.js"><link rel="prefetch" href="/LLMBlog/assets/js/34.b35eda3b.js"><link rel="prefetch" href="/LLMBlog/assets/js/35.c40a297b.js"><link rel="prefetch" href="/LLMBlog/assets/js/36.cf2601fc.js"><link rel="prefetch" href="/LLMBlog/assets/js/37.e26f4380.js"><link rel="prefetch" href="/LLMBlog/assets/js/38.b8ae5d8a.js"><link rel="prefetch" href="/LLMBlog/assets/js/39.03ba3e15.js"><link rel="prefetch" href="/LLMBlog/assets/js/4.24ddefaa.js"><link rel="prefetch" href="/LLMBlog/assets/js/40.3880c96a.js"><link rel="prefetch" href="/LLMBlog/assets/js/41.dd12f80e.js"><link rel="prefetch" href="/LLMBlog/assets/js/42.6092942c.js"><link rel="prefetch" href="/LLMBlog/assets/js/44.86069245.js"><link rel="prefetch" href="/LLMBlog/assets/js/45.9ce129a6.js"><link rel="prefetch" href="/LLMBlog/assets/js/46.b6f48799.js"><link rel="prefetch" href="/LLMBlog/assets/js/47.17c118b6.js"><link rel="prefetch" href="/LLMBlog/assets/js/48.316bf82a.js"><link rel="prefetch" href="/LLMBlog/assets/js/49.b0613982.js"><link rel="prefetch" href="/LLMBlog/assets/js/5.6ae271d2.js"><link rel="prefetch" href="/LLMBlog/assets/js/50.54b70f13.js"><link rel="prefetch" href="/LLMBlog/assets/js/51.4a41c485.js"><link rel="prefetch" href="/LLMBlog/assets/js/52.98e019be.js"><link rel="prefetch" href="/LLMBlog/assets/js/53.8aaa2609.js"><link rel="prefetch" href="/LLMBlog/assets/js/54.349fa656.js"><link rel="prefetch" href="/LLMBlog/assets/js/55.ac39218d.js"><link rel="prefetch" href="/LLMBlog/assets/js/56.b92288fa.js"><link rel="prefetch" href="/LLMBlog/assets/js/57.48fc37c0.js"><link rel="prefetch" href="/LLMBlog/assets/js/58.482fe8de.js"><link rel="prefetch" href="/LLMBlog/assets/js/59.62c1d8bb.js"><link rel="prefetch" href="/LLMBlog/assets/js/6.5d2e7cfb.js"><link rel="prefetch" href="/LLMBlog/assets/js/60.c9e464a8.js"><link rel="prefetch" href="/LLMBlog/assets/js/61.c3bc66ea.js"><link rel="prefetch" href="/LLMBlog/assets/js/62.5015653d.js"><link rel="prefetch" href="/LLMBlog/assets/js/63.30ae3c13.js"><link rel="prefetch" href="/LLMBlog/assets/js/64.ade82daf.js"><link rel="prefetch" href="/LLMBlog/assets/js/65.fda4708b.js"><link rel="prefetch" href="/LLMBlog/assets/js/66.90b225b2.js"><link rel="prefetch" href="/LLMBlog/assets/js/67.044f6c44.js"><link rel="prefetch" href="/LLMBlog/assets/js/68.fd188be5.js"><link rel="prefetch" href="/LLMBlog/assets/js/69.444c50f1.js"><link rel="prefetch" href="/LLMBlog/assets/js/7.b85941bb.js"><link rel="prefetch" href="/LLMBlog/assets/js/70.867e0c2f.js"><link rel="prefetch" href="/LLMBlog/assets/js/71.398528c0.js"><link rel="prefetch" href="/LLMBlog/assets/js/72.af7b90a0.js"><link rel="prefetch" href="/LLMBlog/assets/js/73.920fcdf3.js"><link rel="prefetch" href="/LLMBlog/assets/js/74.c05169cf.js"><link rel="prefetch" href="/LLMBlog/assets/js/75.658da7ee.js"><link rel="prefetch" href="/LLMBlog/assets/js/76.6be323c6.js"><link rel="prefetch" href="/LLMBlog/assets/js/77.5e552f29.js"><link rel="prefetch" href="/LLMBlog/assets/js/78.091ebd72.js"><link rel="prefetch" href="/LLMBlog/assets/js/79.8de3cea6.js"><link rel="prefetch" href="/LLMBlog/assets/js/8.68e71d71.js"><link rel="prefetch" href="/LLMBlog/assets/js/80.a642c233.js"><link rel="prefetch" href="/LLMBlog/assets/js/81.35137861.js"><link rel="prefetch" href="/LLMBlog/assets/js/82.9734f30d.js"><link rel="prefetch" href="/LLMBlog/assets/js/83.2d32bdd5.js"><link rel="prefetch" href="/LLMBlog/assets/js/84.9206543b.js"><link rel="prefetch" href="/LLMBlog/assets/js/85.20b3fe43.js"><link rel="prefetch" href="/LLMBlog/assets/js/86.daf1c62e.js"><link rel="prefetch" href="/LLMBlog/assets/js/87.1712e9ef.js"><link rel="prefetch" href="/LLMBlog/assets/js/88.d06efa3f.js"><link rel="prefetch" href="/LLMBlog/assets/js/89.9e684887.js"><link rel="prefetch" href="/LLMBlog/assets/js/9.d539e7c3.js"><link rel="prefetch" href="/LLMBlog/assets/js/90.e3ab9bc9.js"><link rel="prefetch" href="/LLMBlog/assets/js/91.1585ad26.js"><link rel="prefetch" href="/LLMBlog/assets/js/92.580495a2.js"><link rel="prefetch" href="/LLMBlog/assets/js/93.d9f0ffca.js"><link rel="prefetch" href="/LLMBlog/assets/js/94.d7604bf7.js"><link rel="prefetch" href="/LLMBlog/assets/js/95.2b7742ed.js"><link rel="prefetch" href="/LLMBlog/assets/js/96.486a22f6.js"><link rel="prefetch" href="/LLMBlog/assets/js/97.68e4a09b.js"><link rel="prefetch" href="/LLMBlog/assets/js/98.d6240435.js"><link rel="prefetch" href="/LLMBlog/assets/js/99.14e8d8fe.js">
+    <link rel="stylesheet" href="/LLMBlog/assets/css/0.styles.1c990687.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LLMBlog/" class="home-link router-link-active"><!----> <span class="site-name">麦仁大模型博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/LLMBlog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/LLMBlog/promptEngineer/" class="nav-link">提示词工程</a></div><div class="nav-item"><a href="/LLMBlog/RAG/" class="nav-link">RAG</a></div><div class="nav-item"><a href="/LLMBlog/LangChain/" class="nav-link">LangChain</a></div><div class="nav-item"><a href="/LLMBlog/Agent/" class="nav-link">Agent&amp;工作流</a></div><div class="nav-item"><a href="/LLMBlog/Fine-tuning/" class="nav-link">微调</a></div><div class="nav-item"><a href="/LLMBlog/Multimodal/" class="nav-link">多模态</a></div><div class="nav-item"><a href="/LLMBlog/PrivateDeploy/" class="nav-link">私有化部署</a></div><div class="nav-item"><a href="/LLMBlog/HelloAgent/" class="nav-link">HelloAgent</a></div><div class="nav-item"><a href="/LLMBlog/FastAPI/" class="nav-link">FastAPI</a></div><div class="nav-item"><a href="/LLMBlog/reviewKnnowledge/" class="nav-link">知识复盘</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/LLMBlog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/LLMBlog/promptEngineer/" class="nav-link">提示词工程</a></div><div class="nav-item"><a href="/LLMBlog/RAG/" class="nav-link">RAG</a></div><div class="nav-item"><a href="/LLMBlog/LangChain/" class="nav-link">LangChain</a></div><div class="nav-item"><a href="/LLMBlog/Agent/" class="nav-link">Agent&amp;工作流</a></div><div class="nav-item"><a href="/LLMBlog/Fine-tuning/" class="nav-link">微调</a></div><div class="nav-item"><a href="/LLMBlog/Multimodal/" class="nav-link">多模态</a></div><div class="nav-item"><a href="/LLMBlog/PrivateDeploy/" class="nav-link">私有化部署</a></div><div class="nav-item"><a href="/LLMBlog/HelloAgent/" class="nav-link">HelloAgent</a></div><div class="nav-item"><a href="/LLMBlog/FastAPI/" class="nav-link">FastAPI</a></div><div class="nav-item"><a href="/LLMBlog/reviewKnnowledge/" class="nav-link">知识复盘</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>理论(较杂)</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>代码</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>LangGraph</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/LLMBlog/pages/c8e83a/" class="sidebar-link">LangGraph基础&amp;图的构建</a></li><li><a href="/LLMBlog/pages/fa90e8/" class="sidebar-link">State定义</a></li><li><a href="/LLMBlog/pages/57b395/" class="sidebar-link">State之Reducer的更新策略</a></li><li><a href="/LLMBlog/pages/0c4b2c/" class="sidebar-link">Node节点</a></li><li><a href="/LLMBlog/pages/a24764/" class="sidebar-link">Edge边</a></li><li><a href="/LLMBlog/pages/5e24c1/" class="sidebar-link">Send&amp;Command&amp;RuntimeContext</a></li><li><a href="/LLMBlog/pages/4abdd8/" class="sidebar-link">高级特性-流式输出(Streaming)</a></li><li><a href="/LLMBlog/pages/4ebaa6/" class="sidebar-link">checkpoint状态持久化</a></li><li><a href="/LLMBlog/pages/4fe205/" class="sidebar-link">TimeTravel时间回溯</a></li><li><a href="/LLMBlog/pages/5f0432/" aria-current="page" class="active sidebar-link">嵌套子图</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/5f0432/#说明" class="sidebar-link">说明</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/5f0432/#代码实现" class="sidebar-link">代码实现</a></li></ul></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/LLMBlog/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><a href="/LLMBlog/LangChain/#LangChain&amp;LangGraph" data-v-06225672>LangChain&amp;LangGraph</a></li><li data-v-06225672><a href="/LLMBlog/LangChain/#LangGraph" data-v-06225672>LangGraph</a></li></ul> <div class="info" data-v-06225672><!----> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2026-04-12</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABGpJREFUSA3tVVtoXFUU3fvOI53UlmCaKIFmwEhsE7QK0ipFEdHEKpXaZGrp15SINsXUWvBDpBgQRKi0+KKoFeJHfZA+ED9KKoIU2gYD9UejTW4rVIzm0VSTziPzuNu1z507dibTTjL4U/DAzLn3nL3X2o91ziX6f9wMFdh6Jvbm9nNSV0msViVO6tN1Rm7NMu2OpeJ9lWBUTDxrJbYTS0hInuwciu9eLHlFxCLCZEk3MegsJmZ5K/JD6t7FkFdEvGUo1g7qJoG3MHImqRIn8/nzY1K9UPKKiJmtnUqHVE3Gbuay6vJE/N2FEmuxFjW2nUuE0yQXRRxLiTUAzs36zhZvOXJPdX850EVnnLZkB8prodQoM5JGj7Xk2mvC7JB8tG04Ef5PiXtG0UtxupRQSfTnBoCy554x18yJHI6I+G5Eru4LHmPJZEQsrvPUbMiA8G/WgMK7w7I+ez7++o2ANfbrjvaOl1tFMs+htG3IrZH9/hDX1Pr8Tc0UvH8tcX29KzAgIGcEkINyW5BF9x891hw6VYqgJHEk0huccS7vh3C6gTiODL+26huuBtbct8eZnqLML8PkxGYpuPZBqtqwkSjgc4mB5gbgig5i+y0UDK35LMxXisn9xQtK+nd26gTIHsHe/oblK/b29fUmN/8Y+9jAQrnBp56m1LcDlDp9irKTExSKduXJVWSqdBMA08pEJnEIOB3FPPMybu/oeV8zFeYN3xx576Q6RH+VmplE4ncQV5v+5rzSoyOU7PuEAg8g803PwBJ0CExno/jcMbN8tONYeOmHiuUNryvm3fRUy4tMPVLdAGkUhNWuggGrJcXPv+ouCjz0MKUHz1J2/E8IC9nqTabcxgaBYM0hPhD5Y65FsbxRQKxCQrDjDctW7PUM3HuZunFyifSAqEfuzCp48Il24luWUWZoyJCaPR82jE0+kFA643wRFVni4RYSq3ohJO2pZ7B5dO4xkDWbEpossJPLSrPjYID8rS2UHTlvyNxqIGsg674XJJ7vnh5L7PNwC4hh2sjCI96mzszOTpxLF0T7l88Yz7lAuK6OnL8gXLOnTvpzSb22YG8W7us3jSebFHeeqnXRG1vt+MoUM84LQIBmMsCTAcOauTh0T0l0neQK7m2bLMt2mGxU3HYssS0J2cdv5wljlPsrIuZLAG/2DOZIXgCYT8uMGZN+e2kSirfxZOPCsC0f24nTZzspnVn9VePS1Z5vubmAGGXG8ZFno9Hel0yfA5ZPhF7Dh972BQJ2qCpgH67lmWtBYbvk6sz02wjky2vXyz0XErP/kFB619js1BtwfOV4OPRqOQBjy3Qbk18vigUPPSD5ceHnwck7W9bhAqZdd7SuG7w4/P2F/GaJh8c7e9qgow+Q7cGBo+98WsLkuktFqiZabtXuQTu/Y5ETbR0v7tNSFnvrmu6pjdoan2KjMu8q/Hmj1EfCO2ZGfEIbIXKUlw8qaX9/b2oeSJmFksSeT/Fn0V3nSypChh4Gjh74ybO9aeZ/AN2dwciu2/MhAAAAAElFTkSuQmCC">嵌套子图<!----></h1> <!----> <div class="theme-vdoing-content content__default"><h2 id="说明"><a href="#说明" class="header-anchor">#</a> 说明</h2> <p>在LangGraph中允许<code>将一个完整的图作为另一个图的节点</code>，适用于将复杂的任务拆解为多个专业智能体协同完成，每个子图都可以独立开发、测试并且可以复用。每个子图都可以拥有自己的私有数据，也可以与父图共享数据。</p> <p><img src="/LLMBlog/assets/img/embeddingGraph01.75aa0a55.png" alt=""></p> <h2 id="代码实现"><a href="#代码实现" class="header-anchor">#</a> 代码实现</h2> <h3 id="简单示例"><a href="#简单示例" class="header-anchor">#</a> 简单示例</h3> <ol><li>子图生成
+<ol><li>定义节点</li> <li>添加节点</li> <li>添加边</li> <li>编译图，并赋值给变量</li></ol></li> <li>父图生成
+<ol><li>定义节点</li> <li>add_node添加节点、添加子图</li> <li>添加边</li> <li>编译图</li></ol></li></ol> <p><strong><code>注意：当主图调用子图节点时，整个过程会触发两次状态合并</code></strong></p> <ol><li>主图生成<code>main-graph</code>,然后将状态传给子图</li> <li>子图用的add，会追加，生成[<code>main-graph</code> , <code>response from subgraph</code>]</li> <li>子图将结果传递给主图，<code>主图再次进行add(追加操作)</code></li> <li>最后得到[&quot;main-graph&quot;, &quot;main-graph&quot;, &quot;response from subgraph&quot;]</li></ol> <div class="language-python extra-class"><pre class="language-python"><code><span class="token triple-quoted-string string">&quot;&quot;&quot;
+在LangGraph中，一个Graph除了可以单独使用，还可以作为一个Node，嵌入到一个Graph中。这种用法就称为子图。
+通过子图，我们可以更好的重用Graph，构建更复杂的工作流。尤其在构建多Agent系统时非常有用。
+在大型项目中，通常都是由一个团队专门开发Agent，再通过其他团队来完成Agent整合。
+
+使用子图时，基本和使用Node没有太多的区别。唯一需要注意的是，当触发了SubGraph代表的Node后，
+实际上是相当于重新调用了一次subgraph.invoke(state)方法
+
+案例说明：
+    定义一个子图节点处理函数 sub_node，它接收一个状态对象并返回包含子图响应消息的新状态。
+    该函数被集成到一个使用 langgraph 构建的图结构中，最终执行图并输出结果。
+&quot;&quot;&quot;</span>
+
+<span class="token keyword">from</span> operator <span class="token keyword">import</span> add
+<span class="token keyword">from</span> typing <span class="token keyword">import</span> TypedDict<span class="token punctuation">,</span> Annotated
+<span class="token keyword">from</span> langgraph<span class="token punctuation">.</span>constants <span class="token keyword">import</span> END
+<span class="token keyword">from</span> langgraph<span class="token punctuation">.</span>graph <span class="token keyword">import</span> StateGraph<span class="token punctuation">,</span> MessagesState<span class="token punctuation">,</span> START
+<span class="token keyword">import</span> operator
+
+<span class="token keyword">class</span> <span class="token class-name">AtguiguState</span><span class="token punctuation">(</span>TypedDict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;
+    定义状态类，用于存储图节点间传递的消息状态
+    messages: 使用add函数合并的字符串列表消息
+    add 是 LangGraph 内置的状态合并策略，它的行为是：将新返回的列表与原状态中的列表进行拼接（而非覆盖）
+    &quot;&quot;&quot;</span>
+    messages<span class="token punctuation">:</span> Annotated<span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span><span class="token punctuation">,</span> add<span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> <span class="token function">sub_node</span><span class="token punctuation">(</span>state<span class="token punctuation">:</span>AtguiguState<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> AtguiguState<span class="token punctuation">:</span>
+    <span class="token comment"># 子图节点处理函数，接收当前状态并返回响应消息</span>
+    <span class="token comment"># @param state 当前状态对象，包含消息列表</span>
+    <span class="token comment"># @return 包含子图响应消息的新状态</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token string">&quot;messages&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;response from subgraph&quot;</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+
+<span class="token comment"># 创建子图构建器并配置节点和边</span>
+subgraph_builder <span class="token operator">=</span> StateGraph<span class="token punctuation">(</span>AtguiguState<span class="token punctuation">)</span>
+subgraph_builder<span class="token punctuation">.</span>add_node<span class="token punctuation">(</span><span class="token string">&quot;sub_node&quot;</span><span class="token punctuation">,</span> sub_node<span class="token punctuation">)</span>
+
+subgraph_builder<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span>START<span class="token punctuation">,</span> <span class="token string">&quot;sub_node&quot;</span><span class="token punctuation">)</span>
+subgraph_builder<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span><span class="token string">&quot;sub_node&quot;</span><span class="token punctuation">,</span> END<span class="token punctuation">)</span>
+subgraph <span class="token operator">=</span> subgraph_builder<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 创建主图构建器并添加子图节点</span>
+builder <span class="token operator">=</span> StateGraph<span class="token punctuation">(</span>AtguiguState<span class="token punctuation">)</span>
+builder<span class="token punctuation">.</span>add_node<span class="token punctuation">(</span><span class="token string">&quot;subgraph_node&quot;</span><span class="token punctuation">,</span> subgraph<span class="token punctuation">)</span>
+builder<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span>START<span class="token punctuation">,</span> <span class="token string">&quot;subgraph_node&quot;</span><span class="token punctuation">)</span>
+builder<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span><span class="token string">&quot;subgraph_node&quot;</span><span class="token punctuation">,</span> END<span class="token punctuation">)</span>
+
+<span class="token comment"># 编译主图并绘制结构图</span>
+graph <span class="token operator">=</span> builder<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 执行图并打印结果</span>
+<span class="token triple-quoted-string string">'''子图调用的状态传递逻辑当主图调用子图节点时，整个过程会触发两次状态合并：
+第一步：主图把初始状态 {&quot;messages&quot;: [&quot;main-graph&quot;]} 传递给子图
+
+第二步：子图内部执行 sub_node，返回 {&quot;messages&quot;: [&quot;response from subgraph&quot;]}，
+        由于 add 策略，子图会把传入的 [&quot;main-graph&quot;] 和返回的 [&quot;response from subgraph&quot;] 拼接，
+        得到 [&quot;main-graph&quot;, &quot;response from subgraph&quot;]
+
+第三步：子图执行完成后，主图会再次应用 add 策略，
+    把主图原有的 [&quot;main-graph&quot;]
+    和子图返回的 [&quot;main-graph&quot;, &quot;response from subgraph&quot;] 拼接，
+    最终得到 [&quot;main-graph&quot;, &quot;main-graph&quot;, &quot;response from subgraph&quot;]'''</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>graph<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;messages&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;main-graph&quot;</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment"># {'messages': ['main-graph', 'main-graph', 'response from subgraph']}</span>
+
+
+<span class="token comment">#绘制子图结构图</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>subgraph<span class="token punctuation">.</span>get_graph<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>draw_mermaid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;=&quot;</span><span class="token operator">*</span><span class="token number">50</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+
+</code></pre></div><h3 id="简单版本"><a href="#简单版本" class="header-anchor">#</a> 简单版本</h3> <ol><li>父图的共享数据，以及子图的私有数据<code>sub_message</code></li></ol> <div class="language-python extra-class"><pre class="language-python"><code><span class="token triple-quoted-string string">'''将子图作为节点添加到父图'''</span>
+
+<span class="token keyword">from</span> langgraph<span class="token punctuation">.</span>graph <span class="token keyword">import</span> StateGraph<span class="token punctuation">,</span> START<span class="token punctuation">,</span> END
+<span class="token keyword">from</span> typing <span class="token keyword">import</span> TypedDict
+
+
+<span class="token comment"># 1. 状态定义（统一字段名，避免执行时KeyError）</span>
+<span class="token keyword">class</span> <span class="token class-name">ParentState</span><span class="token punctuation">(</span>TypedDict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    parent_messages<span class="token punctuation">:</span> <span class="token builtin">list</span>  <span class="token comment"># 与子图共享数据</span>
+
+<span class="token keyword">class</span> <span class="token class-name">SubgraphState</span><span class="token punctuation">(</span>TypedDict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    parent_messages<span class="token punctuation">:</span> <span class="token builtin">list</span>  <span class="token comment"># 与父图共享的数据</span>
+    sub_message<span class="token punctuation">:</span> <span class="token builtin">str</span>  <span class="token comment"># 子图私有数据</span>
+
+<span class="token comment"># 2. 定义子图节点函数</span>
+<span class="token keyword">def</span> <span class="token function">subgraph_node</span><span class="token punctuation">(</span>state<span class="token punctuation">:</span> SubgraphState<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> SubgraphState<span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;子图节点处理逻辑：修改共享数据+设置私有数据&quot;&quot;&quot;</span>
+    <span class="token comment"># 向共享的parent_messages中添加内容</span>
+    state<span class="token punctuation">[</span><span class="token string">&quot;parent_messages&quot;</span><span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&quot;message from subgraph updateO(∩_∩)O&quot;</span><span class="token punctuation">)</span>
+    <span class="token comment"># 设置子图私有数据</span>
+    state<span class="token punctuation">[</span><span class="token string">&quot;sub_message&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;subgraph private message&quot;</span>
+    <span class="token comment">#print(state[&quot;sub_message&quot;])</span>
+    <span class="token keyword">return</span> state
+
+<span class="token comment"># 3. 定义父图节点函数</span>
+<span class="token keyword">def</span> <span class="token function">parent_node</span><span class="token punctuation">(</span>state<span class="token punctuation">:</span> ParentState<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> ParentState<span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;父图初始节点：初始化共享数据&quot;&quot;&quot;</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> state<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">&quot;parent_messages&quot;</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        state<span class="token punctuation">[</span><span class="token string">&quot;parent_messages&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    state<span class="token punctuation">[</span><span class="token string">&quot;parent_messages&quot;</span><span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">&quot;message from 父亲 node&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> state
+
+
+<span class="token comment"># 4. 构建子图</span>
+<span class="token keyword">def</span> <span class="token function">build_subgraph</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> StateGraph<span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;构建并返回编译后的子图&quot;&quot;&quot;</span>
+    sub_builder <span class="token operator">=</span> StateGraph<span class="token punctuation">(</span>SubgraphState<span class="token punctuation">)</span>
+    sub_builder<span class="token punctuation">.</span>add_node<span class="token punctuation">(</span><span class="token string">&quot;sub_node&quot;</span><span class="token punctuation">,</span> subgraph_node<span class="token punctuation">)</span>
+    sub_builder<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span>START<span class="token punctuation">,</span> <span class="token string">&quot;sub_node&quot;</span><span class="token punctuation">)</span>
+    sub_builder<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span><span class="token string">&quot;sub_node&quot;</span><span class="token punctuation">,</span> END<span class="token punctuation">)</span>  <span class="token comment"># 子图执行完指向结束</span>
+    <span class="token keyword">return</span> sub_builder<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># 5. 构建父图</span>
+<span class="token keyword">def</span> <span class="token function">build_parent_graph</span><span class="token punctuation">(</span>compiled_subgraph<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> StateGraph<span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;构建并返回编译后的父图&quot;&quot;&quot;</span>
+    builder <span class="token operator">=</span> StateGraph<span class="token punctuation">(</span>ParentState<span class="token punctuation">)</span>
+    <span class="token comment"># 添加父图初始节点</span>
+    builder<span class="token punctuation">.</span>add_node<span class="token punctuation">(</span><span class="token string">&quot;parent_node&quot;</span><span class="token punctuation">,</span> parent_node<span class="token punctuation">)</span>
+    <span class="token comment"># 将子图作为节点添加到父图，添加子图添加为父图的节点</span>
+    builder<span class="token punctuation">.</span>add_node<span class="token punctuation">(</span><span class="token string">&quot;subgraph_node&quot;</span><span class="token punctuation">,</span> compiled_subgraph<span class="token punctuation">)</span>
+    <span class="token comment"># 父图执行流程：START -&gt; parent_node -&gt; subgraph_node -&gt; END</span>
+    builder<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span>START<span class="token punctuation">,</span> <span class="token string">&quot;parent_node&quot;</span><span class="token punctuation">)</span>
+    builder<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span><span class="token string">&quot;parent_node&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;subgraph_node&quot;</span><span class="token punctuation">)</span> <span class="token comment"># 将子图作为节点添加到父图</span>
+    builder<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span><span class="token string">&quot;subgraph_node&quot;</span><span class="token punctuation">,</span> END<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> builder<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># 6. 主方法（程序入口）</span>
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;主函数：执行父图并输出结果&quot;&quot;&quot;</span>
+    <span class="token comment"># 构建子图</span>
+    compiled_subgraph <span class="token operator">=</span> build_subgraph<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment"># 构建父图</span>
+    parent_graph <span class="token operator">=</span> build_parent_graph<span class="token punctuation">(</span>compiled_subgraph<span class="token punctuation">)</span>
+
+    <span class="token comment"># 执行父图，先初始</span>
+    initial_state <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">&quot;parent_messages&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;我是父消息&quot;</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;初始状态：&quot;</span><span class="token punctuation">,</span> initial_state<span class="token punctuation">)</span>
+
+    <span class="token comment"># 执行父图并获取最终状态</span>
+    <span class="token comment">#父图执行时会自动调用子图，子图可修改共享的parent_messages，</span>
+    <span class="token comment"># 私有sub_message仅在子图内有效（父图最终状态不会显示，因为父图状态定义中无该字段）</span>
+    final_state <span class="token operator">=</span> parent_graph<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>initial_state<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;\n执行后最终状态：&quot;</span><span class="token punctuation">,</span> final_state<span class="token punctuation">)</span>
+
+
+<span class="token comment"># 程序入口</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><h3 id="图状态共享"><a href="#图状态共享" class="header-anchor">#</a> 图状态共享</h3> <ol><li>此实例，没有将子图作为父图的节点</li> <li>提取子图结果，赋值给父图字段</li></ol> <div class="language-python extra-class"><pre class="language-python"><code><span class="token triple-quoted-string string">'''
+从节点调用图，本案例是 LangGraph 中跨图状态交互的标准做法。
+
+核心逻辑解释
+1. 状态结构差异设计
+父图状态（ParentState）：仅包含 user_query（用户输入）和 final_answer（最终结果），聚焦业务层；
+子图状态（SubgraphState）：
+包含 analysis_input（分析输入）、analysis_result（分析结果）、intermediate_steps（中间步骤），
+聚焦分析层；两者无重叠字段，完全独立，必须通过代理节点手动转换。
+
+2. 代理节点核心作用（call_subgraph_proxy）
+  2.1 步骤1：父→子状态转换（按子图要求构造输入）
+  2.2 步骤2：手动调用子图（而非直接将子图作为父图节点）
+  2.3 步骤3：子→父状态映射（提取子图结果，赋值给父图字段）
+
+核心方案：
+    父子图状态不同时，通过父图的代理节点而非直接添加子图节点，
+    手动完成「父状态→子输入」转换、调用子图、「子输出→父状态」映射；
+关键要点：
+    代理节点必须接收父图状态、返回父图状态，子图调用通过 compiled_subgraph.invoke() 手动触发；
+灵活性：
+    该模式可适配任意结构的父子图状态，只需在代理节点中自定义转换逻辑
+'''</span>
+
+
+<span class="token keyword">from</span> langgraph<span class="token punctuation">.</span>graph <span class="token keyword">import</span> StateGraph<span class="token punctuation">,</span> START<span class="token punctuation">,</span> END
+<span class="token keyword">from</span> typing <span class="token keyword">import</span> TypedDict
+
+
+<span class="token comment"># ====================== 1. 定义不同结构的父子图状态 ======================</span>
+<span class="token comment"># 父图状态：仅包含用户查询和最终答案（与子图状态完全不同）</span>
+<span class="token keyword">class</span> <span class="token class-name">ParentState</span><span class="token punctuation">(</span>TypedDict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    user_query<span class="token punctuation">:</span> <span class="token builtin">str</span>  <span class="token comment"># 父图独有：用户输入的查询</span>
+    final_answer<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">|</span> <span class="token boolean">None</span>  <span class="token comment"># 父图独有：子图处理后的最终结果</span>
+
+<span class="token comment"># 子图状态：专注于分析逻辑（与父图状态无重叠字段）</span>
+<span class="token keyword">class</span> <span class="token class-name">SubgraphState</span><span class="token punctuation">(</span>TypedDict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    analysis_input<span class="token punctuation">:</span> <span class="token builtin">str</span>  <span class="token comment"># 子图独有：分析输入</span>
+    analysis_result<span class="token punctuation">:</span> <span class="token builtin">str</span>  <span class="token comment"># 子图独有：分析结果</span>
+    intermediate_steps<span class="token punctuation">:</span> <span class="token builtin">list</span>  <span class="token comment"># 子图独有：中间步骤（私有数据）</span>
+
+
+<span class="token comment"># ====================== 2. 定义子图核心逻辑 ======================</span>
+<span class="token keyword">def</span> <span class="token function">subgraph_analysis_node</span><span class="token punctuation">(</span>state<span class="token punctuation">:</span> SubgraphState<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> SubgraphState<span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;子图核心节点：处理分析逻辑，生成结果&quot;&quot;&quot;</span>
+    <span class="token comment"># 模拟子图的分析过程</span>
+    query <span class="token operator">=</span> state<span class="token punctuation">[</span><span class="token string">&quot;analysis_input&quot;</span><span class="token punctuation">]</span>
+    state<span class="token punctuation">[</span><span class="token string">&quot;intermediate_steps&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string-interpolation"><span class="token string">f&quot;解析查询：</span><span class="token interpolation"><span class="token punctuation">{</span>query<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">,</span> <span class="token string">&quot;执行分析逻辑&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;生成结果&quot;</span><span class="token punctuation">]</span>
+    state<span class="token punctuation">[</span><span class="token string">&quot;analysis_result&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f&quot;针对「</span><span class="token interpolation"><span class="token punctuation">{</span>query<span class="token punctuation">}</span></span><span class="token string">」的分析结果：这是子图处理后的内容&quot;</span></span>
+    <span class="token keyword">return</span> state
+
+
+<span class="token keyword">def</span> <span class="token function">build_subgraph</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> StateGraph<span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;构建并编译子图&quot;&quot;&quot;</span>
+    sub_builder <span class="token operator">=</span> StateGraph<span class="token punctuation">(</span>SubgraphState<span class="token punctuation">)</span>
+    sub_builder<span class="token punctuation">.</span>add_node<span class="token punctuation">(</span><span class="token string">&quot;subgraph_analysis_node&quot;</span><span class="token punctuation">,</span> subgraph_analysis_node<span class="token punctuation">)</span>
+
+    sub_builder<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span>START<span class="token punctuation">,</span> <span class="token string">&quot;subgraph_analysis_node&quot;</span><span class="token punctuation">)</span>
+    sub_builder<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span><span class="token string">&quot;subgraph_analysis_node&quot;</span><span class="token punctuation">,</span> END<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> sub_builder<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># 提前编译子图（供父图代理节点调用）</span>
+compiled_subgraph <span class="token operator">=</span> build_subgraph<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># ============ 3. 定义父图代理节点（核心：状态转换+调用子图）从节点调用图=======</span>
+<span class="token keyword">def</span> <span class="token function">call_subgraph_proxy</span><span class="token punctuation">(</span>state<span class="token punctuation">:</span> ParentState<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> ParentState<span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;
+    父图的代理节点：
+    1. 将父图状态转换为子图所需的输入格式
+    2. 手动调用子图
+    3. 将子图输出映射回父图状态
+    &quot;&quot;&quot;</span>
+
+    <span class="token comment"># 步骤1：父图状态 → 子图输入（状态转换）,提取父图的user_query，转换为子图需要的analysis_input</span>
+    subgraph_input <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;analysis_input&quot;</span><span class="token punctuation">:</span> state<span class="token punctuation">[</span><span class="token string">&quot;user_query&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;intermediate_steps&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  <span class="token comment"># 初始化子图的私有字段</span>
+        <span class="token string">&quot;analysis_result&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span>  <span class="token comment"># 初始化子图结果字段</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment"># 步骤2：手动调用编译后的子图，手动调用子图（而非直接将子图作为父图节点）</span>
+    subgraph_response <span class="token operator">=</span> compiled_subgraph<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>subgraph_input<span class="token punctuation">)</span>
+
+    <span class="token comment"># 步骤3：子图输出 → 父图状态（结果映射）</span>
+    <span class="token comment"># 提取子图的analysis_result，赋值给父图的final_answer</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;user_query&quot;</span><span class="token punctuation">:</span> state<span class="token punctuation">[</span><span class="token string">&quot;user_query&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  <span class="token comment"># 保留父图原有字段</span>
+        <span class="token string">&quot;final_answer&quot;</span><span class="token punctuation">:</span> subgraph_response<span class="token punctuation">[</span><span class="token string">&quot;analysis_result&quot;</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+
+
+<span class="token keyword">def</span> <span class="token function">build_parent_graph</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> StateGraph<span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;构建并编译父图（添加代理节点，而非直接添加子图）&quot;&quot;&quot;</span>
+    parent_builder <span class="token operator">=</span> StateGraph<span class="token punctuation">(</span>ParentState<span class="token punctuation">)</span>
+    <span class="token comment"># 添加代理节点（核心：手动处理状态转换+调用子图）</span>
+    parent_builder<span class="token punctuation">.</span>add_node<span class="token punctuation">(</span><span class="token string">&quot;call_subgraph_proxy&quot;</span><span class="token punctuation">,</span> call_subgraph_proxy<span class="token punctuation">)</span>
+    <span class="token comment"># 父图执行链路：START → 代理节点 → END</span>
+    parent_builder<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span>START<span class="token punctuation">,</span> <span class="token string">&quot;call_subgraph_proxy&quot;</span><span class="token punctuation">)</span>
+    parent_builder<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span><span class="token string">&quot;call_subgraph_proxy&quot;</span><span class="token punctuation">,</span> END<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> parent_builder<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># ====================== 4. 主方法 ======================</span>
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;主函数：执行父图，验证跨图状态转换逻辑&quot;&quot;&quot;</span>
+    <span class="token comment"># 1. 构建父图</span>
+    parent_graph <span class="token operator">=</span> build_parent_graph<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 2. 定义父图初始状态（仅包含user_query，符合父图状态结构）</span>
+    initial_state <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;user_query&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;请分析Python中StateGraph的使用场景&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;final_answer&quot;</span><span class="token punctuation">:</span> <span class="token boolean">None</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;父图初始状态：&quot;</span><span class="token punctuation">,</span> initial_state<span class="token punctuation">)</span>
+
+    <span class="token comment"># 3. 执行父图，实际而言父图调用了call_subgraph_proxy</span>
+    final_state <span class="token operator">=</span> parent_graph<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>initial_state<span class="token punctuation">)</span>
+
+    <span class="token comment"># 4. 输出结果</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;\n父图最终状态：&quot;</span><span class="token punctuation">,</span> final_state<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;\n子图处理后的最终答案：&quot;</span><span class="token punctuation">,</span> final_state<span class="token punctuation">[</span><span class="token string">&quot;final_answer&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div></div></div> <!----> <div class="page-edit"><!----> <!----> <!----></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/LLMBlog/pages/4fe205/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">TimeTravel时间回溯</div></a> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/LLMBlog/pages/4fe205/" class="prev">TimeTravel时间回溯</a></span> <!----></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/LLMBlog/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/LLMBlog/pages/4fe205/"><div>
+            TimeTravel时间回溯
+            <!----></div></a> <span class="date">04-12</span></dt></dl><dl><dd>02</dd> <dt><a href="/LLMBlog/pages/4ebaa6/"><div>
+            checkpoint状态持久化
+            <!----></div></a> <span class="date">04-12</span></dt></dl><dl><dd>03</dd> <dt><a href="/LLMBlog/pages/4abdd8/"><div>
+            高级特性-流式输出(Streaming)
+            <!----></div></a> <span class="date">04-12</span></dt></dl> <dl><dd></dd> <dt><a href="/LLMBlog/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><!----> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> <!----></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <!----></div><div class="global-ui"></div></div>
+    <script src="/LLMBlog/assets/js/app.da45477a.js" defer></script><script src="/LLMBlog/assets/js/2.e2dd6c91.js" defer></script><script src="/LLMBlog/assets/js/43.d28690a4.js" defer></script>
+  </body>
+</html>
