@@ -23,6 +23,14 @@ module.exports = [
     link: '/Agent/',
   },
   {
+    text: 'ProjectDesc',
+    link: '/ProjectDesc/',
+  },
+  {
+    text: '知识复盘',
+    link: '/reviewKnnowledge/',
+  },
+  {
     text: '微调',
     link: '/Fine-tuning/',
   },
@@ -37,13 +45,5 @@ module.exports = [
   {
     text: 'HelloAgent',
     link: '/HelloAgent/', //目录页链接，此处link是vdoing主题新增的配置项，有二级导航时，可以点击一级导航跳到目录页
-  },
-  {
-    text: 'ProjectDesc',
-    link: '/ProjectDesc/',
-  },
-  {
-    text: '知识复盘',
-    link: '/reviewKnnowledge/',
   },
 ];
