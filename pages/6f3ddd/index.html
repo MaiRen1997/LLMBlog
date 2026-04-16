@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>yaml的使用 | 麦仁大模型博客</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="记录大模型学习">
+    
+    <link rel="preload" href="/LLMBlog/assets/css/0.styles.1c990687.css" as="style"><link rel="preload" href="/LLMBlog/assets/js/app.c83a8a14.js" as="script"><link rel="preload" href="/LLMBlog/assets/js/2.e2dd6c91.js" as="script"><link rel="preload" href="/LLMBlog/assets/js/37.cfb5ce87.js" as="script"><link rel="prefetch" href="/LLMBlog/assets/js/10.4d696626.js"><link rel="prefetch" href="/LLMBlog/assets/js/100.758f936a.js"><link rel="prefetch" href="/LLMBlog/assets/js/101.5f09d61a.js"><link rel="prefetch" href="/LLMBlog/assets/js/102.b806a0e9.js"><link rel="prefetch" href="/LLMBlog/assets/js/103.b338dad5.js"><link rel="prefetch" href="/LLMBlog/assets/js/104.d439daf5.js"><link rel="prefetch" href="/LLMBlog/assets/js/105.111c43c1.js"><link rel="prefetch" href="/LLMBlog/assets/js/106.fc650036.js"><link rel="prefetch" href="/LLMBlog/assets/js/107.d04663fd.js"><link rel="prefetch" href="/LLMBlog/assets/js/108.f4dee6ec.js"><link rel="prefetch" href="/LLMBlog/assets/js/109.0aeb0338.js"><link rel="prefetch" href="/LLMBlog/assets/js/11.6201c41c.js"><link rel="prefetch" href="/LLMBlog/assets/js/110.a2c7535c.js"><link rel="prefetch" href="/LLMBlog/assets/js/111.e32d6e20.js"><link rel="prefetch" href="/LLMBlog/assets/js/112.5af05bed.js"><link rel="prefetch" href="/LLMBlog/assets/js/113.0c422e3c.js"><link rel="prefetch" href="/LLMBlog/assets/js/114.5350959a.js"><link rel="prefetch" href="/LLMBlog/assets/js/115.da11278d.js"><link rel="prefetch" href="/LLMBlog/assets/js/116.7371c090.js"><link rel="prefetch" href="/LLMBlog/assets/js/117.d292ce05.js"><link rel="prefetch" href="/LLMBlog/assets/js/118.de563e26.js"><link rel="prefetch" href="/LLMBlog/assets/js/119.5137614f.js"><link rel="prefetch" href="/LLMBlog/assets/js/12.2e242e2e.js"><link rel="prefetch" href="/LLMBlog/assets/js/120.8dfc4580.js"><link rel="prefetch" href="/LLMBlog/assets/js/121.a6eac696.js"><link rel="prefetch" href="/LLMBlog/assets/js/122.c8c05080.js"><link rel="prefetch" href="/LLMBlog/assets/js/123.deb4c1eb.js"><link rel="prefetch" href="/LLMBlog/assets/js/124.e23608ce.js"><link rel="prefetch" href="/LLMBlog/assets/js/125.1bf9e843.js"><link rel="prefetch" href="/LLMBlog/assets/js/126.97cb02f8.js"><link rel="prefetch" href="/LLMBlog/assets/js/127.bb677957.js"><link rel="prefetch" href="/LLMBlog/assets/js/128.c827e070.js"><link rel="prefetch" href="/LLMBlog/assets/js/129.a00a8fd5.js"><link rel="prefetch" href="/LLMBlog/assets/js/13.d9bc30fd.js"><link rel="prefetch" href="/LLMBlog/assets/js/130.5d74b72f.js"><link rel="prefetch" href="/LLMBlog/assets/js/131.6332b597.js"><link rel="prefetch" href="/LLMBlog/assets/js/132.9f2e1032.js"><link rel="prefetch" href="/LLMBlog/assets/js/14.357fde5b.js"><link rel="prefetch" href="/LLMBlog/assets/js/15.eddf5c29.js"><link rel="prefetch" href="/LLMBlog/assets/js/16.ff36bf22.js"><link rel="prefetch" href="/LLMBlog/assets/js/17.f65ca3b5.js"><link rel="prefetch" href="/LLMBlog/assets/js/18.7ea05f39.js"><link rel="prefetch" href="/LLMBlog/assets/js/19.876ce6d4.js"><link rel="prefetch" href="/LLMBlog/assets/js/20.819f5413.js"><link rel="prefetch" href="/LLMBlog/assets/js/21.183f2155.js"><link rel="prefetch" href="/LLMBlog/assets/js/22.ebd09863.js"><link rel="prefetch" href="/LLMBlog/assets/js/23.6522546b.js"><link rel="prefetch" href="/LLMBlog/assets/js/24.f7b3ec80.js"><link rel="prefetch" href="/LLMBlog/assets/js/25.b4136f7b.js"><link rel="prefetch" href="/LLMBlog/assets/js/26.5dc0b986.js"><link rel="prefetch" href="/LLMBlog/assets/js/27.d9716c16.js"><link rel="prefetch" href="/LLMBlog/assets/js/28.5567feed.js"><link rel="prefetch" href="/LLMBlog/assets/js/29.7fb4310f.js"><link rel="prefetch" href="/LLMBlog/assets/js/3.35b4c94a.js"><link rel="prefetch" href="/LLMBlog/assets/js/30.7f656bd5.js"><link rel="prefetch" href="/LLMBlog/assets/js/31.1693f98b.js"><link rel="prefetch" href="/LLMBlog/assets/js/32.aadbd8c2.js"><link rel="prefetch" href="/LLMBlog/assets/js/33.61a0afd8.js"><link rel="prefetch" href="/LLMBlog/assets/js/34.9abb7f6b.js"><link rel="prefetch" href="/LLMBlog/assets/js/35.e92749a2.js"><link rel="prefetch" href="/LLMBlog/assets/js/36.a3d3f5f7.js"><link rel="prefetch" href="/LLMBlog/assets/js/38.061e73bf.js"><link rel="prefetch" href="/LLMBlog/assets/js/39.e9b8e939.js"><link rel="prefetch" href="/LLMBlog/assets/js/4.b40b4364.js"><link rel="prefetch" href="/LLMBlog/assets/js/40.c4a3ad2e.js"><link rel="prefetch" href="/LLMBlog/assets/js/41.56d8800d.js"><link rel="prefetch" href="/LLMBlog/assets/js/42.799a95ff.js"><link rel="prefetch" href="/LLMBlog/assets/js/43.6e80945e.js"><link rel="prefetch" href="/LLMBlog/assets/js/44.2649a2f6.js"><link rel="prefetch" href="/LLMBlog/assets/js/45.a844e363.js"><link rel="prefetch" href="/LLMBlog/assets/js/46.81cd5caf.js"><link rel="prefetch" href="/LLMBlog/assets/js/47.d395394f.js"><link rel="prefetch" href="/LLMBlog/assets/js/48.e4d845a9.js"><link rel="prefetch" href="/LLMBlog/assets/js/49.7d2ab186.js"><link rel="prefetch" href="/LLMBlog/assets/js/5.75e16c15.js"><link rel="prefetch" href="/LLMBlog/assets/js/50.f29e410c.js"><link rel="prefetch" href="/LLMBlog/assets/js/51.f9a8481d.js"><link rel="prefetch" href="/LLMBlog/assets/js/52.89a4e431.js"><link rel="prefetch" href="/LLMBlog/assets/js/53.6e72b0b4.js"><link rel="prefetch" href="/LLMBlog/assets/js/54.0d520c6d.js"><link rel="prefetch" href="/LLMBlog/assets/js/55.178afe8c.js"><link rel="prefetch" href="/LLMBlog/assets/js/56.f53cf494.js"><link rel="prefetch" href="/LLMBlog/assets/js/57.90ebaff2.js"><link rel="prefetch" href="/LLMBlog/assets/js/58.309c886e.js"><link rel="prefetch" href="/LLMBlog/assets/js/59.b7953e68.js"><link rel="prefetch" href="/LLMBlog/assets/js/6.78021fea.js"><link rel="prefetch" href="/LLMBlog/assets/js/60.af14e18c.js"><link rel="prefetch" href="/LLMBlog/assets/js/61.c57ecb38.js"><link rel="prefetch" href="/LLMBlog/assets/js/62.e86dacb4.js"><link rel="prefetch" href="/LLMBlog/assets/js/63.6cae3ff1.js"><link rel="prefetch" href="/LLMBlog/assets/js/64.dcce28c9.js"><link rel="prefetch" href="/LLMBlog/assets/js/65.bf92cd5d.js"><link rel="prefetch" href="/LLMBlog/assets/js/66.90b225b2.js"><link rel="prefetch" href="/LLMBlog/assets/js/67.044f6c44.js"><link rel="prefetch" href="/LLMBlog/assets/js/68.fd188be5.js"><link rel="prefetch" href="/LLMBlog/assets/js/69.ebfac233.js"><link rel="prefetch" href="/LLMBlog/assets/js/7.8a7cd0cf.js"><link rel="prefetch" href="/LLMBlog/assets/js/70.867e0c2f.js"><link rel="prefetch" href="/LLMBlog/assets/js/71.a96de1ae.js"><link rel="prefetch" href="/LLMBlog/assets/js/72.b341148d.js"><link rel="prefetch" href="/LLMBlog/assets/js/73.920fcdf3.js"><link rel="prefetch" href="/LLMBlog/assets/js/74.fb4edc28.js"><link rel="prefetch" href="/LLMBlog/assets/js/75.658da7ee.js"><link rel="prefetch" href="/LLMBlog/assets/js/76.36e329d5.js"><link rel="prefetch" href="/LLMBlog/assets/js/77.1598ec28.js"><link rel="prefetch" href="/LLMBlog/assets/js/78.3662f50f.js"><link rel="prefetch" href="/LLMBlog/assets/js/79.056b931c.js"><link rel="prefetch" href="/LLMBlog/assets/js/8.3185d928.js"><link rel="prefetch" href="/LLMBlog/assets/js/80.9f9d8445.js"><link rel="prefetch" href="/LLMBlog/assets/js/81.35137861.js"><link rel="prefetch" href="/LLMBlog/assets/js/82.edf2467e.js"><link rel="prefetch" href="/LLMBlog/assets/js/83.2d32bdd5.js"><link rel="prefetch" href="/LLMBlog/assets/js/84.6d6d069b.js"><link rel="prefetch" href="/LLMBlog/assets/js/85.68a52fd4.js"><link rel="prefetch" href="/LLMBlog/assets/js/86.c88a81ab.js"><link rel="prefetch" href="/LLMBlog/assets/js/87.d7aa1868.js"><link rel="prefetch" href="/LLMBlog/assets/js/88.8e69d68b.js"><link rel="prefetch" href="/LLMBlog/assets/js/89.54691d00.js"><link rel="prefetch" href="/LLMBlog/assets/js/9.122f8f7e.js"><link rel="prefetch" href="/LLMBlog/assets/js/90.a2a6053f.js"><link rel="prefetch" href="/LLMBlog/assets/js/91.d14dbb65.js"><link rel="prefetch" href="/LLMBlog/assets/js/92.8eea3356.js"><link rel="prefetch" href="/LLMBlog/assets/js/93.94bf07a2.js"><link rel="prefetch" href="/LLMBlog/assets/js/94.a4f707f8.js"><link rel="prefetch" href="/LLMBlog/assets/js/95.942ed1ce.js"><link rel="prefetch" href="/LLMBlog/assets/js/96.4254798b.js"><link rel="prefetch" href="/LLMBlog/assets/js/97.d7e70426.js"><link rel="prefetch" href="/LLMBlog/assets/js/98.b9310320.js"><link rel="prefetch" href="/LLMBlog/assets/js/99.f7100875.js">
+    <link rel="stylesheet" href="/LLMBlog/assets/css/0.styles.1c990687.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LLMBlog/" class="home-link router-link-active"><!----> <span class="site-name">麦仁大模型博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/LLMBlog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/LLMBlog/promptEngineer/" class="nav-link">提示词工程</a></div><div class="nav-item"><a href="/LLMBlog/RAG/" class="nav-link">RAG</a></div><div class="nav-item"><a href="/LLMBlog/LangChain/" class="nav-link">LangChain</a></div><div class="nav-item"><a href="/LLMBlog/Agent/" class="nav-link">Agent&amp;工作流</a></div><div class="nav-item"><a href="/LLMBlog/ProjectDesc/" class="nav-link">ProjectDesc</a></div><div class="nav-item"><a href="/LLMBlog/reviewKnnowledge/" class="nav-link">知识复盘</a></div><div class="nav-item"><a href="/LLMBlog/Fine-tuning/" class="nav-link">微调</a></div><div class="nav-item"><a href="/LLMBlog/Multimodal/" class="nav-link">多模态</a></div><div class="nav-item"><a href="/LLMBlog/PrivateDeploy/" class="nav-link">私有化部署</a></div><div class="nav-item"><a href="/LLMBlog/HelloAgent/" class="nav-link">HelloAgent</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/LLMBlog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/LLMBlog/promptEngineer/" class="nav-link">提示词工程</a></div><div class="nav-item"><a href="/LLMBlog/RAG/" class="nav-link">RAG</a></div><div class="nav-item"><a href="/LLMBlog/LangChain/" class="nav-link">LangChain</a></div><div class="nav-item"><a href="/LLMBlog/Agent/" class="nav-link">Agent&amp;工作流</a></div><div class="nav-item"><a href="/LLMBlog/ProjectDesc/" class="nav-link">ProjectDesc</a></div><div class="nav-item"><a href="/LLMBlog/reviewKnnowledge/" class="nav-link">知识复盘</a></div><div class="nav-item"><a href="/LLMBlog/Fine-tuning/" class="nav-link">微调</a></div><div class="nav-item"><a href="/LLMBlog/Multimodal/" class="nav-link">多模态</a></div><div class="nav-item"><a href="/LLMBlog/PrivateDeploy/" class="nav-link">私有化部署</a></div><div class="nav-item"><a href="/LLMBlog/HelloAgent/" class="nav-link">HelloAgent</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LLMBlog/pages/f313f9/" class="sidebar-link">学习大纲视频</a></li><li><a href="/LLMBlog/pages/c3e561/" class="sidebar-link">langChain的学习大纲总结</a></li><li><a href="/LLMBlog/pages/3a1a6c/" class="sidebar-link">3月23知识复盘</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>面试题</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>python的使用</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/LLMBlog/pages/6f3ddd/" aria-current="page" class="active sidebar-link">yaml的使用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/6f3ddd/#格式说明" class="sidebar-link">格式说明</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/6f3ddd/#读取说明" class="sidebar-link">读取说明</a></li></ul></li><li><a href="/LLMBlog/pages/1e518a/" class="sidebar-link">Python的路径的使用</a></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/LLMBlog/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><a href="/LLMBlog/reviewKnnowledge/#知识复盘" data-v-06225672>知识复盘</a></li><li data-v-06225672><a href="/LLMBlog/reviewKnnowledge/#python的使用" data-v-06225672>python的使用</a></li></ul> <div class="info" data-v-06225672><!----> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2026-04-16</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABKFJREFUSA3tVl1oFVcQnrMbrak3QUgkya1akpJYcrUtIqW1JvFBE9LiQ5v6JmJpolbMg32rVrhgoYK0QiMY6i9Y6EMaW5D+xFJaTYItIuK2Kr3+BJNwkxBj05sQY3b3nM6cs2dv9t7NT/vQJw/sndk5M/PNzJkzewGerP+pAmy+ON8lLzUJgA8ZYxYIYZmGYRnctDaWvJJAmTtfP1pvXsBCCPP8QFcCaRkZYACgDZFO4stNIcBCajEOlmmC9XpJ9bAGCaPaPmzPl32dvLSVu3BWCTQs0XQQ6g0DYgwLIoAZbBCdW/i+781o1VVlm/410mw4h06Y7bIPHNyWDyL4FHkX03Q8SrzNhZTZriieckWt7cL6MM85YcLpsi/7O9/iXFT6MswI0DmmpkSaJ0qLxFIm3+i1THHB3zmBH3PYx9CcykcLOeQVVa7QtdxTgQgEleX2AjHYfwA+2ddV77ruGoJUbhGDI09YSNXyMpUt5ylOzxgbUmtOp7NmbNt8v3arjTBfYELmLUV+M+nSawNNAUqpT3ClJWg5I3BLT+cGW/DXNGCa6tx1aakCGEigArTn4TDIPdrXXYKCZNrHLMCOEPvHBlLQ99s9eHB7EB6NTki73CVPQ2F5MSx/uRQixfmq7rK0wYD8w8E905bnPDfwoWs/rfv93NWN/ZfvwsLIU7A09gxECyISeGJkHAau98L97tuw7NXnoPyNF8FcYGLGKsOs0mN3OEyec9esGW/ZEl945dTP34wlR2FZVQWU1q0Cw8Tr7p+hgLLNL0FPxx/Q35mA8aEUrH6nCgwEl0tn7wUiZYJnNRh6DK4UH/k0lfyrsBKdPVv/AriGIQcEDQZ65LBAGe2Rzui9Ybjz7XUppz1/uKBbyVPGkN3ZAeC6hr0x7Nr38N5+EqkoOm17xpoqR9ohQF55ERSvr4Dkr3chNfC3DMzGJlNBElW8w9nsGQvhNGIzDkXzCg8cLK951xHsFBlTJspJNi3ZFIMF2AeDV3q8DNOB+YHi6QTrChDIWDBRi5U5f+ZMfJLu3ccrqxtdxk4SKH336LFxSmkqefwU5T8fhdSdQf9IVKD6aNiwI/hnmcAZ91isYMJIaCUCx9W098+LgruikeTqzqqxKPUwqJyCPJiyemVVZBOijDGjD38Os0jOiSPL1z3SPjXNANbiNPXAdzTfukjjuknNBbyz3nwgTd3AVFqUJ5hpHlq9MveLnWwttUfoygBmvVjuikxND3znrhsELnZk7k+OjIGxeNEkomyLVta0xxn+HZhjBc4YZ/AFjHjz9u3xRZl2BN4aq9nFwWh16IrQ1aHHEd3j1+4/dB9OtH4e29A2H1DyHQRmOSfQZ1Fy7MHBTGB6J/Djq6p3OxyO2cB+4Car7v/o3GXgfAkj23+x9ID1Teoamo/SXcbvSf2PX7Vc8DdCmE1vN9di+32P9/5YR3vLnhCVGUWBjEkr3yh4H8v9CzmsbdhzOKzsJKM90iFdaTMjRPhGVsakRvOaRidljo6H6G7j+ctrJpsP+4COhDIl0La2+FS4+5mlocBaXY5QnGZysIBYoeSsl5qQzrSj/cgNrfuEzlWBfwA+EjrZyWUvpAAAAABJRU5ErkJggg==">yaml的使用<!----></h1> <!----> <div class="theme-vdoing-content content__default"><h2 id="格式说明"><a href="#格式说明" class="header-anchor">#</a> 格式说明</h2> <h3 id="说明"><a href="#说明" class="header-anchor">#</a> 说明</h3> <ol><li>yaml在冒号后，一定要有控股</li> <li>yaml以缩进来表明所属关系</li></ol> <h3 id="对象"><a href="#对象" class="header-anchor">#</a> 对象</h3> <p><img src="/LLMBlog/assets/img/yamlDesc01.637c1f06.png" alt=""></p> <p><img src="/LLMBlog/assets/img/yamlDesc02.f1917c55.png" alt=""></p> <h3 id="更多示例"><a href="#更多示例" class="header-anchor">#</a> 更多示例</h3> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">---</span>
+<span class="token comment"># Collection Types #############################################################</span>
+<span class="token comment">################################################################################</span>
+
+<span class="token comment"># http://yaml.org/type/map.html -----------------------------------------------#</span>
+
+<span class="token key atrule">map</span><span class="token punctuation">:</span>
+  <span class="token comment"># Unordered set of key: value pairs.</span>
+  <span class="token key atrule">Block style</span><span class="token punctuation">:</span> <span class="token tag">!!map</span>
+    <span class="token key atrule">Clark</span> <span class="token punctuation">:</span> Evans
+    <span class="token key atrule">Ingy</span>  <span class="token punctuation">:</span> dot Net
+    <span class="token key atrule">Oren</span>  <span class="token punctuation">:</span> Ben<span class="token punctuation">-</span>Kiki
+  <span class="token key atrule">Flow style</span><span class="token punctuation">:</span> <span class="token tag">!!map</span> <span class="token punctuation">{</span> <span class="token key atrule">Clark</span><span class="token punctuation">:</span> Evans<span class="token punctuation">,</span> <span class="token key atrule">Ingy</span><span class="token punctuation">:</span> dot Net<span class="token punctuation">,</span> <span class="token key atrule">Oren</span><span class="token punctuation">:</span> Ben<span class="token punctuation">-</span>Kiki <span class="token punctuation">}</span>
+
+<span class="token comment"># http://yaml.org/type/omap.html ----------------------------------------------#</span>
+
+<span class="token key atrule">omap</span><span class="token punctuation">:</span>
+  <span class="token comment"># Explicitly typed ordered map (dictionary).</span>
+  <span class="token key atrule">Bestiary</span><span class="token punctuation">:</span> <span class="token tag">!!omap</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">aardvark</span><span class="token punctuation">:</span> African pig<span class="token punctuation">-</span>like ant eater. Ugly.
+    <span class="token punctuation">-</span> <span class="token key atrule">anteater</span><span class="token punctuation">:</span> South<span class="token punctuation">-</span>American ant eater. Two species.
+    <span class="token punctuation">-</span> <span class="token key atrule">anaconda</span><span class="token punctuation">:</span> South<span class="token punctuation">-</span>American constrictor snake. Scaly.
+    <span class="token comment"># Etc.</span>
+  <span class="token comment"># Flow style</span>
+  <span class="token key atrule">Numbers</span><span class="token punctuation">:</span> <span class="token tag">!!omap</span> <span class="token punctuation">[</span> <span class="token key atrule">one</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token key atrule">two</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token key atrule">three</span> <span class="token punctuation">:</span> <span class="token number">3</span> <span class="token punctuation">]</span>
+
+<span class="token comment"># http://yaml.org/type/pairs.html ---------------------------------------------#</span>
+
+<span class="token key atrule">pairs</span><span class="token punctuation">:</span>
+  <span class="token comment"># Explicitly typed pairs.</span>
+  <span class="token key atrule">Block tasks</span><span class="token punctuation">:</span> <span class="token tag">!!pairs</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">meeting</span><span class="token punctuation">:</span> with team.
+    <span class="token punctuation">-</span> <span class="token key atrule">meeting</span><span class="token punctuation">:</span> with boss.
+    <span class="token punctuation">-</span> <span class="token key atrule">break</span><span class="token punctuation">:</span> lunch.
+    <span class="token punctuation">-</span> <span class="token key atrule">meeting</span><span class="token punctuation">:</span> with client.
+  <span class="token key atrule">Flow tasks</span><span class="token punctuation">:</span> <span class="token tag">!!pairs</span> <span class="token punctuation">[</span> <span class="token key atrule">meeting</span><span class="token punctuation">:</span> with team<span class="token punctuation">,</span> <span class="token key atrule">meeting</span><span class="token punctuation">:</span> with boss <span class="token punctuation">]</span>
+
+<span class="token comment"># http://yaml.org/type/set.html -----------------------------------------------#</span>
+
+<span class="token key atrule">set</span><span class="token punctuation">:</span>
+  <span class="token comment"># Explicitly typed set.</span>
+  <span class="token key atrule">baseball players</span><span class="token punctuation">:</span> <span class="token tag">!!set</span>
+    <span class="token punctuation">?</span> Mark McGwire
+    <span class="token punctuation">?</span> Sammy Sosa
+    <span class="token punctuation">?</span> Ken Griffey
+  <span class="token comment"># Flow style</span>
+  <span class="token key atrule">baseball teams</span><span class="token punctuation">:</span> <span class="token tag">!!set</span> <span class="token punctuation">{</span> Boston Red Sox<span class="token punctuation">,</span> Detroit Tigers<span class="token punctuation">,</span> New York Yankees <span class="token punctuation">}</span>
+
+<span class="token comment"># http://yaml.org/type/seq.html -----------------------------------------------#</span>
+
+<span class="token key atrule">seq</span><span class="token punctuation">:</span>
+  <span class="token comment"># Ordered sequence of nodes</span>
+  <span class="token key atrule">Block style</span><span class="token punctuation">:</span> <span class="token tag">!!seq</span>
+  <span class="token punctuation">-</span> Mercury   <span class="token comment"># Rotates - no light/dark sides.</span>
+  <span class="token punctuation">-</span> Venus     <span class="token comment"># Deadliest. Aptly named.</span>
+  <span class="token punctuation">-</span> Earth     <span class="token comment"># Mostly dirt.</span>
+  <span class="token punctuation">-</span> Mars      <span class="token comment"># Seems empty.</span>
+  <span class="token punctuation">-</span> Jupiter   <span class="token comment"># The king.</span>
+  <span class="token punctuation">-</span> Saturn    <span class="token comment"># Pretty.</span>
+  <span class="token punctuation">-</span> Uranus    <span class="token comment"># Where the sun hardly shines.</span>
+  <span class="token punctuation">-</span> Neptune   <span class="token comment"># Boring. No rings.</span>
+  <span class="token punctuation">-</span> Pluto     <span class="token comment"># You call this a planet?</span>
+  <span class="token key atrule">Flow style</span><span class="token punctuation">:</span> <span class="token tag">!!seq</span> <span class="token punctuation">[</span> Mercury<span class="token punctuation">,</span> Venus<span class="token punctuation">,</span> Earth<span class="token punctuation">,</span> Mars<span class="token punctuation">,</span>      <span class="token comment"># Rocks</span>
+                      Jupiter<span class="token punctuation">,</span> Saturn<span class="token punctuation">,</span> Uranus<span class="token punctuation">,</span> Neptune<span class="token punctuation">,</span> <span class="token comment"># Gas</span>
+                      Pluto <span class="token punctuation">]</span>                           <span class="token comment"># Overrated</span>
+
+
+<span class="token comment"># Scalar Types #################################################################</span>
+<span class="token comment">################################################################################</span>
+
+<span class="token comment"># http://yaml.org/type/bool.html ----------------------------------------------#</span>
+
+<span class="token key atrule">bool</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token boolean important">true</span>
+  <span class="token punctuation">-</span> <span class="token boolean important">True</span>
+  <span class="token punctuation">-</span> <span class="token boolean important">TRUE</span>
+  <span class="token punctuation">-</span> <span class="token boolean important">false</span>
+  <span class="token punctuation">-</span> <span class="token boolean important">False</span>
+  <span class="token punctuation">-</span> <span class="token boolean important">FALSE</span>
+
+<span class="token comment"># http://yaml.org/type/float.html ---------------------------------------------#</span>
+
+<span class="token key atrule">float</span><span class="token punctuation">:</span>
+  <span class="token key atrule">canonical</span><span class="token punctuation">:</span> <span class="token number">6.8523015e+5</span>
+  <span class="token key atrule">exponentioal</span><span class="token punctuation">:</span> 685.230_15e+03
+  <span class="token key atrule">fixed</span><span class="token punctuation">:</span> 685_230.15
+  <span class="token key atrule">negative infinity</span><span class="token punctuation">:</span> <span class="token number">-.inf</span>
+  <span class="token key atrule">not a number</span><span class="token punctuation">:</span> <span class="token number">.NaN</span>
+
+<span class="token comment"># http://yaml.org/type/int.html -----------------------------------------------#</span>
+
+<span class="token key atrule">int</span><span class="token punctuation">:</span>
+  <span class="token key atrule">canonical</span><span class="token punctuation">:</span> <span class="token number">685230</span>
+  <span class="token key atrule">decimal</span><span class="token punctuation">:</span> +685_230
+  <span class="token key atrule">octal</span><span class="token punctuation">:</span> <span class="token number">0o2472256</span>
+  <span class="token key atrule">hexadecimal</span><span class="token punctuation">:</span> 0x_0A_74_AE
+  <span class="token key atrule">binary</span><span class="token punctuation">:</span> 0b1010_0111_0100_1010_1110
+
+<span class="token comment"># http://yaml.org/type/merge.html ---------------------------------------------#</span>
+
+<span class="token key atrule">merge</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token important">&amp;CENTER</span> <span class="token punctuation">{</span> <span class="token key atrule">x</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token key atrule">y</span><span class="token punctuation">:</span> <span class="token number">2</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">-</span> <span class="token important">&amp;LEFT</span> <span class="token punctuation">{</span> <span class="token key atrule">x</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token key atrule">y</span><span class="token punctuation">:</span> <span class="token number">2</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">-</span> <span class="token important">&amp;BIG</span> <span class="token punctuation">{</span> <span class="token key atrule">r</span><span class="token punctuation">:</span> <span class="token number">10</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">-</span> <span class="token important">&amp;SMALL</span> <span class="token punctuation">{</span> <span class="token key atrule">r</span><span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span>
+
+  <span class="token comment"># All the following maps are equal:</span>
+
+  <span class="token punctuation">-</span> <span class="token comment"># Explicit keys</span>
+    <span class="token key atrule">x</span><span class="token punctuation">:</span> <span class="token number">1</span>
+    <span class="token key atrule">y</span><span class="token punctuation">:</span> <span class="token number">2</span>
+    <span class="token key atrule">r</span><span class="token punctuation">:</span> <span class="token number">10</span>
+    <span class="token key atrule">label</span><span class="token punctuation">:</span> nothing
+
+  <span class="token punctuation">-</span> <span class="token comment"># Merge one map</span>
+    <span class="token key atrule">&lt;&lt;</span> <span class="token punctuation">:</span> <span class="token important">*CENTER</span>
+    <span class="token key atrule">r</span><span class="token punctuation">:</span> <span class="token number">10</span>
+    <span class="token key atrule">label</span><span class="token punctuation">:</span> center
+
+  <span class="token punctuation">-</span> <span class="token comment"># Merge multiple maps</span>
+    <span class="token key atrule">&lt;&lt;</span> <span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token important">*CENTER</span><span class="token punctuation">,</span> <span class="token important">*BIG</span> <span class="token punctuation">]</span>
+    <span class="token key atrule">label</span><span class="token punctuation">:</span> center/big
+
+  <span class="token punctuation">-</span> <span class="token comment"># Override</span>
+    <span class="token key atrule">&lt;&lt;</span> <span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token important">*BIG</span><span class="token punctuation">,</span> <span class="token important">*LEFT</span><span class="token punctuation">,</span> <span class="token important">*SMALL</span> <span class="token punctuation">]</span>
+    <span class="token key atrule">x</span><span class="token punctuation">:</span> <span class="token number">1</span>
+    <span class="token key atrule">label</span><span class="token punctuation">:</span> big/left/small
+
+<span class="token comment"># http://yaml.org/type/null.html ----------------------------------------------#</span>
+
+<span class="token key atrule">null</span><span class="token punctuation">:</span>
+  <span class="token comment"># This mapping has four keys,</span>
+  <span class="token comment"># one has a value.</span>
+  <span class="token key atrule">empty</span><span class="token punctuation">:</span>
+  <span class="token key atrule">canonical</span><span class="token punctuation">:</span> <span class="token null important">~</span>
+  <span class="token key atrule">english</span><span class="token punctuation">:</span> <span class="token null important">null</span>
+  <span class="token key atrule">~</span><span class="token punctuation">:</span> null key
+  <span class="token comment"># This sequence has five</span>
+  <span class="token comment"># entries, two have values.</span>
+  <span class="token key atrule">sparse</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token null important">~</span>
+    <span class="token punctuation">-</span> 2nd entry
+    <span class="token punctuation">-</span>
+    <span class="token punctuation">-</span> 4th entry
+    <span class="token punctuation">-</span> <span class="token null important">Null</span>
+
+<span class="token comment"># http://yaml.org/type/str.html -----------------------------------------------#</span>
+
+<span class="token key atrule">string</span><span class="token punctuation">:</span> abcd
+
+<span class="token comment"># http://yaml.org/type/timestamp.html -----------------------------------------#</span>
+
+<span class="token key atrule">timestamp</span><span class="token punctuation">:</span>
+  <span class="token key atrule">canonical</span><span class="token punctuation">:</span>        <span class="token datetime number">2001-12-15T02:59:43.1Z</span>
+  <span class="token key atrule">valid iso8601</span><span class="token punctuation">:</span>    <span class="token datetime number">2001-12-14t21:59:43.10-05:00</span>
+  <span class="token key atrule">space separated</span><span class="token punctuation">:</span>  <span class="token datetime number">2001-12-14 21:59:43.10 -5</span>
+  <span class="token key atrule">no time zone (Z)</span><span class="token punctuation">:</span> <span class="token datetime number">2001-12-15 2:59:43.10</span>
+  <span class="token key atrule">date (00:00:00Z)</span><span class="token punctuation">:</span> <span class="token datetime number">2002-12-14</span>
+</code></pre></div><h2 id="读取说明"><a href="#读取说明" class="header-anchor">#</a> 读取说明</h2> <h3 id="使用omegaconf进行读取"><a href="#使用omegaconf进行读取" class="header-anchor">#</a> 使用omegaconf进行读取</h3> <ol><li><p>安装omegaconf</p> <div class="language-bash extra-class"><pre class="language-bash"><code>uv <span class="token function">add</span> omegaconf
+</code></pre></div></li> <li><p>引入并读取</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> pathlib <span class="token keyword">import</span> Path
+<span class="token keyword">from</span> omegaconf <span class="token keyword">import</span> OmegaConf
+config_file <span class="token operator">=</span> Path<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">.</span>parents<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">/</span><span class="token string">'conf'</span><span class="token operator">/</span> 'app_config<span class="token punctuation">.</span>yaml
+
+conf <span class="token operator">=</span> OmegaConf<span class="token punctuation">.</span>load<span class="token punctuation">(</span>config_file<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>conf<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>conf<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre></div></li></ol> <h3 id="带类型的索取"><a href="#带类型的索取" class="header-anchor">#</a> 带类型的索取</h3> <p>使用<code>.变量名</code>的方式获取</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> dataclasses <span class="token keyword">import</span> dataclass
+<span class="token keyword">from</span> pathlib <span class="token keyword">import</span> Path
+<span class="token keyword">from</span> omegaconf <span class="token keyword">import</span> OmegaConf
+
+<span class="token decorator annotation punctuation">@dataclass</span>
+<span class="token keyword">class</span> <span class="token class-name">Address</span><span class="token punctuation">:</span>
+    city<span class="token punctuation">:</span> <span class="token builtin">str</span>
+    street<span class="token punctuation">:</span> <span class="token builtin">str</span>
+
+<span class="token decorator annotation punctuation">@dataclass</span> 
+<span class="token keyword">class</span> <span class="token class-name">AppConfig</span><span class="token punctuation">:</span>
+    name<span class="token punctuation">:</span> <span class="token builtin">str</span>
+    age<span class="token punctuation">:</span> <span class="token builtin">int</span>
+    height<span class="token punctuation">:</span><span class="token builtin">float</span>
+    address<span class="token punctuation">:</span> Address
+    
+config_file <span class="token operator">=</span> Path<span class="token punctuation">(</span>_ file__<span class="token punctuation">)</span><span class="token punctuation">.</span>parents<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">/</span><span class="token string">'conf'</span><span class="token operator">/</span> 'app_config<span class="token punctuation">.</span>yaml
+<span class="token comment">#定义数据</span>
+content <span class="token operator">=</span> OmegaConf<span class="token punctuation">.</span>load<span class="token punctuation">(</span>config_file<span class="token punctuation">)</span>
+<span class="token comment"># 定义属性类</span>
+schema <span class="token operator">=</span>OmegaConf<span class="token punctuation">.</span>structured<span class="token punctuation">(</span>AppConfig<span class="token punctuation">)</span>
+<span class="token comment"># 将属性类和数据合并</span>
+mergeResult <span class="token operator">=</span> Omegaconf<span class="token punctuation">.</span>merge<span class="token punctuation">(</span> schema<span class="token punctuation">,</span> content<span class="token punctuation">)</span>
+
+app_conf<span class="token punctuation">:</span> Appconfig <span class="token operator">=</span> OmegaConf<span class="token punctuation">.</span>to_object<span class="token punctuation">(</span>mergeResult<span class="token punctuation">)</span>
+
+<span class="token comment"># 获取变量名</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>app_conf<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+</code></pre></div></div></div> <!----> <div class="page-edit"><!----> <!----> <!----></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/LLMBlog/pages/ecae31/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">面试题1</div></a> <a href="/LLMBlog/pages/1e518a/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">Python的路径的使用</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/LLMBlog/pages/ecae31/" class="prev">面试题1</a></span> <span class="next"><a href="/LLMBlog/pages/1e518a/">Python的路径的使用</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/LLMBlog/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/LLMBlog/pages/cbef88/"><div>
+            Milvus向量数据库的使用
+            <!----></div></a> <span class="date">04-16</span></dt></dl><dl><dd>02</dd> <dt><a href="/LLMBlog/pages/acc1e6/"><div>
+            Tools
+            <!----></div></a> <span class="date">04-16</span></dt></dl><dl><dd>03</dd> <dt><a href="/LLMBlog/pages/3ee074/"><div>
+            创建Agent与记忆
+            <!----></div></a> <span class="date">04-16</span></dt></dl> <dl><dd></dd> <dt><a href="/LLMBlog/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><!----> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> <!----></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <!----></div><div class="global-ui"></div></div>
+    <script src="/LLMBlog/assets/js/app.c83a8a14.js" defer></script><script src="/LLMBlog/assets/js/2.e2dd6c91.js" defer></script><script src="/LLMBlog/assets/js/37.cfb5ce87.js" defer></script>
+  </body>
+</html>
