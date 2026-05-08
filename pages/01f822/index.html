@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>查询方法封装 | 麦仁大模型博客</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="记录大模型学习">
+    
+    <link rel="preload" href="/LLMBlog/assets/css/0.styles.1c990687.css" as="style"><link rel="preload" href="/LLMBlog/assets/js/app.607746a0.js" as="script"><link rel="preload" href="/LLMBlog/assets/js/2.ffdddade.js" as="script"><link rel="preload" href="/LLMBlog/assets/js/134.e6ad721d.js" as="script"><link rel="prefetch" href="/LLMBlog/assets/js/10.619f98b0.js"><link rel="prefetch" href="/LLMBlog/assets/js/100.4ed34792.js"><link rel="prefetch" href="/LLMBlog/assets/js/101.df643ff0.js"><link rel="prefetch" href="/LLMBlog/assets/js/102.deb3a5f7.js"><link rel="prefetch" href="/LLMBlog/assets/js/103.8ad6031d.js"><link rel="prefetch" href="/LLMBlog/assets/js/104.110f5e7e.js"><link rel="prefetch" href="/LLMBlog/assets/js/105.e2eb9ed6.js"><link rel="prefetch" href="/LLMBlog/assets/js/106.200f7214.js"><link rel="prefetch" href="/LLMBlog/assets/js/107.e37096c6.js"><link rel="prefetch" href="/LLMBlog/assets/js/108.9cfde12e.js"><link rel="prefetch" href="/LLMBlog/assets/js/109.a55313c4.js"><link rel="prefetch" href="/LLMBlog/assets/js/11.7e16c166.js"><link rel="prefetch" href="/LLMBlog/assets/js/110.d6b7bef6.js"><link rel="prefetch" href="/LLMBlog/assets/js/111.21fec992.js"><link rel="prefetch" href="/LLMBlog/assets/js/112.d75869a0.js"><link rel="prefetch" href="/LLMBlog/assets/js/113.d17b8006.js"><link rel="prefetch" href="/LLMBlog/assets/js/114.c539b7c5.js"><link rel="prefetch" href="/LLMBlog/assets/js/115.9d51a74f.js"><link rel="prefetch" href="/LLMBlog/assets/js/116.4cf53bec.js"><link rel="prefetch" href="/LLMBlog/assets/js/117.f2c27da8.js"><link rel="prefetch" href="/LLMBlog/assets/js/118.b1f44cf0.js"><link rel="prefetch" href="/LLMBlog/assets/js/119.9e148568.js"><link rel="prefetch" href="/LLMBlog/assets/js/12.420af255.js"><link rel="prefetch" href="/LLMBlog/assets/js/120.71a61ac5.js"><link rel="prefetch" href="/LLMBlog/assets/js/121.82acc2f4.js"><link rel="prefetch" href="/LLMBlog/assets/js/122.7c2c7645.js"><link rel="prefetch" href="/LLMBlog/assets/js/123.13003291.js"><link rel="prefetch" href="/LLMBlog/assets/js/124.89ff04c0.js"><link rel="prefetch" href="/LLMBlog/assets/js/125.13a7e871.js"><link rel="prefetch" href="/LLMBlog/assets/js/126.0f28dd89.js"><link rel="prefetch" href="/LLMBlog/assets/js/127.e3797b32.js"><link rel="prefetch" href="/LLMBlog/assets/js/128.230d3b72.js"><link rel="prefetch" href="/LLMBlog/assets/js/129.aa37f34c.js"><link rel="prefetch" href="/LLMBlog/assets/js/13.de797255.js"><link rel="prefetch" href="/LLMBlog/assets/js/130.30516484.js"><link rel="prefetch" href="/LLMBlog/assets/js/131.7317ceca.js"><link rel="prefetch" href="/LLMBlog/assets/js/132.58dd99e9.js"><link rel="prefetch" href="/LLMBlog/assets/js/133.bf8d3bed.js"><link rel="prefetch" href="/LLMBlog/assets/js/135.3ccd5631.js"><link rel="prefetch" href="/LLMBlog/assets/js/136.8a753153.js"><link rel="prefetch" href="/LLMBlog/assets/js/137.e6f76984.js"><link rel="prefetch" href="/LLMBlog/assets/js/138.474a1c3f.js"><link rel="prefetch" href="/LLMBlog/assets/js/139.0f7cccc5.js"><link rel="prefetch" href="/LLMBlog/assets/js/14.44ab34cd.js"><link rel="prefetch" href="/LLMBlog/assets/js/140.84ba071e.js"><link rel="prefetch" href="/LLMBlog/assets/js/15.5c6a28a6.js"><link rel="prefetch" href="/LLMBlog/assets/js/16.08e24901.js"><link rel="prefetch" href="/LLMBlog/assets/js/17.bfe0074c.js"><link rel="prefetch" href="/LLMBlog/assets/js/18.1175ab61.js"><link rel="prefetch" href="/LLMBlog/assets/js/19.1b542d58.js"><link rel="prefetch" href="/LLMBlog/assets/js/20.9f6f5a6e.js"><link rel="prefetch" href="/LLMBlog/assets/js/21.0fc6ddfd.js"><link rel="prefetch" href="/LLMBlog/assets/js/22.f4e40b27.js"><link rel="prefetch" href="/LLMBlog/assets/js/23.65f33933.js"><link rel="prefetch" href="/LLMBlog/assets/js/24.c3dcc53b.js"><link rel="prefetch" href="/LLMBlog/assets/js/25.efaab636.js"><link rel="prefetch" href="/LLMBlog/assets/js/26.b19ec5d2.js"><link rel="prefetch" href="/LLMBlog/assets/js/27.552adba3.js"><link rel="prefetch" href="/LLMBlog/assets/js/28.c3031a24.js"><link rel="prefetch" href="/LLMBlog/assets/js/29.391fdf2f.js"><link rel="prefetch" href="/LLMBlog/assets/js/3.849af6e1.js"><link rel="prefetch" href="/LLMBlog/assets/js/30.0e9f37f0.js"><link rel="prefetch" href="/LLMBlog/assets/js/31.f0f18e43.js"><link rel="prefetch" href="/LLMBlog/assets/js/32.05d1f2f8.js"><link rel="prefetch" href="/LLMBlog/assets/js/33.ed7fe415.js"><link rel="prefetch" href="/LLMBlog/assets/js/34.aa84be09.js"><link rel="prefetch" href="/LLMBlog/assets/js/35.aa43d89d.js"><link rel="prefetch" href="/LLMBlog/assets/js/36.14f68138.js"><link rel="prefetch" href="/LLMBlog/assets/js/37.a57eb6ec.js"><link rel="prefetch" href="/LLMBlog/assets/js/38.6bbd2028.js"><link rel="prefetch" href="/LLMBlog/assets/js/39.36c3defb.js"><link rel="prefetch" href="/LLMBlog/assets/js/4.5b617c2f.js"><link rel="prefetch" href="/LLMBlog/assets/js/40.5068b23c.js"><link rel="prefetch" href="/LLMBlog/assets/js/41.4ac6e58f.js"><link rel="prefetch" href="/LLMBlog/assets/js/42.53527e96.js"><link rel="prefetch" href="/LLMBlog/assets/js/43.c1372e12.js"><link rel="prefetch" href="/LLMBlog/assets/js/44.6e27e257.js"><link rel="prefetch" href="/LLMBlog/assets/js/45.d42ec685.js"><link rel="prefetch" href="/LLMBlog/assets/js/46.15b5b240.js"><link rel="prefetch" href="/LLMBlog/assets/js/47.82aa0620.js"><link rel="prefetch" href="/LLMBlog/assets/js/48.cbcfbcd7.js"><link rel="prefetch" href="/LLMBlog/assets/js/49.cd67619e.js"><link rel="prefetch" href="/LLMBlog/assets/js/5.75e16c15.js"><link rel="prefetch" href="/LLMBlog/assets/js/50.9226ce6e.js"><link rel="prefetch" href="/LLMBlog/assets/js/51.6823ab27.js"><link rel="prefetch" href="/LLMBlog/assets/js/52.f5227abb.js"><link rel="prefetch" href="/LLMBlog/assets/js/53.a4863713.js"><link rel="prefetch" href="/LLMBlog/assets/js/54.78369fa4.js"><link rel="prefetch" href="/LLMBlog/assets/js/55.50ee143c.js"><link rel="prefetch" href="/LLMBlog/assets/js/56.a58cc4e7.js"><link rel="prefetch" href="/LLMBlog/assets/js/57.52cfe31e.js"><link rel="prefetch" href="/LLMBlog/assets/js/58.2bd04f55.js"><link rel="prefetch" href="/LLMBlog/assets/js/59.d1be8168.js"><link rel="prefetch" href="/LLMBlog/assets/js/6.bea2e977.js"><link rel="prefetch" href="/LLMBlog/assets/js/60.c503115c.js"><link rel="prefetch" href="/LLMBlog/assets/js/61.8e5f53d4.js"><link rel="prefetch" href="/LLMBlog/assets/js/62.2aba2cb8.js"><link rel="prefetch" href="/LLMBlog/assets/js/63.487671b5.js"><link rel="prefetch" href="/LLMBlog/assets/js/64.9c105571.js"><link rel="prefetch" href="/LLMBlog/assets/js/65.91c65903.js"><link rel="prefetch" href="/LLMBlog/assets/js/66.ec671349.js"><link rel="prefetch" href="/LLMBlog/assets/js/67.9e8f9b1b.js"><link rel="prefetch" href="/LLMBlog/assets/js/68.f8976ccc.js"><link rel="prefetch" href="/LLMBlog/assets/js/69.783bca59.js"><link rel="prefetch" href="/LLMBlog/assets/js/7.085733e7.js"><link rel="prefetch" href="/LLMBlog/assets/js/70.68f6e9e1.js"><link rel="prefetch" href="/LLMBlog/assets/js/71.d633a26b.js"><link rel="prefetch" href="/LLMBlog/assets/js/72.9a75483b.js"><link rel="prefetch" href="/LLMBlog/assets/js/73.f77a3e8d.js"><link rel="prefetch" href="/LLMBlog/assets/js/74.015cc82f.js"><link rel="prefetch" href="/LLMBlog/assets/js/75.2ded2334.js"><link rel="prefetch" href="/LLMBlog/assets/js/76.6e1ac160.js"><link rel="prefetch" href="/LLMBlog/assets/js/77.c84c4e64.js"><link rel="prefetch" href="/LLMBlog/assets/js/78.ee0314d1.js"><link rel="prefetch" href="/LLMBlog/assets/js/79.f063cd07.js"><link rel="prefetch" href="/LLMBlog/assets/js/8.7f220f5f.js"><link rel="prefetch" href="/LLMBlog/assets/js/80.b0829827.js"><link rel="prefetch" href="/LLMBlog/assets/js/81.47e85f50.js"><link rel="prefetch" href="/LLMBlog/assets/js/82.4837e95e.js"><link rel="prefetch" href="/LLMBlog/assets/js/83.089b1e81.js"><link rel="prefetch" href="/LLMBlog/assets/js/84.7a4433f1.js"><link rel="prefetch" href="/LLMBlog/assets/js/85.8655f25d.js"><link rel="prefetch" href="/LLMBlog/assets/js/86.4b0ce02a.js"><link rel="prefetch" href="/LLMBlog/assets/js/87.8aa4ff35.js"><link rel="prefetch" href="/LLMBlog/assets/js/88.7800dace.js"><link rel="prefetch" href="/LLMBlog/assets/js/89.394602c7.js"><link rel="prefetch" href="/LLMBlog/assets/js/9.502eab3f.js"><link rel="prefetch" href="/LLMBlog/assets/js/90.84ded5b1.js"><link rel="prefetch" href="/LLMBlog/assets/js/91.d3ec76e5.js"><link rel="prefetch" href="/LLMBlog/assets/js/92.fd8d744d.js"><link rel="prefetch" href="/LLMBlog/assets/js/93.21a79de6.js"><link rel="prefetch" href="/LLMBlog/assets/js/94.ff6c835d.js"><link rel="prefetch" href="/LLMBlog/assets/js/95.de294f77.js"><link rel="prefetch" href="/LLMBlog/assets/js/96.67828a9c.js"><link rel="prefetch" href="/LLMBlog/assets/js/97.0e0a1399.js"><link rel="prefetch" href="/LLMBlog/assets/js/98.4d20cac1.js"><link rel="prefetch" href="/LLMBlog/assets/js/99.7f404166.js">
+    <link rel="stylesheet" href="/LLMBlog/assets/css/0.styles.1c990687.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LLMBlog/" class="home-link router-link-active"><!----> <span class="site-name">麦仁大模型博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/LLMBlog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/LLMBlog/promptEngineer/" class="nav-link">提示词工程</a></div><div class="nav-item"><a href="/LLMBlog/RAG/" class="nav-link">RAG</a></div><div class="nav-item"><a href="/LLMBlog/LangChain/" class="nav-link">LangChain</a></div><div class="nav-item"><a href="/LLMBlog/Agent/" class="nav-link">Agent&amp;工作流</a></div><div class="nav-item"><a href="/LLMBlog/ProjectDesc/" class="nav-link">ProjectDesc</a></div><div class="nav-item"><a href="/LLMBlog/reviewKnnowledge/" class="nav-link">知识复盘</a></div><div class="nav-item"><a href="/LLMBlog/Fine-tuning/" class="nav-link">微调</a></div><div class="nav-item"><a href="/LLMBlog/Multimodal/" class="nav-link">多模态</a></div><div class="nav-item"><a href="/LLMBlog/PrivateDeploy/" class="nav-link">私有化部署</a></div><div class="nav-item"><a href="/LLMBlog/HelloAgent/" class="nav-link">HelloAgent</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/LLMBlog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/LLMBlog/promptEngineer/" class="nav-link">提示词工程</a></div><div class="nav-item"><a href="/LLMBlog/RAG/" class="nav-link">RAG</a></div><div class="nav-item"><a href="/LLMBlog/LangChain/" class="nav-link">LangChain</a></div><div class="nav-item"><a href="/LLMBlog/Agent/" class="nav-link">Agent&amp;工作流</a></div><div class="nav-item"><a href="/LLMBlog/ProjectDesc/" class="nav-link">ProjectDesc</a></div><div class="nav-item"><a href="/LLMBlog/reviewKnnowledge/" class="nav-link">知识复盘</a></div><div class="nav-item"><a href="/LLMBlog/Fine-tuning/" class="nav-link">微调</a></div><div class="nav-item"><a href="/LLMBlog/Multimodal/" class="nav-link">多模态</a></div><div class="nav-item"><a href="/LLMBlog/PrivateDeploy/" class="nav-link">私有化部署</a></div><div class="nav-item"><a href="/LLMBlog/HelloAgent/" class="nav-link">HelloAgent</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>智能点餐</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>掌柜问数</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>ITS多智能体</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/LLMBlog/pages/2a7ae3/" class="sidebar-link">基础说明</a></li><li><a href="/LLMBlog/pages/ea90ea/" class="sidebar-link">文档的切分</a></li><li><a href="/LLMBlog/pages/47396b/" class="sidebar-link">上传文件</a></li><li><a href="/LLMBlog/pages/f0c03a/" class="sidebar-link">搭建FastApi</a></li><li><a href="/LLMBlog/pages/09ba80/" class="sidebar-link">知识库检索</a></li><li><a href="/LLMBlog/pages/01f822/" aria-current="page" class="active sidebar-link">查询方法封装</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/01f822/#根据问题调用大模型" class="sidebar-link">根据问题调用大模型</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/01f822/#在api中-将方法和fastapi绑定" class="sidebar-link">在API中,将方法和FastApi绑定</a></li></ul></li><li><a href="/LLMBlog/pages/8af0bd/" class="sidebar-link">接入OpenAI_Agents_SDK</a></li><li><a href="/LLMBlog/pages/7f3f60/" class="sidebar-link">接入OpenAI_Agents_SDK源文件</a></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/LLMBlog/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><a href="/LLMBlog/categories/?category=%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93" title="分类" data-v-06225672>项目总结</a></li><li data-v-06225672><a href="/LLMBlog/categories/?category=ITS%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93" title="分类" data-v-06225672>ITS多智能体</a></li></ul> <div class="info" data-v-06225672><!----> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2026-05-08</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABH1JREFUSA3tVl1oHFUUPmdmd2ltklqbpJDiNnXFmgbFktho7YMPNiJSSZM0+CAYSkUELVhM6YuwIPpgoOKDqOBDC0XE2CQoNtQXBUFTTcCi+Wlh1V2TQExsUzcltd3M9Tt3ZjZzZ2fT+OJTL8yeM+eee757fmeJbq//KQL8X3DUSFOcfr7cRsRtxNQMWueeVzOkaITIGqQHNg5y8+jNW9ldM7A6nTpAjuolUikAwq7CE3WcM2RRDz+XGVgN3FptU/aUSlvq9Pa3iZ1+sgAqJyyAFqkipd9dqiwHF3P65YycLWc/6sqGrvoEoIp6DOFaX5h6+dnfjkWprwqsPk0dUGq5vySwDImC10KxFHgGL1SWoc92O3eVht09qdXNH11I2SsTsJYqMWzihqGMi+A+Garf3BAuuLI5oGlULyNfyB/HYNujwktOfRrMr5t77NmevqaUopx0grnKAyvVpmwUDB4x6FPXuGvYLTDwWsejwgtgkYKPqRJg8SV6xaiZ3ZTppGneS4yfH5/66fZSDHv+QZci/+h5c5UHtpy67JUqGppM0sh0Nc1dW6/N1W5Yoqat8/TU/VnadmdeW2PLLSyh0cvxBs3KbqTmwYPpxN4do/mzE8nEpvX/UMu2Wbp74zUAK5q6WkHns7V0eWkdPbPzd3rxkTGybadYySumVzhcaJFbs5UrEkQ/+CK8gF5dnh/6ciIZ73gwQ927L1IitoxKLXYP3SjYdOrHHfTZhRRlFyrorafPk20B3HPD1y2G3qKZME5Jcf3t/HUC13/8tSd++vqFveMUTwAUxSUFI1QekR1+bIze3D9MF2aq6cPvG72CgnldWCFqyRw3lwH8ZMerjTD9ElRO7Gv44wNpC90aASqGfVlz/Rx17srQ57/UU26hkhQqUB7dBR71WmzQhHUnblGmVOEw0jhbV1n9OlXUDCIRGaNV5Jp43N516fN7JmnTHdfp7Hgy0luO4aMhtkLL8Bi3bUWYvzh5Mn1dTxrL6QmGuRhGL/TiTTxRoEdTszSaq9GR0NGA3KdkOz3hqSV3MIDhQ5IVX/Ivx3umBti2es2h4eZby7x8br1rkf7Mo90AqC8aQ3sJeNzqFRu+vSANAQe3PL7l0HGOAdwDCeZYvNKeoZp1Qfs6Aipndh86HmFRi0LAnEO47wsqM6cdfjh3jBPUzhZy7nvlUfFsamED1VQt6aISHVymXZ/B2aCtIG8AI8xfobj2d3en1wWVhOeHELKmLQ1s211s88comkv4UCwWyF787mJdYXtNfhKAXVqnKTq8QZvGAGGOfaTo5pGZ/PwbUCr5+DPr/1J92JNHr9aOl/F3iI5+O1nfybsGxoimvZ3ViWSluDITw3P37mypheDIPY0tw7+O/5ApbkYw+zpfaUVu32Pi98+defdUhEpZkRFq0aqyNh9FuL9hpYbEm6iwi0z2REd09ZmyENEbuhjDWzKvZXTqKYaBIr3tt5kuPtQBZFvEUwHt60vfCNu41XsksH9Ij1BMMz1Y0OOunHNShFIP5868g5zeXmuLwL9T4b6Q2+KejgAAAABJRU5ErkJggg==">查询方法封装<!----></h1> <!----> <div class="theme-vdoing-content content__default"><h2 id="根据问题调用大模型"><a href="#根据问题调用大模型" class="header-anchor">#</a> 根据问题调用大模型</h2> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># knowledge/services/query_service.py</span>
+<span class="token keyword">from</span> typing <span class="token keyword">import</span> List
+<span class="token keyword">from</span> langchain_core<span class="token punctuation">.</span>documents <span class="token keyword">import</span> Document
+<span class="token keyword">from</span> langchain_openai <span class="token keyword">import</span> ChatOpenAI
+<span class="token keyword">from</span> config<span class="token punctuation">.</span>settings <span class="token keyword">import</span> settings
+
+<span class="token keyword">class</span> <span class="token class-name">QueryService</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;检索服务&quot;&quot;&quot;</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+        self<span class="token punctuation">.</span>llm<span class="token operator">=</span>ChatOpenAI<span class="token punctuation">(</span>model_name<span class="token operator">=</span>settings<span class="token punctuation">.</span>MODEL<span class="token punctuation">,</span>
+                            openai_api_key<span class="token operator">=</span>settings<span class="token punctuation">.</span>API_KEY<span class="token punctuation">,</span>
+                            openai_api_base<span class="token operator">=</span>settings<span class="token punctuation">.</span>BASE_URL<span class="token punctuation">,</span>
+                            temperature<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment"># temperature作用：控制模型输出的随机度 尽量不要让它乱发挥（尽最大努力保证：影响因素：硬件（并行gpu：精度变乱）网络（moe专家））</span>
+
+
+
+    <span class="token keyword">def</span> <span class="token function">generate_answer</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> user_question<span class="token punctuation">:</span><span class="token builtin">str</span><span class="token punctuation">,</span> retrival_context<span class="token punctuation">:</span> List<span class="token punctuation">[</span>Document<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">&quot;&quot;&quot;
+        对接大语言模型的入口
+        Args:
+            user_question: 用户问题
+            retrival_context: 检索到的上下文
+
+        Returns:
+            str:LLM模型整合上下文之后的自然语言
+        &quot;&quot;&quot;</span>
+
+        <span class="token comment"># 1. 判断是否检索到了文档</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span>  retrival_context<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">&quot;未检索到任何相关的文档，无法提供回复&quot;</span>
+
+
+        <span class="token comment"># 2. 处理检索到的知识内容</span>
+        retrival_context<span class="token operator">=</span><span class="token string">&quot;\n\n&quot;</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string-interpolation"><span class="token string">f&quot;资料</span><span class="token interpolation"><span class="token punctuation">{</span>index<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">}</span></span><span class="token string">:</span><span class="token interpolation"><span class="token punctuation">{</span>document<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token keyword">for</span> index<span class="token punctuation">,</span>document <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>retrival_context<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># 3. 定义提示词</span>
+        prompt <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f&quot;&quot;&quot;
+        你是一位经验丰富的高级技术支持专家。请基于下方的【参考资料】回答【用户问题】。
+
+         【参考资料】：
+         ```
+         </span><span class="token interpolation"><span class="token punctuation">{</span>retrival_context<span class="token punctuation">}</span></span><span class="token string">
+         ```
+
+         【用户问题】：
+         ```
+         </span><span class="token interpolation"><span class="token punctuation">{</span>user_question<span class="token punctuation">}</span></span><span class="token string">
+         ```
+
+         【回答要求】：
+         1.  **基于事实**：严格基于【参考资料】的内容回答，严禁编造资料中未提及的信息。如果资料无法回答问题，请直接回答：“当前的知识库中暂时没有找到该问题的解决方案。”
+         2.  **去特定化处理**：(重要)
+             - 除非用户问题中明确指明了特定型号/品牌，否则在回答中请**移除**具体的设备型号、品牌名称（如“联想”、“K900”等）。
+             - 例如：将“联想手机设置”泛化为“手机设置”；将“打开联想电脑管家”泛化为“打开系统管理软件”或“相关设置工具”。
+         3.  **结构清晰**：
+             - 如果是操作步骤，请使用有序列表（1. 2. 3.）。
+             - 语言风格应简洁、专业、直接，避免寒暄和废话。
+         4. 引用来源：在回答的最后，请列出你参考的【资料x】的编号(仅列出编号即可) 
+
+         【开始回答】：
+         &quot;&quot;&quot;</span></span>
+
+        <span class="token comment"># 4. 调用模型</span>
+        llm_response<span class="token operator">=</span>self<span class="token punctuation">.</span>llm<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+
+
+        <span class="token comment"># 5. 返回模型的结果</span>
+        <span class="token keyword">return</span>  llm_response<span class="token punctuation">.</span>content
+</code></pre></div><h2 id="在api中-将方法和fastapi绑定"><a href="#在api中-将方法和fastapi绑定" class="header-anchor">#</a> 在API中,将方法和FastApi绑定</h2> <ol><li>快捷键
+<ol><li>对所选代码，加上try........except</li></ol></li></ol> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># knowledge/schemas/schema.py</span>
+<span class="token keyword">class</span> <span class="token class-name">QueryResponse</span><span class="token punctuation">(</span>BaseModel<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;
+     查询的响应数据模型
+    &quot;&quot;&quot;</span>
+    question<span class="token punctuation">:</span><span class="token builtin">str</span> <span class="token comment"># 用户提问问题</span>
+    answer<span class="token punctuation">:</span><span class="token builtin">str</span> <span class="token comment"># 模型的回答</span>
+
+<span class="token keyword">class</span> <span class="token class-name">QueryRequest</span><span class="token punctuation">(</span>BaseModel<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;
+    查询的请求数据模型
+    &quot;&quot;&quot;</span>
+    question<span class="token punctuation">:</span> <span class="token builtin">str</span>  <span class="token comment"># 用户提问问题</span>
+
+
+</code></pre></div><div class="language-python extra-class"><pre class="language-python"><code><span class="token comment">#knowledge/api/routers</span>
+<span class="token keyword">from</span> schemas<span class="token punctuation">.</span>schema <span class="token keyword">import</span> UploadResponse<span class="token punctuation">,</span> QueryResponse<span class="token punctuation">,</span> QueryRequest
+<span class="token keyword">from</span> services<span class="token punctuation">.</span>retrieval_service <span class="token keyword">import</span> RetrievalService
+<span class="token keyword">from</span> services<span class="token punctuation">.</span>query_service <span class="token keyword">import</span> QueryService
+
+<span class="token comment"># 1.创建APIRouter</span>
+router <span class="token operator">=</span> APIRouter<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 2. 创建应用的实例</span>
+ingestion_processor <span class="token operator">=</span> IngestionProcessor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+retrieval_service <span class="token operator">=</span> RetrievalService<span class="token punctuation">(</span><span class="token punctuation">)</span>
+query_service <span class="token operator">=</span> QueryService<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@router<span class="token punctuation">.</span>post</span><span class="token punctuation">(</span><span class="token string">&quot;/query&quot;</span><span class="token punctuation">,</span> response_model<span class="token operator">=</span>QueryResponse<span class="token punctuation">,</span> summary<span class="token operator">=</span><span class="token string">&quot;查询知识库&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">query</span><span class="token punctuation">(</span>request<span class="token punctuation">:</span> QueryRequest<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;
+    查询知识库
+    Args:
+        request: 用户的输入请求
+
+    Returns:
+        QueryResponse： 模型的结果以及原始问题
+
+    &quot;&quot;&quot;</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token comment"># 1. 判断用户问题</span>
+        user_question <span class="token operator">=</span> request<span class="token punctuation">.</span>question
+        <span class="token keyword">if</span> <span class="token keyword">not</span> user_question<span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> HTTPException<span class="token punctuation">(</span>status_code<span class="token operator">=</span><span class="token number">500</span><span class="token punctuation">,</span> detail<span class="token operator">=</span><span class="token string">&quot;查询问题不存在&quot;</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># 2. 调用检索器的检索方法</span>
+        retrieval_context <span class="token operator">=</span> retrieval_service<span class="token punctuation">.</span>retrieval<span class="token punctuation">(</span>user_question<span class="token punctuation">)</span>
+
+        <span class="token comment"># 3. 调用查询器的查询方法</span>
+        answer <span class="token operator">=</span> query_service<span class="token punctuation">.</span>generate_answer<span class="token punctuation">(</span>user_question<span class="token punctuation">,</span> retrieval_context<span class="token punctuation">)</span>
+
+        <span class="token comment"># 4. 封装到响应数据模型</span>
+        <span class="token keyword">return</span> QueryResponse<span class="token punctuation">(</span>
+            question<span class="token operator">=</span>user_question<span class="token punctuation">,</span>
+            answer<span class="token operator">=</span>answer
+        <span class="token punctuation">)</span>
+    <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+        logger<span class="token punctuation">.</span>error<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;调用查询知识库服务失败:原因:</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">str</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+        <span class="token keyword">raise</span> HTTPException<span class="token punctuation">(</span>status_code<span class="token operator">=</span><span class="token number">500</span><span class="token punctuation">,</span>detail<span class="token operator">=</span><span class="token string">&quot;服务内部出现异常&quot;</span><span class="token punctuation">)</span>
+</code></pre></div></div></div> <!----> <div class="page-edit"><!----> <!----> <!----></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/LLMBlog/pages/09ba80/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">知识库检索</div></a> <a href="/LLMBlog/pages/8af0bd/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">接入OpenAI_Agents_SDK</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/LLMBlog/pages/09ba80/" class="prev">知识库检索</a></span> <span class="next"><a href="/LLMBlog/pages/8af0bd/">接入OpenAI_Agents_SDK</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/LLMBlog/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/LLMBlog/pages/2a7ae3/"><div>
+            基础说明
+            <!----></div></a> <span class="date">05-08</span></dt></dl><dl><dd>02</dd> <dt><a href="/LLMBlog/pages/9cfe1b/"><div>
+            掌柜问数
+            <!----></div></a> <span class="date">05-08</span></dt></dl><dl><dd>03</dd> <dt><a href="/LLMBlog/pages/ea90ea/"><div>
+            文档的切分
+            <!----></div></a> <span class="date">05-08</span></dt></dl> <dl><dd></dd> <dt><a href="/LLMBlog/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><!----> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> <!----></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <!----></div><div class="global-ui"></div></div>
+    <script src="/LLMBlog/assets/js/app.607746a0.js" defer></script><script src="/LLMBlog/assets/js/2.ffdddade.js" defer></script><script src="/LLMBlog/assets/js/134.e6ad721d.js" defer></script>
+  </body>
+</html>
