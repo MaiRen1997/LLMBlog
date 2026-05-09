@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>接入OpenAI_Agents_SDK源文件 | 麦仁大模型博客</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="记录大模型学习">
+    
+    <link rel="preload" href="/LLMBlog/assets/css/0.styles.1c990687.css" as="style"><link rel="preload" href="/LLMBlog/assets/js/app.2e1329e9.js" as="script"><link rel="preload" href="/LLMBlog/assets/js/2.ffdddade.js" as="script"><link rel="preload" href="/LLMBlog/assets/js/143.763c3465.js" as="script"><link rel="prefetch" href="/LLMBlog/assets/js/10.eb9376ea.js"><link rel="prefetch" href="/LLMBlog/assets/js/100.84a61bd1.js"><link rel="prefetch" href="/LLMBlog/assets/js/101.54caff0b.js"><link rel="prefetch" href="/LLMBlog/assets/js/102.99ac16c4.js"><link rel="prefetch" href="/LLMBlog/assets/js/103.d123b809.js"><link rel="prefetch" href="/LLMBlog/assets/js/104.8ecd5a41.js"><link rel="prefetch" href="/LLMBlog/assets/js/105.90c4519d.js"><link rel="prefetch" href="/LLMBlog/assets/js/106.e7203bec.js"><link rel="prefetch" href="/LLMBlog/assets/js/107.9df1a21f.js"><link rel="prefetch" href="/LLMBlog/assets/js/108.e7bcdabe.js"><link rel="prefetch" href="/LLMBlog/assets/js/109.6f492797.js"><link rel="prefetch" href="/LLMBlog/assets/js/11.fd7a2760.js"><link rel="prefetch" href="/LLMBlog/assets/js/110.d6b7bef6.js"><link rel="prefetch" href="/LLMBlog/assets/js/111.52dbb179.js"><link rel="prefetch" href="/LLMBlog/assets/js/112.a7e95328.js"><link rel="prefetch" href="/LLMBlog/assets/js/113.4aed45c8.js"><link rel="prefetch" href="/LLMBlog/assets/js/114.28949274.js"><link rel="prefetch" href="/LLMBlog/assets/js/115.47e9f07b.js"><link rel="prefetch" href="/LLMBlog/assets/js/116.663d86d9.js"><link rel="prefetch" href="/LLMBlog/assets/js/117.868beec3.js"><link rel="prefetch" href="/LLMBlog/assets/js/118.b1f44cf0.js"><link rel="prefetch" href="/LLMBlog/assets/js/119.9e148568.js"><link rel="prefetch" href="/LLMBlog/assets/js/12.dd03981f.js"><link rel="prefetch" href="/LLMBlog/assets/js/120.71a61ac5.js"><link rel="prefetch" href="/LLMBlog/assets/js/121.d0ac8e32.js"><link rel="prefetch" href="/LLMBlog/assets/js/122.ab5094ae.js"><link rel="prefetch" href="/LLMBlog/assets/js/123.4805ee13.js"><link rel="prefetch" href="/LLMBlog/assets/js/124.052e3a32.js"><link rel="prefetch" href="/LLMBlog/assets/js/125.5c772a75.js"><link rel="prefetch" href="/LLMBlog/assets/js/126.4f79934d.js"><link rel="prefetch" href="/LLMBlog/assets/js/127.dd94b2b0.js"><link rel="prefetch" href="/LLMBlog/assets/js/128.3afff7eb.js"><link rel="prefetch" href="/LLMBlog/assets/js/129.9ae314c5.js"><link rel="prefetch" href="/LLMBlog/assets/js/13.6fefd6d2.js"><link rel="prefetch" href="/LLMBlog/assets/js/130.e30cf85a.js"><link rel="prefetch" href="/LLMBlog/assets/js/131.52300c7f.js"><link rel="prefetch" href="/LLMBlog/assets/js/132.5115cd0d.js"><link rel="prefetch" href="/LLMBlog/assets/js/133.249247e4.js"><link rel="prefetch" href="/LLMBlog/assets/js/134.8b327a88.js"><link rel="prefetch" href="/LLMBlog/assets/js/135.9feca13c.js"><link rel="prefetch" href="/LLMBlog/assets/js/136.fdb23421.js"><link rel="prefetch" href="/LLMBlog/assets/js/137.8bad7c63.js"><link rel="prefetch" href="/LLMBlog/assets/js/138.868214f2.js"><link rel="prefetch" href="/LLMBlog/assets/js/139.c959faa2.js"><link rel="prefetch" href="/LLMBlog/assets/js/14.ec0ef5d6.js"><link rel="prefetch" href="/LLMBlog/assets/js/140.4835095c.js"><link rel="prefetch" href="/LLMBlog/assets/js/141.1aaec3cd.js"><link rel="prefetch" href="/LLMBlog/assets/js/142.14d1f027.js"><link rel="prefetch" href="/LLMBlog/assets/js/144.c3012f7d.js"><link rel="prefetch" href="/LLMBlog/assets/js/145.475761a5.js"><link rel="prefetch" href="/LLMBlog/assets/js/146.171b2306.js"><link rel="prefetch" href="/LLMBlog/assets/js/147.7751c896.js"><link rel="prefetch" href="/LLMBlog/assets/js/15.554cea27.js"><link rel="prefetch" href="/LLMBlog/assets/js/16.81c9350b.js"><link rel="prefetch" href="/LLMBlog/assets/js/17.2823ab25.js"><link rel="prefetch" href="/LLMBlog/assets/js/18.640626bb.js"><link rel="prefetch" href="/LLMBlog/assets/js/19.1b542d58.js"><link rel="prefetch" href="/LLMBlog/assets/js/20.1088c336.js"><link rel="prefetch" href="/LLMBlog/assets/js/21.3d581745.js"><link rel="prefetch" href="/LLMBlog/assets/js/22.8b9a5a16.js"><link rel="prefetch" href="/LLMBlog/assets/js/23.df934ad3.js"><link rel="prefetch" href="/LLMBlog/assets/js/24.f7b3ec80.js"><link rel="prefetch" href="/LLMBlog/assets/js/25.1bd2bee8.js"><link rel="prefetch" href="/LLMBlog/assets/js/26.b19ec5d2.js"><link rel="prefetch" href="/LLMBlog/assets/js/27.68ea3207.js"><link rel="prefetch" href="/LLMBlog/assets/js/28.c3031a24.js"><link rel="prefetch" href="/LLMBlog/assets/js/29.d27fafbd.js"><link rel="prefetch" href="/LLMBlog/assets/js/3.b1a5c3ad.js"><link rel="prefetch" href="/LLMBlog/assets/js/30.0e9f37f0.js"><link rel="prefetch" href="/LLMBlog/assets/js/31.33919a1d.js"><link rel="prefetch" href="/LLMBlog/assets/js/32.bfa1e1ea.js"><link rel="prefetch" href="/LLMBlog/assets/js/33.3c101ca4.js"><link rel="prefetch" href="/LLMBlog/assets/js/34.353d6a46.js"><link rel="prefetch" href="/LLMBlog/assets/js/35.e92749a2.js"><link rel="prefetch" href="/LLMBlog/assets/js/36.a3d3f5f7.js"><link rel="prefetch" href="/LLMBlog/assets/js/37.d5797769.js"><link rel="prefetch" href="/LLMBlog/assets/js/38.006ec101.js"><link rel="prefetch" href="/LLMBlog/assets/js/39.d6d3be7a.js"><link rel="prefetch" href="/LLMBlog/assets/js/4.b40b4364.js"><link rel="prefetch" href="/LLMBlog/assets/js/40.080470a1.js"><link rel="prefetch" href="/LLMBlog/assets/js/41.403ca83b.js"><link rel="prefetch" href="/LLMBlog/assets/js/42.1eb4f7eb.js"><link rel="prefetch" href="/LLMBlog/assets/js/43.481d6861.js"><link rel="prefetch" href="/LLMBlog/assets/js/44.8a31beb3.js"><link rel="prefetch" href="/LLMBlog/assets/js/45.0fa810f4.js"><link rel="prefetch" href="/LLMBlog/assets/js/46.78b9174c.js"><link rel="prefetch" href="/LLMBlog/assets/js/47.39b450b8.js"><link rel="prefetch" href="/LLMBlog/assets/js/48.cbcfbcd7.js"><link rel="prefetch" href="/LLMBlog/assets/js/49.cd67619e.js"><link rel="prefetch" href="/LLMBlog/assets/js/5.f7783005.js"><link rel="prefetch" href="/LLMBlog/assets/js/50.9226ce6e.js"><link rel="prefetch" href="/LLMBlog/assets/js/51.2dfa8700.js"><link rel="prefetch" href="/LLMBlog/assets/js/52.b6f8a6d6.js"><link rel="prefetch" href="/LLMBlog/assets/js/53.59606b5f.js"><link rel="prefetch" href="/LLMBlog/assets/js/54.40483627.js"><link rel="prefetch" href="/LLMBlog/assets/js/55.3274cf90.js"><link rel="prefetch" href="/LLMBlog/assets/js/56.8032b4a8.js"><link rel="prefetch" href="/LLMBlog/assets/js/57.9f4db938.js"><link rel="prefetch" href="/LLMBlog/assets/js/58.c7bfa358.js"><link rel="prefetch" href="/LLMBlog/assets/js/59.0ea5dc29.js"><link rel="prefetch" href="/LLMBlog/assets/js/6.7ae5e9d8.js"><link rel="prefetch" href="/LLMBlog/assets/js/60.0d17c1c3.js"><link rel="prefetch" href="/LLMBlog/assets/js/61.d7053b5f.js"><link rel="prefetch" href="/LLMBlog/assets/js/62.8707c49c.js"><link rel="prefetch" href="/LLMBlog/assets/js/63.bc29b19a.js"><link rel="prefetch" href="/LLMBlog/assets/js/64.a21fcdd6.js"><link rel="prefetch" href="/LLMBlog/assets/js/65.72a73775.js"><link rel="prefetch" href="/LLMBlog/assets/js/66.3b1326ef.js"><link rel="prefetch" href="/LLMBlog/assets/js/67.f0715525.js"><link rel="prefetch" href="/LLMBlog/assets/js/68.f8976ccc.js"><link rel="prefetch" href="/LLMBlog/assets/js/69.783bca59.js"><link rel="prefetch" href="/LLMBlog/assets/js/7.60795bdf.js"><link rel="prefetch" href="/LLMBlog/assets/js/70.e0838146.js"><link rel="prefetch" href="/LLMBlog/assets/js/71.9d430323.js"><link rel="prefetch" href="/LLMBlog/assets/js/72.3f3f631f.js"><link rel="prefetch" href="/LLMBlog/assets/js/73.33f4cee8.js"><link rel="prefetch" href="/LLMBlog/assets/js/74.e98639ba.js"><link rel="prefetch" href="/LLMBlog/assets/js/75.81ad07a8.js"><link rel="prefetch" href="/LLMBlog/assets/js/76.d797afd2.js"><link rel="prefetch" href="/LLMBlog/assets/js/77.9799aa2d.js"><link rel="prefetch" href="/LLMBlog/assets/js/78.e71134ff.js"><link rel="prefetch" href="/LLMBlog/assets/js/79.14979210.js"><link rel="prefetch" href="/LLMBlog/assets/js/8.a6753377.js"><link rel="prefetch" href="/LLMBlog/assets/js/80.1b897501.js"><link rel="prefetch" href="/LLMBlog/assets/js/81.801b9c4b.js"><link rel="prefetch" href="/LLMBlog/assets/js/82.0b6259e8.js"><link rel="prefetch" href="/LLMBlog/assets/js/83.2233a956.js"><link rel="prefetch" href="/LLMBlog/assets/js/84.2cf78d6a.js"><link rel="prefetch" href="/LLMBlog/assets/js/85.dd5e5120.js"><link rel="prefetch" href="/LLMBlog/assets/js/86.bfdcb164.js"><link rel="prefetch" href="/LLMBlog/assets/js/87.c7796c86.js"><link rel="prefetch" href="/LLMBlog/assets/js/88.56fab46e.js"><link rel="prefetch" href="/LLMBlog/assets/js/89.5b13e070.js"><link rel="prefetch" href="/LLMBlog/assets/js/9.73c5f573.js"><link rel="prefetch" href="/LLMBlog/assets/js/90.b5645fef.js"><link rel="prefetch" href="/LLMBlog/assets/js/91.d3ec76e5.js"><link rel="prefetch" href="/LLMBlog/assets/js/92.248cc802.js"><link rel="prefetch" href="/LLMBlog/assets/js/93.816db1ee.js"><link rel="prefetch" href="/LLMBlog/assets/js/94.e0c0774c.js"><link rel="prefetch" href="/LLMBlog/assets/js/95.be337c93.js"><link rel="prefetch" href="/LLMBlog/assets/js/96.0ee13402.js"><link rel="prefetch" href="/LLMBlog/assets/js/97.8e292e98.js"><link rel="prefetch" href="/LLMBlog/assets/js/98.7b2e9572.js"><link rel="prefetch" href="/LLMBlog/assets/js/99.383c3861.js">
+    <link rel="stylesheet" href="/LLMBlog/assets/css/0.styles.1c990687.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LLMBlog/" class="home-link router-link-active"><!----> <span class="site-name">麦仁大模型博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/LLMBlog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/LLMBlog/promptEngineer/" class="nav-link">提示词工程</a></div><div class="nav-item"><a href="/LLMBlog/RAG/" class="nav-link">RAG</a></div><div class="nav-item"><a href="/LLMBlog/LangChain/" class="nav-link">LangChain</a></div><div class="nav-item"><a href="/LLMBlog/Agent/" class="nav-link">Agent&amp;工作流</a></div><div class="nav-item"><a href="/LLMBlog/ProjectDesc/" class="nav-link">ProjectDesc</a></div><div class="nav-item"><a href="/LLMBlog/reviewKnnowledge/" class="nav-link">知识复盘</a></div><div class="nav-item"><a href="/LLMBlog/Fine-tuning/" class="nav-link">微调</a></div><div class="nav-item"><a href="/LLMBlog/Multimodal/" class="nav-link">多模态</a></div><div class="nav-item"><a href="/LLMBlog/PrivateDeploy/" class="nav-link">私有化部署</a></div><div class="nav-item"><a href="/LLMBlog/HelloAgent/" class="nav-link">HelloAgent</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/LLMBlog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/LLMBlog/promptEngineer/" class="nav-link">提示词工程</a></div><div class="nav-item"><a href="/LLMBlog/RAG/" class="nav-link">RAG</a></div><div class="nav-item"><a href="/LLMBlog/LangChain/" class="nav-link">LangChain</a></div><div class="nav-item"><a href="/LLMBlog/Agent/" class="nav-link">Agent&amp;工作流</a></div><div class="nav-item"><a href="/LLMBlog/ProjectDesc/" class="nav-link">ProjectDesc</a></div><div class="nav-item"><a href="/LLMBlog/reviewKnnowledge/" class="nav-link">知识复盘</a></div><div class="nav-item"><a href="/LLMBlog/Fine-tuning/" class="nav-link">微调</a></div><div class="nav-item"><a href="/LLMBlog/Multimodal/" class="nav-link">多模态</a></div><div class="nav-item"><a href="/LLMBlog/PrivateDeploy/" class="nav-link">私有化部署</a></div><div class="nav-item"><a href="/LLMBlog/HelloAgent/" class="nav-link">HelloAgent</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>智能点餐</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>掌柜问数</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>ITS多智能体</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/LLMBlog/pages/c566f6/" class="sidebar-link">基础说明</a></li><li><a href="/LLMBlog/pages/e75a73/" class="sidebar-link">文档的切分</a></li><li><a href="/LLMBlog/pages/aee1fb/" class="sidebar-link">上传文件</a></li><li><a href="/LLMBlog/pages/50e1de/" class="sidebar-link">搭建FastApi</a></li><li><a href="/LLMBlog/pages/a9c3ed/" class="sidebar-link">知识库检索</a></li><li><a href="/LLMBlog/pages/b31893/" class="sidebar-link">查询方法封装</a></li><li><a href="/LLMBlog/pages/8c47f3/" class="sidebar-link">接入OpenAI_Agents_SDK</a></li><li><a href="/LLMBlog/pages/b91668/" aria-current="page" class="active sidebar-link">接入OpenAI_Agents_SDK源文件</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/b91668/#课前准备" class="sidebar-link">课前准备</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/b91668/#任务目标" class="sidebar-link">任务目标</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/b91668/#核心架构以及组件讲解" class="sidebar-link">核心架构以及组件讲解</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/b91668/#_4、agent进阶" class="sidebar-link">4、Agent进阶</a></li><li class="sidebar-sub-header level2"><a href="/LLMBlog/pages/b91668/#_5、综合案例实战" class="sidebar-link">5、综合案例实战</a></li></ul></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/LLMBlog/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><a href="/LLMBlog/categories/?category=%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93" title="分类" data-v-06225672>项目总结</a></li><li data-v-06225672><a href="/LLMBlog/categories/?category=ITS%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93" title="分类" data-v-06225672>ITS多智能体</a></li></ul> <div class="info" data-v-06225672><!----> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2026-05-09</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABKFJREFUSA3tVl1oFVcQnrMbrak3QUgkya1akpJYcrUtIqW1JvFBE9LiQ5v6JmJpolbMg32rVrhgoYK0QiMY6i9Y6EMaW5D+xFJaTYItIuK2Kr3+BJNwkxBj05sQY3b3nM6cs2dv9t7NT/vQJw/sndk5M/PNzJkzewGerP+pAmy+ON8lLzUJgA8ZYxYIYZmGYRnctDaWvJJAmTtfP1pvXsBCCPP8QFcCaRkZYACgDZFO4stNIcBCajEOlmmC9XpJ9bAGCaPaPmzPl32dvLSVu3BWCTQs0XQQ6g0DYgwLIoAZbBCdW/i+781o1VVlm/410mw4h06Y7bIPHNyWDyL4FHkX03Q8SrzNhZTZriieckWt7cL6MM85YcLpsi/7O9/iXFT6MswI0DmmpkSaJ0qLxFIm3+i1THHB3zmBH3PYx9CcykcLOeQVVa7QtdxTgQgEleX2AjHYfwA+2ddV77ruGoJUbhGDI09YSNXyMpUt5ylOzxgbUmtOp7NmbNt8v3arjTBfYELmLUV+M+nSawNNAUqpT3ClJWg5I3BLT+cGW/DXNGCa6tx1aakCGEigArTn4TDIPdrXXYKCZNrHLMCOEPvHBlLQ99s9eHB7EB6NTki73CVPQ2F5MSx/uRQixfmq7rK0wYD8w8E905bnPDfwoWs/rfv93NWN/ZfvwsLIU7A09gxECyISeGJkHAau98L97tuw7NXnoPyNF8FcYGLGKsOs0mN3OEyec9esGW/ZEl945dTP34wlR2FZVQWU1q0Cw8Tr7p+hgLLNL0FPxx/Q35mA8aEUrH6nCgwEl0tn7wUiZYJnNRh6DK4UH/k0lfyrsBKdPVv/AriGIQcEDQZ65LBAGe2Rzui9Ybjz7XUppz1/uKBbyVPGkN3ZAeC6hr0x7Nr38N5+EqkoOm17xpoqR9ohQF55ERSvr4Dkr3chNfC3DMzGJlNBElW8w9nsGQvhNGIzDkXzCg8cLK951xHsFBlTJspJNi3ZFIMF2AeDV3q8DNOB+YHi6QTrChDIWDBRi5U5f+ZMfJLu3ccrqxtdxk4SKH336LFxSmkqefwU5T8fhdSdQf9IVKD6aNiwI/hnmcAZ91isYMJIaCUCx9W098+LgruikeTqzqqxKPUwqJyCPJiyemVVZBOijDGjD38Os0jOiSPL1z3SPjXNANbiNPXAdzTfukjjuknNBbyz3nwgTd3AVFqUJ5hpHlq9MveLnWwttUfoygBmvVjuikxND3znrhsELnZk7k+OjIGxeNEkomyLVta0xxn+HZhjBc4YZ/AFjHjz9u3xRZl2BN4aq9nFwWh16IrQ1aHHEd3j1+4/dB9OtH4e29A2H1DyHQRmOSfQZ1Fy7MHBTGB6J/Djq6p3OxyO2cB+4Car7v/o3GXgfAkj23+x9ID1Teoamo/SXcbvSf2PX7Vc8DdCmE1vN9di+32P9/5YR3vLnhCVGUWBjEkr3yh4H8v9CzmsbdhzOKzsJKM90iFdaTMjRPhGVsakRvOaRidljo6H6G7j+ctrJpsP+4COhDIl0La2+FS4+5mlocBaXY5QnGZysIBYoeSsl5qQzrSj/cgNrfuEzlWBfwA+EjrZyWUvpAAAAABJRU5ErkJggg==">接入OpenAIAgentsSDK源文件<!----></h1> <!----> <div class="theme-vdoing-content content__default"><h1 id="its-智能客服系统-接入多agent框架"><a href="#its-智能客服系统-接入多agent框架" class="header-anchor">#</a> ITS 智能客服系统 - 接入多Agent框架</h1> <h2 id="课前准备"><a href="#课前准备" class="header-anchor">#</a> 课前准备</h2> <h3 id="搭建项目目录结构"><a href="#搭建项目目录结构" class="header-anchor">#</a> 搭建项目目录结构</h3> <div class="language-reStructuredText extra-class"><pre class="language-text"><code>openai-agents-tutorial/
+├── 00_environment/   
+├── 01_models/          # 包含与模型相关的代码和示例，比如如何使用OpenAI的不同模型 
+├── 02_tools/			# 包含工具的使用示例，OpenAI Agents可以使用工具来执行任务	
+├── 03_agents/			# 包含代理（Agents）的示例，展示如何创建和使用代理
+├── 04_output_items/    # 包含输出项示例 
+├── 05_stream_events/   # 包含流式事件的示例
+├── 06_ncp&amp;multi_agent/ # 包含mcp和多代理（Multi-Agent）的示例
+├── 07_projects/        # SSE结合FastAPI案例        
+│   └── .env/           # 环境变量
+</code></pre></div><h3 id="准备环境"><a href="#准备环境" class="header-anchor">#</a> 准备环境</h3> <ul><li>Python 3.10+ / 虚拟环境</li> <li>安装：<code>pip install openai</code> <code>pip install openai-agents</code></li> <li>配置：`OPENAI_API_KEY=...</li> <li>官网https://platform.openai.com/</li></ul> <h2 id="任务目标"><a href="#任务目标" class="header-anchor">#</a> 任务目标</h2> <h3 id="理论知识"><a href="#理论知识" class="header-anchor">#</a> 理论知识</h3> <p>1.认识 Agents SDK 的 6 个核心名词（Agent / Runner / Model /Conversation / Tool / Events）</p> <p>2.理解“多 Agent 协作”的两种方式：handoff 与 agent-as-tool</p> <p>3.理解流式输出：从 SDK events 到 FastAPI SSE</p> <h3 id="动手实战"><a href="#动手实战" class="header-anchor">#</a> 动手实战</h3> <ol><li>创建 1 个 Agent + 1 个 Tool 并跑通</li> <li>创建 2 个 Agent（分工）+ 1 个 Triage（路由）并跑通</li> <li>接入 一个 后端 <code>/api/query/sse</code>（SSE）</li></ol> <h2 id="核心架构以及组件讲解"><a href="#核心架构以及组件讲解" class="header-anchor">#</a> 核心架构以及组件讲解</h2> <p>OpenAI内部逻辑比较复杂，但是总体来说是基于这三层架构模型。</p> <div class="language-markdown extra-class"><pre class="language-markdown"><code>┌────────────────────────────────────────────┐
+│ Capability Plane（能力层）                 │
+│                                            │
+│  - Tools (Web / File / Code Interpreter)   │
+│  - Agents (handoff / tool routing)         │
+│                                            │
+└────────────────────────────────────────────┘
+┌────────────────────────────────────────────┐
+│ Execution Plane（执行层）                  │
+│                                            │
+│  - Run                                     │
+│  - Conversation                            │
+│  - Streaming / Background / Parallelism    │
+│                                            │
+└────────────────────────────────────────────┘
+┌────────────────────────────────────────────┐
+│ Model Plane（模型层）                      │
+│                                            │
+│  - GPT / Gemini / Qwen / Claude            │
+│                                            │
+└────────────────────────────────────────────┘
+
+
+</code></pre></div><p><strong>架构说明：</strong></p> <ol><li><strong>模型层</strong>：提供基础大模型能力。</li> <li><strong>能力层</strong>：在模型之上构建的核心功能模块。</li> <li><strong>执行层</strong>：管理单个会话运行时的状态、输出与事件流</li></ol> <h3 id="_3-1、model-plane-模型层"><a href="#_3-1、model-plane-模型层" class="header-anchor">#</a> 3.1、Model Plane（模型层）</h3> <h4 id="_1、什么是model"><a href="#_1、什么是model" class="header-anchor">#</a> 1、什么是model</h4> <p><strong>模型</strong>是经过大量数据训练的人工智能系统，能够理解和生成自然语言。就像人类大脑，模型通过学习获得了知识和推理能力。也即你熟悉的 <code>gpt-4o</code>、<code>deepseek</code> 等大模型。</p> <p><strong>类比理解</strong>：模型就像一位博览群书的学者，学习了海量知识，能够回答各种问题。</p> <h4 id="_2、为什么要用model"><a href="#_2、为什么要用model" class="header-anchor">#</a> 2、为什么要用model</h4> <p><strong>1.理解能力</strong>：将自然语言转换为结构化理解</p> <p><strong>2.推理能力</strong>：进行逻辑推理和问题解决</p> <p><strong>3.生成能力</strong>：根据理解生成自然语言回复</p> <h4 id="_3、如何使用model"><a href="#_3、如何使用model" class="header-anchor">#</a> 3、如何使用model</h4> <p>根据官网，使用模型有两种方式分别是传统的 <strong>Chat Completions API</strong>和新的 <strong>Responses API</strong></p> <p>官网地址:https://github.com/openai/openai-python</p> <p>传统 <strong>Chat Completions API</strong>使用</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> openai <span class="token keyword">import</span> OpenAI
+<span class="token keyword">from</span>  dotenv <span class="token keyword">import</span> load_dotenv
+<span class="token keyword">import</span> os
+
+<span class="token comment"># 加载环境变量</span>
+load_dotenv<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 创建客户端 - 需要传入api_key和base_url</span>
+client <span class="token operator">=</span> OpenAI<span class="token punctuation">(</span>
+    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;OPENAI_API_KEY&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    base_url<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;OPENAI_BASE_URL&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># API调用（创建响应）</span>
+response <span class="token operator">=</span> client<span class="token punctuation">.</span>chat<span class="token punctuation">.</span>completions<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+    model<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;OPENAI_MODEL_NAME&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    messages<span class="token operator">=</span><span class="token punctuation">[</span>
+        <span class="token punctuation">{</span><span class="token string">&quot;role&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;system&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;content&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;你是一个专业的Python开发人员&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token string">&quot;role&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;user&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;content&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;如何检查Python对象是否是类的实例？&quot;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>choices<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>message<span class="token punctuation">.</span>content<span class="token punctuation">)</span>
+</code></pre></div><p>新的<strong>Responses API</strong> 使用</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> openai <span class="token keyword">import</span> OpenAI
+<span class="token keyword">from</span>  dotenv <span class="token keyword">import</span> load_dotenv
+<span class="token keyword">import</span> os
+
+<span class="token comment"># 加载环境变量</span>
+load_dotenv<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 创建客户端 - 需要传入api_key和base_url</span>
+client <span class="token operator">=</span> OpenAI<span class="token punctuation">(</span>
+    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;OPENAI_API_KEY&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    base_url<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;OPENAI_BASE_URL&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># API调用（创建响应）</span>
+response <span class="token operator">=</span> client<span class="token punctuation">.</span>responses<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+    model<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;OPENAI_MODEL_NAME&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token builtin">input</span><span class="token operator">=</span><span class="token string">&quot;写一个关于独角兽的睡前小故事&quot;</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>output_text<span class="token punctuation">)</span>
+</code></pre></div><p>二者区别：</p> <table><thead><tr><th>特性维度</th> <th><strong>Chat Completions API (传统)</strong></th> <th><strong>Responses API (新范式)</strong></th></tr></thead> <tbody><tr><td><strong>设计哲学</strong></td> <td>模拟<strong>多轮对话</strong>，开发者需要精心编排<code>messages</code>列表来管理上下文。</td> <td>面向<strong>完成单一任务</strong>，API本身支持多轮推理和调用工具，更接近“智能体”。</td></tr> <tr><td><strong>上下文管理</strong></td> <td>你需要手动维护一个包含<code>user</code>, <code>assistant</code>, <code>system</code>角色的消息数组。</td> <td>大部分情况下，你只需提供当前的<code>input</code>和系统级的<code>instructions</code>，历史由API管理</td></tr> <tr><td><strong>输出结构</strong></td> <td>返回一个包含<code>choices</code>的复杂对象，需解析<code>message</code>内容，工具调用需检查<code>tool_calls</code>。</td> <td>返回结构更扁平，直接通过<code>.output_text</code>获取最终回复，工具执行结果已集成在内。</td></tr> <tr><td><strong>文件处理</strong></td> <td>需要将文件内容编码为文本（如图片描述）放入消息。</td> <td>支持直接上传文件（如图片、PDF），模型可直接读取和分析文件内容。</td></tr> <tr><td><strong>对话记忆</strong></td> <td>无内置记忆，每次请求需携带完整历史。</td> <td><strong>具备会话记忆</strong>，通过<code>session_id</code>参数可让模型记住当前会话中的历史。</td></tr> <tr><td><strong>工具调用</strong></td> <td>需在请求中定义<code>tools</code>参数，并手动处理模型的工具调用请求和返回结果，流程复杂。</td> <td><strong>原生、自动化程度高</strong>。直接在请求中提供<code>tools</code>，模型可自主决定何时、如何调用，并返回最终结果（内置工具）。</td></tr></tbody></table> <p>简单来说，<strong>Chat Completions API 是“对话模式”，而 Responses API 是“任务模式”</strong>。 是一个**“自带大脑和记忆”的任务务执行器**，它不再只是简单地“接话”，而是能作为真正的 <strong>Agent</strong> 去自主完成复杂的、多步骤的工作。后者专为构建更智能的AI应用（即智能体）而设计。</p> <h4 id="_4、如何更换其它model"><a href="#_4、如何更换其它model" class="header-anchor">#</a> 4、如何更换其它model？</h4> <ul><li>支持任何 OpenAI 兼容接口（包括国产模型如 Qwen、DeepSeek）</li> <li>只需修改 <code>model</code> 字段 + 配置 <code>base_url</code> 和 <code>api_key</code></li></ul> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> openai <span class="token keyword">import</span> OpenAI
+<span class="token keyword">from</span>  dotenv <span class="token keyword">import</span> load_dotenv
+<span class="token keyword">import</span> os
+
+<span class="token comment"># 加载环境变量</span>
+load_dotenv<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 创建客户端 - 需要传入api_key和base_url</span>
+client <span class="token operator">=</span> OpenAI<span class="token punctuation">(</span>
+    <span class="token comment"># api_key=os.getenv(&quot;SF_API_KEY&quot;),</span>
+    <span class="token comment"># base_url=os.getenv(&quot;SF_BASE_URL&quot;),</span>
+    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;AL_BAILIAN_API_KEY&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    base_url<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;AL_BAILIAN_BASE_URL&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># API调用（创建响应）</span>
+response <span class="token operator">=</span> client<span class="token punctuation">.</span>chat<span class="token punctuation">.</span>completions<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+    <span class="token comment"># model=os.getenv(&quot;SF_MODEL_NAME&quot;),</span>
+    model<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;AL_BAILIAN_MODEL_NAME&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    messages<span class="token operator">=</span><span class="token punctuation">[</span>
+        <span class="token punctuation">{</span><span class="token string">&quot;role&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;system&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;content&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;你是一个乐于助人的助手&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token string">&quot;role&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;user&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;content&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;你是谁？&quot;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>choices<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>message<span class="token punctuation">.</span>content<span class="token punctuation">)</span>
+</code></pre></div><p><strong>注意</strong>，目前<code>Responses API</code>是新范式，国内很多模型厂商还没有适配。所以如果选择国内的模型使用<code>Responses API</code>会出错。</p> <p>以阿里云百炼qwen3-max为例：</p> <p>官网兼容OpeanAI示例说明：https://bailian.console.aliyun.com/?spm=5176.29597918.J_SEsSjsNv72yRuRFS2VknO.2.684c7b08LQ5qqg&amp;tab=model#/model-market/detail/qwen3-max</p> <h3 id="_3-2-、capability-plane-能力层"><a href="#_3-2-、capability-plane-能力层" class="header-anchor">#</a> 3.2 、Capability Plane（能力层）</h3> <h4 id="_1、-tools组件"><a href="#_1、-tools组件" class="header-anchor">#</a> 1、 Tools组件</h4> <h5 id="_1、什么是tool"><a href="#_1、什么是tool" class="header-anchor">#</a> 1、什么是Tool</h5> <p>**Tool（工具）**是智能体（Agent）可以调用的外部函数，让AI能够执行特定任务，如查询天气、搜索信息、计算数据等。</p> <p><strong>关键特征</strong>：</p> <ul><li>有明确的输入参数</li> <li>执行具体功能</li> <li>返回结构化结果</li> <li>可以被多个智能体复用</li></ul> <h5 id="_2、为什么要用tool"><a href="#_2、为什么要用tool" class="header-anchor">#</a> 2、为什么要用Tool</h5> <ol><li><strong>扩展能力</strong>：弥补AI的局限性</li> <li><strong>获取实时数据</strong>：访问最新信息</li> <li><strong>执行操作</strong>：调用外部系统API</li> <li><strong>确保准确性</strong>：减少AI幻觉</li> <li><strong>标准化流程</strong>：统一业务逻辑</li></ol> <h5 id="_3、如何使用tool"><a href="#_3、如何使用tool" class="header-anchor">#</a> 3、如何使用Tool</h5> <p>使用<strong>Responses API</strong> 携带工具</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> openai <span class="token keyword">import</span> OpenAI
+<span class="token keyword">from</span>  dotenv <span class="token keyword">import</span> load_dotenv
+<span class="token keyword">import</span> os
+
+<span class="token comment"># 加载环境变量</span>
+load_dotenv<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 创建客户端 - 需要传入api_key和base_url</span>
+client <span class="token operator">=</span> OpenAI<span class="token punctuation">(</span>
+    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;OPENAI_API_KEY&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    base_url<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;OPENAI_BASE_URL&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># API调用（创建响应）</span>
+response <span class="token operator">=</span> client<span class="token punctuation">.</span>responses<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+    model<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">&quot;OPENAI_MODEL_NAME&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tools<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">&quot;type&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;web_search&quot;</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token builtin">input</span><span class="token operator">=</span><span class="token string">&quot;今天有什么积极的新闻吗?&quot;</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>output_text<span class="token punctuation">)</span>
+</code></pre></div><p>这里注意，传统 <strong>Chat Completions API使用不能这样使用</strong>。它的type必须是funcation <code>“type&quot;: &quot;funcation&quot;</code>不能是工具的名字。</p> <p>官网链接：https://platform.openai.com/docs/guides/tools?tool-type=function-calling</p> <h5 id="_4、tool使用场景"><a href="#_4、tool使用场景" class="header-anchor">#</a> 4、Tool使用场景</h5> <table><thead><tr><th style="text-align:left;">场景</th> <th style="text-align:left;">工具示例</th> <th style="text-align:left;">说明</th></tr></thead> <tbody><tr><td style="text-align:left;">数据查询</td> <td style="text-align:left;"><code>search_product</code>, <code>query_order</code></td> <td style="text-align:left;">查询数据库信息</td></tr> <tr><td style="text-align:left;">计算服务</td> <td style="text-align:left;"><code>calculate_price</code>, <code>convert_currency</code></td> <td style="text-align:left;">执行数学计算</td></tr> <tr><td style="text-align:left;">外部API</td> <td style="text-align:left;"><code>send_email</code>, <code>create_ticket</code></td> <td style="text-align:left;">调用第三方服务</td></tr> <tr><td style="text-align:left;">文件操作</td> <td style="text-align:left;"><code>read_file</code>, <code>generate_report</code></td> <td style="text-align:left;">处理文档数据</td></tr></tbody></table> <h4 id="_2、agents组件"><a href="#_2、agents组件" class="header-anchor">#</a> 2、Agents组件</h4> <h5 id="_1、什么是agent"><a href="#_1、什么是agent" class="header-anchor">#</a> 1、什么是Agent</h5> <p>**Agent（智能体）**是具有特定目标和能力的AI助手，可以：</p> <ul><li>理解用户意图</li> <li>规划任务步骤</li> <li>调用工具执行</li> <li>做出决策</li> <li>与其他智能体协作</li></ul> <h5 id="_2、为什么要用agent"><a href="#_2、为什么要用agent" class="header-anchor">#</a> 2、为什么要用Agent</h5> <p>传统的大模型就像一位聪明的顾问：它能回答问题、给出建议，但<strong>不会自己动手做事</strong>。而Agent是让AI真正&quot;动起来&quot;的组件，<strong>让AI成为&quot;执行者&quot;，而不仅仅是&quot;建议者&quot;</strong>，从而突破大模型的三大局限知识时效性、操作能力和数据访问限制。同时Agent能分解复杂任务、管理多轮对话、记忆历史交互，实现从单次问答到持续协作。</p> <h5 id="_3、如何使用agent"><a href="#_3、如何使用agent" class="header-anchor">#</a> 3、如何使用Agent</h5> <p>在 OpenAI Agents SDK 中，使用一个 Agent 并让它真正“动起来”，需要完成两个核心动作：</p> <ol><li><strong>配置模型客户端</strong>（告诉 Agent 用哪个大模型）</li> <li><strong>运行 Agent 并获取结果</strong></li></ol> <blockquote><p>特别注意：
+如果你使用的是 <strong>OpenAI 官方 API</strong>，可以直接用 <code>model=&quot;gpt-4o&quot;</code>；
+但如果你使用的是 <strong>代理节点</strong>（如阿里通义、智谱、DeepSeek 等兼容 OpenAI 接口的模型），<strong>必须先手动创建模型客户端</strong>！</p> <p>官网链接：https://github.com/openai/openai-agents-python</p></blockquote> <p>下面我们将从<strong>最通用的场景出发</strong>——使用国内兼容 OpenAI 的模型（如通义千问 Qwen）——来讲解三种主流的 Agent 使用方式。</p> <p><strong>为什么需要“实例化客户端”？</strong></p> <p>传统大模型调用：</p> <div class="language- extra-class"><pre class="language-text"><code>response = openai.chat.completions.create(model=&quot;gpt-4o&quot;, ...)
+</code></pre></div><p>但在多 Agent 系统中，Agent 需要<strong>自主决定何时调用模型、调用多少次</strong>。因此 SDK 要求你提前提供一个<strong>可复用的模型客户端对象</strong>（<code>AsyncOpenAI</code>），而不是每次临时拼参数。</p> <p>所有非官方 OpenAI 模型（包括通过代理访问的 gpt-4o）都必须这样做！</p> <p>官网链接：https://openai.github.io/openai-agents-python/models/</p> <h6 id="_1-三种方式配置模型客户端"><a href="#_1-三种方式配置模型客户端" class="header-anchor">#</a> 1. 三种方式配置模型客户端</h6> <p>（按作用范围排序）</p> <table><thead><tr><th>方式</th> <th>作用范围</th> <th>适用场景</th></tr></thead> <tbody><tr><td><strong>方式一<code>set_default_openai_client</code>：全局设置</strong></td> <td>所有 Agent 共享同一个客户端</td> <td>单模型项目</td></tr> <tr><td><strong>方式二<code>ModelProvider</code>：运行时传入</strong></td> <td>单次 Run 指定客户端</td> <td>多模型混合调度</td></tr> <tr><td><strong>方式三<code>Agent.model</code>：绑定到单个 Agent</strong></td> <td>仅该 Agent 使用指定客户端</td> <td>精细控制每个 Agent 的模型</td></tr></tbody></table> <p>方式一：全局设置</p> <blockquote><p>适用于整个项目只用一种模型的情况（如全部用 Qwen-Plus）</p></blockquote> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">import</span> asyncio
+<span class="token keyword">import</span> os
+
+<span class="token keyword">from</span> openai <span class="token keyword">import</span> AsyncOpenAI
+
+<span class="token keyword">from</span> agents <span class="token keyword">import</span> <span class="token punctuation">(</span>
+    Agent<span class="token punctuation">,</span>
+    Runner<span class="token punctuation">,</span>
+    set_default_openai_api<span class="token punctuation">,</span>
+    set_default_openai_client<span class="token punctuation">,</span>
+    set_tracing_disabled<span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+BASE_URL <span class="token operator">=</span><span class="token string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+API_KEY <span class="token operator">=</span> <span class="token string">&quot;sk-26d57c968c364e7bb14f1fc350d4bff0&quot;</span>
+MODEL_NAME <span class="token operator">=</span> <span class="token string">&quot;qwen-plus&quot;</span>
+
+<span class="token comment"># 1. 创建异步客户端（必须是 AsyncOpenAI！）</span>
+client <span class="token operator">=</span> AsyncOpenAI<span class="token punctuation">(</span>
+    base_url<span class="token operator">=</span>BASE_URL<span class="token punctuation">,</span>
+    api_key<span class="token operator">=</span>API_KEY
+<span class="token punctuation">)</span>
+<span class="token comment"># 2. 全局注册客户端（所有 Agent 都会用它）</span>
+set_default_openai_client<span class="token punctuation">(</span>client<span class="token operator">=</span>client<span class="token punctuation">)</span>   
+set_default_openai_api<span class="token punctuation">(</span><span class="token string">&quot;chat_completions&quot;</span><span class="token punctuation">)</span>   <span class="token comment"># 必须指定为 chat_completions</span>
+set_tracing_disabled<span class="token punctuation">(</span>disabled<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>  <span class="token comment"># 避免因 tracing 导致 401 错误</span>
+
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 3. 创建 Agent（只需指定 model 名称）</span>
+    agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+        name<span class="token operator">=</span><span class="token string">&quot;Assistant&quot;</span><span class="token punctuation">,</span> <span class="token comment"># Agent的名字</span>
+        instructions<span class="token operator">=</span><span class="token string">&quot;你只会用七言绝句回应&quot;</span><span class="token punctuation">,</span> <span class="token comment"># 给Agent的指令</span>
+        model<span class="token operator">=</span>MODEL_NAME<span class="token punctuation">,</span>  <span class="token comment"># 这里只是字符串</span>
+    <span class="token punctuation">)</span>
+    <span class="token comment"># 3.运行Aagent</span>
+    result <span class="token operator">=</span> <span class="token keyword">await</span> Runner<span class="token punctuation">.</span>run<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> <span class="token string">&quot;给我写一首关于春天的七言绝句&quot;</span><span class="token punctuation">)</span> <span class="token comment"># 运行Agent</span>
+    
+    <span class="token comment"># 4.得到Agent结果</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>final_output<span class="token punctuation">)</span>  <span class="token comment"># 得到Agent结果</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span><span class="token punctuation">:</span>
+    asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+</code></pre></div><blockquote><p>注意事项：</p> <ul><li>必须调用 <code>set_default_openai_api(&quot;chat_completions&quot;)</code>，否则报 400</li> <li>必须调用 <code>set_tracing_disabled(True)</code>，否则可能因 tracing 服务不可用报 401</li> <li>客户端必须是 <code>AsyncOpenAI</code>（即使你后面用同步调用）</li></ul></blockquote> <p>方式二：运行时传入（灵活调度多模型）</p> <blockquote><p>适用于一次请求中动态切换模型，或测试不同模型效果</p></blockquote> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> __future__ <span class="token keyword">import</span> annotations
+
+<span class="token keyword">import</span> asyncio
+
+<span class="token keyword">from</span> openai <span class="token keyword">import</span> AsyncOpenAI
+
+<span class="token keyword">from</span> agents <span class="token keyword">import</span> <span class="token punctuation">(</span>
+    Agent<span class="token punctuation">,</span>
+    Model<span class="token punctuation">,</span>
+    ModelProvider<span class="token punctuation">,</span>
+    OpenAIChatCompletionsModel<span class="token punctuation">,</span>
+    RunConfig<span class="token punctuation">,</span>
+    Runner<span class="token punctuation">,</span>
+    function_tool<span class="token punctuation">,</span>
+    set_tracing_disabled<span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+BASE_URL <span class="token operator">=</span>  <span class="token string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+API_KEY <span class="token operator">=</span>  <span class="token string">&quot;sk-26d57c968c364e7bb14f1fc350d4bff0&quot;</span>
+MODEL_NAME <span class="token operator">=</span>  <span class="token string">&quot;qwen-plus&quot;</span>
+
+client <span class="token operator">=</span> AsyncOpenAI<span class="token punctuation">(</span>base_url<span class="token operator">=</span>BASE_URL<span class="token punctuation">,</span> api_key<span class="token operator">=</span>API_KEY<span class="token punctuation">)</span>
+set_tracing_disabled<span class="token punctuation">(</span>disabled<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 1. 自定义ModelProvider类，实现ModelProvider接口的get_model方法</span>
+<span class="token keyword">class</span> <span class="token class-name">CustomModelProvider</span><span class="token punctuation">(</span>ModelProvider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+     <span class="token comment"># 实现ModelProvider接口的get_model方法</span>
+    <span class="token keyword">def</span> <span class="token function">get_model</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> model_name<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> Model<span class="token punctuation">:</span>
+
+        <span class="token keyword">return</span> OpenAIChatCompletionsModel<span class="token punctuation">(</span>model<span class="token operator">=</span> model_name<span class="token punctuation">,</span> openai_client<span class="token operator">=</span>client<span class="token punctuation">)</span> <span class="token comment"># 直接返回OpenAIChatCompletionsModel  不用在调用set_default_openai_api(&quot;chat_completions&quot;)设置默认api为chat_completions</span>
+
+
+<span class="token comment"># 2. 创建CustomModelProvider实例</span>
+CUSTOM_MODEL_PROVIDER <span class="token operator">=</span> CustomModelProvider<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 3. 使用CustomModelProvider实例创建Agent</span>
+    agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">&quot;Assistant&quot;</span><span class="token punctuation">,</span> instructions<span class="token operator">=</span><span class="token string">&quot;你只会用七言绝句回应.&quot;</span><span class="token punctuation">,</span>model<span class="token operator">=</span>MODEL_NAME<span class="token punctuation">)</span> <span class="token comment"># 字符串，由 provider 解析</span>
+
+    <span class="token comment"># 4. 运行Agent</span>
+    result <span class="token operator">=</span> <span class="token keyword">await</span> Runner<span class="token punctuation">.</span>run<span class="token punctuation">(</span>
+        agent<span class="token punctuation">,</span>
+        <span class="token builtin">input</span><span class="token operator">=</span><span class="token string">&quot;给我写一首关于春天的七言绝句&quot;</span><span class="token punctuation">,</span>
+        run_config<span class="token operator">=</span>RunConfig<span class="token punctuation">(</span>model_provider<span class="token operator">=</span>CUSTOM_MODEL_PROVIDER<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment"># 在 run 时传入自定义 provider</span>
+
+    <span class="token punctuation">)</span>
+    <span class="token comment"># 5. 获取Agent运行结果</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>final_output<span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span><span class="token punctuation">:</span>
+    asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><blockquote><p>优点：无需全局污染，每个 Run 可独立配置模型来源</p></blockquote> <p>方式三：绑定到单个 Agent（最精细控制）</p> <blockquote><p>适用于不同 Agent 使用不同模型（如客服用 Qwen，分析用 DeepSeek）</p></blockquote> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">import</span> asyncio
+<span class="token keyword">from</span> openai <span class="token keyword">import</span> AsyncOpenAI
+<span class="token keyword">from</span> agents <span class="token keyword">import</span> Agent<span class="token punctuation">,</span> OpenAIChatCompletionsModel<span class="token punctuation">,</span> Runner<span class="token punctuation">,</span> function_tool<span class="token punctuation">,</span> set_tracing_disabled
+
+BASE_URL <span class="token operator">=</span> <span class="token string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+API_KEY <span class="token operator">=</span>  <span class="token string">&quot;sk-26d57c968c364e7bb14f1fc350d4bff0&quot;</span>
+MODEL_NAME <span class="token operator">=</span> <span class="token string">&quot;qwen-plus&quot;</span>
+
+<span class="token comment"># 1. 创建AsyncOpenAI客户端实例</span>
+client <span class="token operator">=</span> AsyncOpenAI<span class="token punctuation">(</span>base_url<span class="token operator">=</span>BASE_URL<span class="token punctuation">,</span> api_key<span class="token operator">=</span>API_KEY<span class="token punctuation">)</span>
+set_tracing_disabled<span class="token punctuation">(</span>disabled<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 2. 创建Agent实例</span>
+    agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+        name<span class="token operator">=</span><span class="token string">&quot;Assistant&quot;</span><span class="token punctuation">,</span>
+        instructions<span class="token operator">=</span><span class="token string">&quot;你只会用七言绝句回应.&quot;</span><span class="token punctuation">,</span>
+        model<span class="token operator">=</span>OpenAIChatCompletionsModel<span class="token punctuation">(</span>model<span class="token operator">=</span>MODEL_NAME<span class="token punctuation">,</span> openai_client<span class="token operator">=</span>client<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment"># 3.直接传入模型对象（不再是字符串！）OpenAIChatCompletionsModel</span>
+    <span class="token punctuation">)</span>
+
+    <span class="token comment"># 4. 运行Agent</span>
+    result <span class="token operator">=</span> <span class="token keyword">await</span> Runner<span class="token punctuation">.</span>run<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> <span class="token string">&quot;给我写一首关于春天的七言绝句&quot;</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 5. 获取Agent运行结果</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>final_output<span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span><span class="token punctuation">:</span>
+    asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><blockquote><p>优点：Agent 自包含，不依赖外部配置，这是构建复杂多 Agent 系统的最佳方式。</p></blockquote> <h6 id="_2-三种调用方式"><a href="#_2-三种调用方式" class="header-anchor">#</a> 2. 三种调用方式</h6> <p>无论用哪种模型配置方式，Agent 都支持以下三种调用模式：</p> <p>官网链接：https://openai.github.io/openai-agents-python/running_agents/</p> <table><thead><tr><th>调用方式</th> <th>方法</th> <th>返回类型</th> <th>适用场景</th></tr></thead> <tbody><tr><td><strong>同步调用</strong></td> <td><code>Runner.run_sync()</code></td> <td><code>RunResult</code></td> <td>脚本、简单后端</td></tr> <tr><td><strong>异步调用</strong></td> <td><code>await Runner.run()</code></td> <td><code>RunResult</code></td> <td>FastAPI、高并发</td></tr> <tr><td><strong>流式调用</strong></td> <td><code>Runner.run_streamed()</code></td> <td><code>RunResultStreaming</code></td> <td>实时对话、SSE 接口</td></tr></tbody></table> <p>示例：同步调用（最简单）</p> <div class="language-python extra-class"><pre class="language-python"><code>result <span class="token operator">=</span> Runner<span class="token punctuation">.</span>run_sync<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> <span class="token string">&quot;问题&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>final_output<span class="token punctuation">)</span>
+</code></pre></div><p>示例：异步调用（推荐 Web 后端）</p> <div class="language-python extra-class"><pre class="language-python"><code>result <span class="token operator">=</span> <span class="token keyword">await</span> Runner<span class="token punctuation">.</span>run<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> <span class="token string">&quot;问题&quot;</span><span class="token punctuation">)</span>
+</code></pre></div><p>示例：流式调用（实现“打字机效果”）</p> <div class="language-python extra-class"><pre class="language-python"><code>streaming_result <span class="token operator">=</span> Runner<span class="token punctuation">.</span>run_streamed<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> <span class="token string">&quot;问题&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">async</span> <span class="token keyword">for</span> event <span class="token keyword">in</span> streaming_result<span class="token punctuation">.</span>stream_events<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> event<span class="token punctuation">.</span><span class="token builtin">type</span> <span class="token operator">==</span> <span class="token string">&quot;raw_response_event&quot;</span><span class="token punctuation">:</span>
+        delta <span class="token operator">=</span> event<span class="token punctuation">.</span>data<span class="token punctuation">.</span>delta  <span class="token comment"># 增量文本</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>delta<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> flush<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 最终完整结果仍可通过 final_output 获取</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;\n完整答案：&quot;</span><span class="token punctuation">,</span> streaming_result<span class="token punctuation">.</span>final_output<span class="token punctuation">)</span>
+</code></pre></div><blockquote><p>流式事件类型说明（）：</p> <ul><li><code>&quot;tool_call&quot;</code>：Agent 准备调用工具</li> <li><code>&quot;tool_output&quot;</code>：工具返回结果</li> <li><code>&quot;raw_response_event&quot;</code>：模型生成的文本增量（含思考过程）</li> <li><code>&quot;final_answer&quot;</code>：最终回答完成</li></ul></blockquote> <h6 id="_3-tool集成agent"><a href="#_3-tool集成agent" class="header-anchor">#</a> 3.tool集成Agent</h6> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">import</span> asyncio
+
+
+<span class="token keyword">from</span> openai <span class="token keyword">import</span> AsyncOpenAI
+
+<span class="token keyword">from</span> agents <span class="token keyword">import</span> Agent<span class="token punctuation">,</span> OpenAIChatCompletionsModel<span class="token punctuation">,</span> Runner<span class="token punctuation">,</span> function_tool<span class="token punctuation">,</span> set_tracing_disabled
+
+BASE_URL <span class="token operator">=</span> <span class="token string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+API_KEY <span class="token operator">=</span>  <span class="token string">&quot;sk-26d57c968c364e7bb14f1fc350d4bff0&quot;</span>
+MODEL_NAME <span class="token operator">=</span> <span class="token string">&quot;qwen-plus&quot;</span>
+
+client <span class="token operator">=</span> AsyncOpenAI<span class="token punctuation">(</span>base_url<span class="token operator">=</span>BASE_URL<span class="token punctuation">,</span> api_key<span class="token operator">=</span>API_KEY<span class="token punctuation">)</span>
+set_tracing_disabled<span class="token punctuation">(</span>disabled<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+
+<span class="token decorator annotation punctuation">@function_tool</span>
+<span class="token keyword">def</span> <span class="token function">get_weather</span><span class="token punctuation">(</span>city<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;获取指定城市的天气信息&quot;&quot;&quot;</span>
+    <span class="token keyword">return</span> <span class="token string-interpolation"><span class="token string">f&quot;天气信息: </span><span class="token interpolation"><span class="token punctuation">{</span>city<span class="token punctuation">}</span></span><span class="token string"> 是晴天&quot;</span></span>
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+        name<span class="token operator">=</span><span class="token string">&quot;天气助手&quot;</span><span class="token punctuation">,</span>
+        instructions<span class="token operator">=</span><span class="token string">&quot;你是一个天气助手，你只能回答关于天气的问题。&quot;</span><span class="token punctuation">,</span>
+        model<span class="token operator">=</span>OpenAIChatCompletionsModel<span class="token punctuation">(</span>model<span class="token operator">=</span>MODEL_NAME<span class="token punctuation">,</span> openai_client<span class="token operator">=</span>client<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        tools<span class="token operator">=</span><span class="token punctuation">[</span>get_weather<span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+    <span class="token punctuation">)</span>
+    result <span class="token operator">=</span> <span class="token keyword">await</span> Runner<span class="token punctuation">.</span>run<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> <span class="token string">&quot;武汉的天气&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>final_output<span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span><span class="token punctuation">:</span>
+    asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><blockquote><p>注意事项：</p> <ul><li>函数上使用@function_tool注解</li> <li>tools必须是列表</li></ul></blockquote> <h6 id="_4-agent输出结构化对象"><a href="#_4-agent输出结构化对象" class="header-anchor">#</a> 4.Agent输出结构化对象</h6> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">import</span> asyncio
+<span class="token keyword">import</span> json
+<span class="token keyword">from</span> openai <span class="token keyword">import</span> AsyncOpenAI
+<span class="token keyword">from</span> agents <span class="token keyword">import</span> Agent<span class="token punctuation">,</span> OpenAIChatCompletionsModel<span class="token punctuation">,</span> Runner<span class="token punctuation">,</span> function_tool<span class="token punctuation">,</span> set_tracing_disabled
+<span class="token keyword">from</span> pydantic <span class="token keyword">import</span> BaseModel
+
+BASE_URL <span class="token operator">=</span> <span class="token string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+API_KEY <span class="token operator">=</span>  <span class="token string">&quot;sk-26d57c968c364e7bb14f1fc350d4bff0&quot;</span>
+MODEL_NAME <span class="token operator">=</span> <span class="token string">&quot;qwen-plus&quot;</span>
+
+client <span class="token operator">=</span> AsyncOpenAI<span class="token punctuation">(</span>base_url<span class="token operator">=</span>BASE_URL<span class="token punctuation">,</span> api_key<span class="token operator">=</span>API_KEY<span class="token punctuation">)</span>
+set_tracing_disabled<span class="token punctuation">(</span>disabled<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">WeatherResult</span><span class="token punctuation">(</span>BaseModel<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    city<span class="token punctuation">:</span> <span class="token builtin">str</span>
+    condition<span class="token punctuation">:</span> <span class="token builtin">str</span>
+    source<span class="token punctuation">:</span> <span class="token builtin">str</span>
+    message<span class="token punctuation">:</span> <span class="token builtin">str</span>
+
+<span class="token decorator annotation punctuation">@function_tool</span>
+<span class="token keyword">def</span> <span class="token function">get_weather</span><span class="token punctuation">(</span>city<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>
+        <span class="token punctuation">{</span><span class="token string">&quot;city&quot;</span><span class="token punctuation">:</span> city<span class="token punctuation">,</span> <span class="token string">&quot;condition&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;晴&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;source&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;tool&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;message&quot;</span><span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f&quot;</span><span class="token interpolation"><span class="token punctuation">{</span>city<span class="token punctuation">}</span></span><span class="token string">天气晴朗&quot;</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        ensure_ascii<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+        name<span class="token operator">=</span><span class="token string">&quot;天气助手&quot;</span><span class="token punctuation">,</span>
+        instructions<span class="token operator">=</span><span class="token punctuation">(</span>
+            <span class="token string">&quot;你是天气助手，只回答天气问题。&quot;</span>
+            <span class="token string">&quot;当用户问天气时必须调用 get_weather。&quot;</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        model<span class="token operator">=</span>OpenAIChatCompletionsModel<span class="token punctuation">(</span>model<span class="token operator">=</span>MODEL_NAME<span class="token punctuation">,</span> openai_client<span class="token operator">=</span>client<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        tools<span class="token operator">=</span><span class="token punctuation">[</span>get_weather<span class="token punctuation">]</span><span class="token punctuation">,</span>
+        output_type<span class="token operator">=</span>WeatherResult<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+    result <span class="token operator">=</span> <span class="token keyword">await</span> Runner<span class="token punctuation">.</span>run<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> <span class="token string">&quot;武汉的天气&quot;</span><span class="token punctuation">)</span>
+    <span class="token comment"># result.final_output 不再是 str，而是 WeatherResult（或可当作 dict 使用）</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;final_output:&quot;</span><span class="token punctuation">,</span> result<span class="token punctuation">.</span>final_output<span class="token punctuation">)</span>
+
+    <span class="token comment"># 如果你想转 dict</span>
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;as dict:&quot;</span><span class="token punctuation">,</span> result<span class="token punctuation">.</span>final_output<span class="token punctuation">.</span>model_dump<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+</code></pre></div><h5 id="_4、agent使用场景"><a href="#_4、agent使用场景" class="header-anchor">#</a> 4、Agent使用场景</h5> <table><thead><tr><th style="text-align:left;">场景</th> <th style="text-align:left;">Agent类型</th> <th style="text-align:left;">职责</th></tr></thead> <tbody><tr><td style="text-align:left;">客服系统</td> <td style="text-align:left;">客服专员</td> <td style="text-align:left;">解答常见问题</td></tr> <tr><td style="text-align:left;">技术支持</td> <td style="text-align:left;">技术专家</td> <td style="text-align:left;">解决技术问题</td></tr> <tr><td style="text-align:left;">销售咨询</td> <td style="text-align:left;">销售顾问</td> <td style="text-align:left;">产品推荐和报价</td></tr> <tr><td style="text-align:left;">订单处理</td> <td style="text-align:left;">订单专员</td> <td style="text-align:left;">处理订单相关事务</td></tr> <tr><td style="text-align:left;">路由分发</td> <td style="text-align:left;">路由助手</td> <td style="text-align:left;">将问题分发给合适的专家</td></tr></tbody></table> <h3 id="_3-3-、execution-plane-执行层"><a href="#_3-3-、execution-plane-执行层" class="header-anchor">#</a> 3.3 、Execution Plane（执行层）</h3> <p>Run是一次执行的生命周期，里面包含各个核心状态结构、例如历史消息（Conversation）、Tool 调用状态、Streaming 状态、Handoff / Agent 路由轨迹</p> <p>等。这里面我们以两个核心状态为例。Streaming 状态、历史消息（Conversation）</p> <p>以下是一个执行层架构示意图：</p> <div class="language-markdown extra-class"><pre class="language-markdown"><code>
+
+┌──────────────────────────────────────────────┐
+│ Execution Plane（执行层 / Run Lifecycle）    │
+│                                              │
+│  ┌────────────────────────────────────────┐ │
+│  │ Run                                    │ │
+│  │                                        │ │
+│  │  Conversation State                    │ │
+│  │  ------------------------------------  │ │
+│  │  • message history                     │ │
+│  │  • tool call state                     │ │
+│  │  • agent routing state                 │ │
+│  │                                        │ │
+│  │  Output Items                          │ │
+│  │  ------------------------------------  │ │
+│  │  • ResponseTextItem                    │ │
+│  │  • ResponseReasoningItem               │ │
+│  │  • ToolCallItem                        │ │
+│  │  • ToolCallOutputItem                  │ │
+│  │  • HandoffOutputItem                   │ │
+│  │                                        │ │
+│  │  Event Stream                          │ │
+│  │  ------------------------------------  │ │
+│  │  • ResponseTextDeltaEvent              │ │
+│  │  • ResponseReasoningSummaryTextDelta   │ │
+│  │  • run_item_stream_event               │ │
+│  │  • agent_updated_stream_event          │ │
+│  │                                        │ │
+│  └────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+</code></pre></div><h4 id="_1、流式-streaming"><a href="#_1、流式-streaming" class="header-anchor">#</a> 1、流式（Streaming）</h4> <h5 id="_1、什么是streaming"><a href="#_1、什么是streaming" class="header-anchor">#</a> 1、什么是Streaming</h5> <p>**Streaming（流式）**是实时逐字或逐段输出内容的技术，而不是等待全部生成完成再一次性返回。</p> <p><strong>类比理解</strong>：就像看直播和看录播的区别</p> <ul><li>流式：实时直播，边生成边观看</li> <li>非流式：录制完成，一次性观看</li></ul> <h5 id="_2、为什么要用streaming"><a href="#_2、为什么要用streaming" class="header-anchor">#</a> 2、为什么要用Streaming</h5> <ol><li><strong>提升用户体验</strong>：减少等待时间，立即看到响应</li> <li><strong>显示处理进度</strong>：用户知道系统正在工作</li> <li><strong>节省内存</strong>：不需要缓存完整响应</li> <li><strong>实时交互</strong>：可以中途打断或调整</li></ol> <h5 id="_3、如何使用streaming"><a href="#_3、如何使用streaming" class="header-anchor">#</a> 3、如何使用Streaming</h5> <p><strong>核心代码骨架：</strong></p> <div class="language-python extra-class"><pre class="language-python"><code>result <span class="token operator">=</span> Runner<span class="token punctuation">.</span>run_streamed<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> <span class="token string">&quot;问题&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">async</span> <span class="token keyword">for</span> event <span class="token keyword">in</span> result<span class="token punctuation">.</span>stream_events<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+</code></pre></div><h5 id="_4、streaming-使用场景"><a href="#_4、streaming-使用场景" class="header-anchor">#</a> 4、Streaming 使用场景</h5> <table><thead><tr><th style="text-align:left;">场景</th> <th style="text-align:left;">使用方式</th> <th style="text-align:left;">优势</th></tr></thead> <tbody><tr><td style="text-align:left;">聊天对话</td> <td style="text-align:left;">逐字输出</td> <td style="text-align:left;">自然对话体验</td></tr> <tr><td style="text-align:left;">长文生成</td> <td style="text-align:left;">分段输出</td> <td style="text-align:left;">避免长时间等待</td></tr> <tr><td style="text-align:left;">代码生成</td> <td style="text-align:left;">实时显示</td> <td style="text-align:left;">即时调试和修改</td></tr> <tr><td style="text-align:left;">实时翻译</td> <td style="text-align:left;">流式翻译</td> <td style="text-align:left;">减少延迟</td></tr> <tr><td style="text-align:left;">语音合成</td> <td style="text-align:left;">流式音频</td> <td style="text-align:left;">实时播放</td></tr></tbody></table> <h4 id="_2、输出项-output-items"><a href="#_2、输出项-output-items" class="header-anchor">#</a> 2、输出项（Output Items）</h4> <h5 id="_1、什么是output-items"><a href="#_1、什么是output-items" class="header-anchor">#</a> 1、什么是Output Items</h5> <p>输出项是Run 在执行过程中产生的<strong>结构化事实对象</strong>”，注意它：</p> <ul><li>不是模型输出本身</li> <li>不是 Agent 的决策逻辑</li> <li>不是 Tool 的执行逻辑</li></ul> <p>而是Run 对“执行过程”的结构化记录。</p> <p>例如：</p> <table><thead><tr><th>类型</th> <th>含义</th></tr></thead> <tbody><tr><td>ResponseOutputItem</td> <td>模型生成了文本</td></tr> <tr><td>ToolCallItem</td> <td>Agent 决定调用某个工具</td></tr> <tr><td>ToolCallOutputItem</td> <td>工具执行完成</td></tr> <tr><td>HandoffOutputItem</td> <td>Agent 发生了交接</td></tr></tbody></table> <blockquote><p>Output Items = Run 内部发生的每一个“事件事实”的不可变快照。</p></blockquote> <h5 id="_2、为什么要用output-items"><a href="#_2、为什么要用output-items" class="header-anchor">#</a> 2、为什么要用Output Items</h5> <p>如果你只有 <code>final_output</code>，你会失去对 Agent <strong>内部决策过程的全部洞察</strong>。具体来说：</p> <table><thead><tr><th>你想知道</th> <th>没有 Output Items 的世界</th></tr></thead> <tbody><tr><td>Agent 有没有调用工具？</td> <td>不知道</td></tr> <tr><td>调用过哪些工具？</td> <td>不知道</td></tr> <tr><td>每次调用工具参数是什么？</td> <td>不知道</td></tr> <tr><td>为什么给出这个答案？</td> <td>不知道</td></tr> <tr><td>是模型直接回答，还是基于工具结果推理得出？</td> <td>不知道</td></tr> <tr><td>整个任务被分解成了哪几步？每一步如何推理？</td> <td>不知道</td></tr></tbody></table> <p>而 <strong>Output Items 正是 Agent 执行过程的“黑匣子记录仪”</strong> —— 它以结构化的方式保存了每一步思考（Thought）、每一次行动（Action）、每一个观察（Observation），让你不仅能拿到答案，还能<strong>理解答案是如何产生的</strong>，从而实现调试、审计、和可信 AI。</p> <blockquote><p>Output Items 解决的是：让 Agent 的“黑箱”变成“白盒执行流水线”</p></blockquote> <h5 id="_3、如何使用output-items"><a href="#_3、如何使用output-items" class="header-anchor">#</a> 3、如何使用Output Items</h5> <p><strong>核心代码骨架：</strong></p> <div class="language-python extra-class"><pre class="language-python"><code>result <span class="token operator">=</span> <span class="token keyword">await</span> Runner<span class="token punctuation">.</span>run<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> <span class="token string">&quot;武汉的天气&quot;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> item <span class="token keyword">in</span> result<span class="token punctuation">.</span>new_items<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">,</span> item<span class="token punctuation">.</span>raw_item<span class="token punctuation">)</span>
+
+</code></pre></div><p>你会看到</p> <div class="language-scss extra-class"><pre class="language-scss"><code><span class="token function">ToolCallItem</span><span class="token punctuation">(</span>...<span class="token punctuation">)</span>
+<span class="token function">ToolCallOutputItem</span><span class="token punctuation">(</span>...<span class="token punctuation">)</span>
+<span class="token function">ResponseOutputItem</span><span class="token punctuation">(</span>...<span class="token punctuation">)</span>
+
+</code></pre></div><p><strong>完整代码</strong></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">import</span> asyncio
+<span class="token keyword">from</span> openai <span class="token keyword">import</span> AsyncOpenAI
+<span class="token keyword">from</span> agents <span class="token keyword">import</span> Agent<span class="token punctuation">,</span> OpenAIChatCompletionsModel<span class="token punctuation">,</span> Runner<span class="token punctuation">,</span> function_tool<span class="token punctuation">,</span> set_tracing_disabled
+
+BASE_URL <span class="token operator">=</span> <span class="token string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+API_KEY <span class="token operator">=</span>  <span class="token string">&quot;sk-26d57c968c364e7bb14f1fc350d4bff0&quot;</span>
+MODEL_NAME <span class="token operator">=</span> <span class="token string">&quot;qwen-plus&quot;</span>
+
+client <span class="token operator">=</span> AsyncOpenAI<span class="token punctuation">(</span>base_url<span class="token operator">=</span>BASE_URL<span class="token punctuation">,</span> api_key<span class="token operator">=</span>API_KEY<span class="token punctuation">)</span>
+set_tracing_disabled<span class="token punctuation">(</span>disabled<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+
+<span class="token decorator annotation punctuation">@function_tool</span>
+<span class="token keyword">def</span> <span class="token function">get_weather</span><span class="token punctuation">(</span>city<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;获取指定城市的天气信息&quot;&quot;&quot;</span>
+    <span class="token keyword">return</span> <span class="token string-interpolation"><span class="token string">f&quot;天气信息: </span><span class="token interpolation"><span class="token punctuation">{</span>city<span class="token punctuation">}</span></span><span class="token string"> 是晴天&quot;</span></span>
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+        name<span class="token operator">=</span><span class="token string">&quot;天气助手&quot;</span><span class="token punctuation">,</span>
+        instructions<span class="token operator">=</span><span class="token string">&quot;你是一个天气助手，你只能回答关于天气的问题。&quot;</span><span class="token punctuation">,</span>
+        model<span class="token operator">=</span>OpenAIChatCompletionsModel<span class="token punctuation">(</span>model<span class="token operator">=</span>MODEL_NAME<span class="token punctuation">,</span> openai_client<span class="token operator">=</span>client<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        tools<span class="token operator">=</span><span class="token punctuation">[</span>get_weather<span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+    <span class="token punctuation">)</span>
+    result <span class="token operator">=</span> <span class="token keyword">await</span> Runner<span class="token punctuation">.</span>run<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> <span class="token string">&quot;武汉的天气&quot;</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> item <span class="token keyword">in</span> result<span class="token punctuation">.</span>new_items<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;Agent运行期间输出项类型: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">type</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">, 输出项对象: </span><span class="token interpolation"><span class="token punctuation">{</span>item<span class="token punctuation">.</span>raw_item<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;Agent最终输出: </span><span class="token interpolation"><span class="token punctuation">{</span>result<span class="token punctuation">.</span>final_output<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span><span class="token punctuation">:</span>
+    asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><p>观测Agent执行过程：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">User</span>
+ ↓
+Agent 思考
+ ↓
+ToolCallItem        ← 记录“决定调用工具”
+ ↓
+ToolCallOutputItem  ← 记录“工具返回”
+ ↓
+MessageOutputItem  ← 记录“模型输出”
+</code></pre></div><h5 id="_4、output-items使用场景"><a href="#_4、output-items使用场景" class="header-anchor">#</a> 4、Output Items使用场景</h5> <p>官网链接：https://openai.github.io/openai-agents-python/ref/items/</p> <p><strong>Agents SDK 最常用 Output Items五剑客</strong></p> <p>Output Items 是 <strong>Run 的执行事实记录</strong>，不是模型回复，而是对 Agent 行为的结构化审计日志。</p> <table><thead><tr><th>分类</th> <th>类型名称</th> <th>类名</th> <th>业务含义</th></tr></thead> <tbody><tr><td>会话输出</td> <td>模型消息</td> <td><code>MessageOutputItem</code></td> <td><strong>最终对话内容</strong>，承载 <code>role=assistant/user/system</code>，是 Conversation Plane 的唯一出口</td></tr> <tr><td>决策行为</td> <td>工具调用</td> <td><code>ToolCallItem</code></td> <td>Agent 决定调用某个工具（函数名 + 参数 JSON）</td></tr> <tr><td>行为结果</td> <td>工具返回</td> <td><code>ToolCallOutputItem</code></td> <td>工具执行后的真实返回值</td></tr> <tr><td>流程控制</td> <td>Agent 交接</td> <td><code>HandoffOutputItem</code></td> <td>当前 Agent 主动切换控制权给其他 Agent</td></tr> <tr><td>执行推理</td> <td>推理摘要</td> <td><code>ReasoningItem</code> / <code>ResponseReasoningItem</code></td> <td>模型在每一步决策前后的<strong>执行级思考记录</strong>（Execution Plane 专用）</td></tr></tbody></table> <blockquote><p>Agent 不是直接“说话”，而是在执行。
+MessageOutputItem 是执行世界翻译成对话世界的唯一出口。</p></blockquote> <p><strong>Agents SDK 最容易混淆的Output Items</strong></p> <p>第一组：MessageOutputItem / ResponseOutputItem / ResponseOutputMessage/ResponseOutputText</p> <p>第二组：ReasoningItem / ResponseReasoningItem</p> <p><strong>1、先记住三条铁律</strong></p> <table><thead><tr><th>层</th> <th>Plane</th> <th>你现在看到的</th></tr></thead> <tbody><tr><td>Conversation Plane</td> <td>模型说了什么</td> <td><code>final_output</code> / assistant 消息</td></tr> <tr><td>Execution Plane</td> <td>Run 发生了什么</td> <td>Output Items / Event Stream</td></tr> <tr><td>Transport Plane</td> <td>厂商协议</td> <td>ResponseXXX / OpenAI SDK</td></tr></tbody></table> <p><strong>2、解释说明</strong></p> <p><strong>2.1 MessageOutputItem</strong>（Execution Plane 标准接口）</p> <p>表示：<strong>Run 产生了一条“对话消息”这个事实</strong></p> <p><strong>2.2 ResponseOutputMessage</strong>（Transport Plane 具体实现）</p> <p>这是OpenAI <code>responses.create()</code> API 的原生输出结构，SDK 做了适配：ResponseOutputMessage  ⟶  MessageOutputItem</p> <p>所以：</p> <table><thead><tr><th>SDK 对外类型</th> <th>实际实例</th></tr></thead> <tbody><tr><td>MessageOutputItem</td> <td>ResponseOutputMessage</td></tr></tbody></table> <p><strong>2.3 ResponseOutputItem</strong>又是什么？（Transport Plane 具体实现）</p> <p>这是一个<strong>厂商响应协议的父类</strong>：它不是“消息”，而是：OpenAI Responses API 所有输出项的基础类，包括</p> <table><thead><tr><th>子类</th></tr></thead> <tbody><tr><td>ResponseOutputMessage</td></tr> <tr><td>ResponseReasoningItem</td></tr> <tr><td>ResponseFunctionToolCall</td></tr> <tr><td>ResponseFunctionToolOutput</td></tr></tbody></table> <p><strong>三者关系</strong>：</p> <blockquote><p>ResponseOutputItem  (协议基类)
+├── ResponseOutputMessage（SDK实际输出项类型）  ───▶ MessageOutputItem（对外）
+├── ResponseReasoningItem（SDK实际输出项类型） ───▶ ReasoningItem（对外）
+└── ResponseFunctionToolCall（SDK实际输出项类型）─▶ ToolCallItem（对外）</p></blockquote> <p>2.4 <strong>ResponseOutputText又是什么？</strong></p> <p>它是模型一条消息内部的最小“文本分片单元”模型一句话的原子粒子。为什么要拆成 ResponseOutputText？这是为了支持</p> <p>多模态：同一条消息可混合 text / image / audio</p> <p>流式推送：每个 token 以 <code>ResponseTextDeltaEvent</code> 增量推送</p> <p><strong>2.5 ReasoningItem</strong>（Execution Plane  标准接口）</p> <p>表示：<strong>Run 过程中模型发生了一次推理行为</strong>这个事实，不属于对话内容。</p> <p><strong>2.6 ResponseReasoningItem</strong>（Transport Plane 具体实现）</p> <p>这是 OpenAI Responses API 的的原生输出结构{ &quot;type&quot;: &quot;reasoning&quot;, &quot;summary&quot;: [...] }，SDK 做了适配：ResponseReasoningItem⟶  ReasoningItem</p> <p><strong>3.一句话杀死</strong></p> <p><strong>ResponseXXX 是厂商协议，XXXOutputItem 是 Agent 执行事实。</strong></p> <p>思考：为什么 final_output 只有 MessageOutputItem？</p> <blockquote><p>final_output 是 <strong>Conversation Plane 的投影结果</strong>，不是 Execution Plane 的日志。</p></blockquote> <h4 id="_3、事件流-stream-event"><a href="#_3、事件流-stream-event" class="header-anchor">#</a> 3、事件流（Stream Event ）</h4> <p>现在我们知道：Run 会产生 Output Items —— 但它们是<strong>执行完后才一次性给你的</strong>。</p> <h5 id="_1、什么是stream-event"><a href="#_1、什么是stream-event" class="header-anchor">#</a> 1、什么是Stream Event</h5> <p>Stream Event 是：Run 在执行过程中，<strong>把每一个 Output Item 变成实时事件发出来</strong>，不是结果，是<strong>过程直播</strong>。</p> <p>从本质看，事件流是 Run 对自身执行过程的“实时可观测接口（Observability API）”它是Execution Plane 的实时遥测系统（telemetry bus）,换句话说是Run 在执行时，实时“播报”Output Items 的方式。</p> <h5 id="_2、为什么要用stream-event"><a href="#_2、为什么要用stream-event" class="header-anchor">#</a> 2、为什么要用Stream Event</h5> <table><thead><tr><th>业务诉求</th> <th>没有 Event Stream</th></tr></thead> <tbody><tr><td>实时进度条</td> <td>做不了</td></tr> <tr><td>Agent 多阶段提示</td> <td>做不了</td></tr> <tr><td>Tool 执行状态 UI</td> <td>做不了</td></tr></tbody></table> <h5 id="_3、如何使用stream-event"><a href="#_3、如何使用stream-event" class="header-anchor">#</a> 3、如何使用Stream Event</h5> <p>从官网看Agents SDK 的 <code>stream_events()</code> 返回的 <code>StreamEvent</code> 其实只有 <strong>三类事件</strong></p> <p>官网链接：https://openai.github.io/openai-agents-python/ref/stream_events/#agents.stream_events.RawResponsesStreamEvent</p> <p><strong>1.RawResponsesStreamEvent</strong>（<code>type=&quot;raw_response_event&quot;</code>）</p> <p><strong>2.RunItemStreamEvent</strong>（<code>type=&quot;run_item_stream_event&quot;</code>）</p> <p><strong>3.AgentUpdatedStreamEvent</strong>（<code>type=&quot;agent_updated_stream_event&quot;</code>）</p> <p>虽然说是三种，本质就是：<strong>用哪一类事件来驱动你的业务 UI/日志/调试</strong></p> <blockquote><p>注意：<strong>RawResponsesStreamEvent / RunItemStreamEvent / AgentUpdatedStreamEvent
+只在 <code>run_streamed()</code> 模式下产生。</strong>
+普通 <code>run()</code> / <code>run_async()</code> 永远拿不到这些事件。</p> <p>因为 <code>run</code> / <code>run_async</code>，因为它们的语义是：“我不关心你中间怎么做，只给我最终结果。”，所有中间过程，都会被<strong>直接吞掉</strong>，不会对外广播。</p> <p>而<code>run_streamed()</code> 的语义是：“我需要你<strong>边执行边汇报执行过程</strong>。”</p></blockquote> <p>记住：<code>run()</code> 是结果 API，<code>run_streamed()</code> 是执行遥测 API</p> <h6 id="_1-rawresponsesstreamevent"><a href="#_1-rawresponsesstreamevent" class="header-anchor">#</a> 1.RawResponsesStreamEvent</h6> <p><code>RawResponsesStreamEvent</code> 是“直接从 LLM 透传出来的 raw streaming event”，属于<strong>模型底层流式事件的总包装器</strong>，主要是用来拿“模型原始增量&quot;,非常适合做“打字机效果”/实时输出，关心的是 <strong>模型流式 token</strong>，不关心工具/交接的细节，而真正有用的是它里面的 <code>event.data</code> 的类型。</p> <p>最常用的两个具体实现类原始推理增量类<code>ResponseReasoningDeltaEvent</code>、原始文本增量类<code>ResponseTextDeltaEvent</code></p> <p><code>ResponseReasoningDeltaEvent</code>是模型在“思考阶段”实时吐出的 reasoning 片段，本质上不是给用户看的内容，是模型内部 Chain-of-Thought 的增量片段，而SDK 会把它们汇总成最终的 <code>ResponseReasoningItem</code></p> <p><strong>核心代码骨架：</strong></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">,</span> ResponseReasoningDeltaEvent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;推理中:&quot;</span><span class="token punctuation">,</span> event<span class="token punctuation">.</span>data<span class="token punctuation">.</span>delta<span class="token punctuation">)</span>
+</code></pre></div><p><code>ResponseTextDeltaEvent</code>是模型正在给用户“吐字”的每一个文本分片，就是我们熟悉的流式输出内容，而SDK最终会合成为 <code>MessageOutputItem → ResponseOutputMessage</code>。</p> <p><strong>核心代码骨架：</strong></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">,</span> ResponseTextDeltaEvent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;输出:&quot;</span><span class="token punctuation">,</span> event<span class="token punctuation">.</span>data<span class="token punctuation">.</span>delta<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+</code></pre></div><h6 id="_2-runitemstreamevent"><a href="#_2-runitemstreamevent" class="header-anchor">#</a> 2.RunItemStreamEvent</h6> <p><code>RunItemStreamEvent是</code><strong>“Run 新增了一个 OutputItem”时的事件</strong>,它不是Token,本质上<strong>Execution Plane 的结构化状态节点广播器</strong>，相反非常关心工具/交接的细节，不关心<strong>模型流式 token</strong>。</p> <p>最常用的两个具体实现类工具被调用（ToolCallItem）工具执行完成（ToolCallOutputItem）</p> <p><code>ToolCallItem</code> 表示Agent 已经决定 我要调用某个工具了（函数名 + 参数已确定）。事件名：tool_called，对应 Output Item 类ToolCallItem</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">if</span> event<span class="token punctuation">.</span><span class="token builtin">type</span> <span class="token operator">==</span> <span class="token string">&quot;run_item_stream_event&quot;</span> <span class="token keyword">and</span> event<span class="token punctuation">.</span>name <span class="token operator">==</span> <span class="token string">&quot;tool_called&quot;</span><span class="token punctuation">:</span>
+    tool_call_item <span class="token operator">=</span> event<span class="token punctuation">.</span>item<span class="token punctuation">.</span>raw_item
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;调用工具:&quot;</span><span class="token punctuation">,</span> tool_call_item<span class="token punctuation">.</span>name<span class="token punctuation">,</span> tool_call_item<span class="token punctuation">.</span>arguments<span class="token punctuation">)</span>
+
+</code></pre></div><p><code>ToolCallOutputItem</code> 表示Agent 已经调用完工具了，工具已经跑完，工具结果回来了。事件名：tool_output，对应 Output Item 类ToolCallOutputItem</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">if</span> event<span class="token punctuation">.</span><span class="token builtin">type</span> <span class="token operator">==</span> <span class="token string">&quot;run_item_stream_event&quot;</span> <span class="token keyword">and</span> event<span class="token punctuation">.</span>name <span class="token operator">==</span> <span class="token string">&quot;tool_output&quot;</span><span class="token punctuation">:</span>
+    output_item <span class="token operator">=</span> event<span class="token punctuation">.</span>item
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;工具结果:&quot;</span><span class="token punctuation">,</span> output_item<span class="token punctuation">.</span>output<span class="token punctuation">)</span>
+
+</code></pre></div><h6 id="_3-agentupdatedstreamevent"><a href="#_3-agentupdatedstreamevent" class="header-anchor">#</a> 3.AgentUpdatedStreamEvent</h6> <p><code>AgentUpdatedStreamEvent</code>是指“现在有一个新的 agent 在运行，适合多 Agent 场景下做 UI：显示“当前正在由哪个 agent 处理”，或者想在日志里标记：<strong>从 orchestrator → 某个子 agent 的运行切换</strong>，字段是 <code>new_agent</code></p> <p><strong>核心代码骨架：</strong></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">async</span> <span class="token keyword">for</span> event <span class="token keyword">in</span> result<span class="token punctuation">.</span>stream_events<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> event<span class="token punctuation">.</span><span class="token builtin">type</span> <span class="token operator">==</span> <span class="token string">&quot;agent_updated_stream_event&quot;</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;当前Agent:&quot;</span><span class="token punctuation">,</span> event<span class="token punctuation">.</span>new_agent<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+
+</code></pre></div><h6 id="_4-三者结合使用"><a href="#_4-三者结合使用" class="header-anchor">#</a> 4.三者结合使用</h6> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">import</span> asyncio
+
+<span class="token keyword">from</span> openai <span class="token keyword">import</span> AsyncOpenAI
+<span class="token keyword">from</span> openai<span class="token punctuation">.</span>types<span class="token punctuation">.</span>responses <span class="token keyword">import</span> ResponseTextDeltaEvent<span class="token punctuation">,</span> ResponseReasoningSummaryTextDeltaEvent
+
+<span class="token keyword">from</span> agents <span class="token keyword">import</span> <span class="token punctuation">(</span>
+    Agent<span class="token punctuation">,</span>
+    OpenAIChatCompletionsModel<span class="token punctuation">,</span>
+    Runner<span class="token punctuation">,</span>
+    function_tool<span class="token punctuation">,</span>
+    set_tracing_disabled<span class="token punctuation">,</span>
+    ModelSettings<span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">from</span> agents<span class="token punctuation">.</span>items <span class="token keyword">import</span> ToolCallItem<span class="token punctuation">,</span> ToolCallOutputItem<span class="token punctuation">,</span> MessageOutputItem<span class="token punctuation">,</span> ReasoningItem<span class="token punctuation">,</span> HandoffOutputItem
+
+
+<span class="token comment">#（分别演示）</span>
+<span class="token comment"># BASE_URL = &quot;https://api.siliconflow.cn/v1&quot;</span>
+<span class="token comment"># API_KEY =  &quot;sk-vnxijjgodhcjisacoilnebjzzlqmrwyuluqdxcpwauocgqjm&quot;</span>
+<span class="token comment"># MODEL_NAME = &quot;Qwen/Qwen3-32B&quot;</span>
+
+BASE_URL <span class="token operator">=</span> <span class="token string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+API_KEY <span class="token operator">=</span>  <span class="token string">&quot;sk-26d57c968c364e7bb14f1fc350d4bff0&quot;</span>
+MODEL_NAME <span class="token operator">=</span> <span class="token string">&quot;qwen3-max&quot;</span>
+
+client <span class="token operator">=</span> AsyncOpenAI<span class="token punctuation">(</span>base_url<span class="token operator">=</span>BASE_URL<span class="token punctuation">,</span> api_key<span class="token operator">=</span>API_KEY<span class="token punctuation">)</span>
+set_tracing_disabled<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+
+<span class="token decorator annotation punctuation">@function_tool</span>
+<span class="token keyword">def</span> <span class="token function">get_weather</span><span class="token punctuation">(</span>city<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string-interpolation"><span class="token string">f&quot;天气信息: </span><span class="token interpolation"><span class="token punctuation">{</span>city<span class="token punctuation">}</span></span><span class="token string"> 是晴天&quot;</span></span>
+
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+        name<span class="token operator">=</span><span class="token string">&quot;天气助手&quot;</span><span class="token punctuation">,</span>
+        instructions<span class="token operator">=</span><span class="token string">&quot;你是一个天气助手，用户问天气必须调用 get_weather，禁止编造。&quot;</span><span class="token punctuation">,</span>
+        model<span class="token operator">=</span>OpenAIChatCompletionsModel<span class="token punctuation">(</span>model<span class="token operator">=</span>MODEL_NAME<span class="token punctuation">,</span> openai_client<span class="token operator">=</span>client<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        tools<span class="token operator">=</span><span class="token punctuation">[</span>get_weather<span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token comment"># 让模型更倾向一定要走工具</span>
+        model_settings<span class="token operator">=</span>ModelSettings<span class="token punctuation">(</span>tool_choice<span class="token operator">=</span><span class="token string">&quot;required&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+    <span class="token comment">#  关键：使用 run_streamed 才会有三类 StreamEvent</span>
+    result <span class="token operator">=</span> Runner<span class="token punctuation">.</span>run_streamed<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> <span class="token string">&quot;武汉的天气怎么样？&quot;</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">async</span> <span class="token keyword">for</span> event <span class="token keyword">in</span> result<span class="token punctuation">.</span>stream_events<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># ---------------------------------------------------------------------</span>
+        <span class="token comment"># 1) RawResponsesStreamEvent：模型“原始流”事件（token/片段增量）</span>
+        <span class="token comment"># ---------------------------------------------------------------------</span>
+        <span class="token keyword">if</span> event<span class="token punctuation">.</span><span class="token builtin">type</span> <span class="token operator">==</span> <span class="token string">&quot;raw_response_event&quot;</span><span class="token punctuation">:</span>
+            <span class="token comment"># 1.1 文本增量（最常见）</span>
+            <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">,</span> ResponseTextDeltaEvent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">.</span>delta<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> flush<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+            <span class="token comment"># 1.2 推理摘要增量（部分模型/后端会支持；不支持就不会出现）</span>
+            <span class="token keyword">elif</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">,</span> ResponseReasoningSummaryTextDeltaEvent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token comment"># 你也可以选择打印到单独区域</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;\n[reasoning_summary_delta]&quot;</span><span class="token punctuation">,</span> event<span class="token punctuation">.</span>data<span class="token punctuation">.</span>delta<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> flush<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># ---------------------------------------------------------------------</span>
+        <span class="token comment"># 2) RunItemStreamEvent：执行过程结构化节点（工具/消息/推理/交接等）</span>
+        <span class="token comment"># ---------------------------------------------------------------------</span>
+        <span class="token keyword">elif</span> event<span class="token punctuation">.</span><span class="token builtin">type</span> <span class="token operator">==</span> <span class="token string">&quot;run_item_stream_event&quot;</span><span class="token punctuation">:</span>
+            name <span class="token operator">=</span> <span class="token builtin">getattr</span><span class="token punctuation">(</span>event<span class="token punctuation">,</span> <span class="token string">&quot;name&quot;</span><span class="token punctuation">,</span> <span class="token boolean">None</span><span class="token punctuation">)</span>
+
+            <span class="token comment"># 2.1 工具调用</span>
+            <span class="token keyword">if</span> name <span class="token operator">==</span> <span class="token string">&quot;tool_called&quot;</span> <span class="token keyword">and</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>item<span class="token punctuation">,</span> ToolCallItem<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                tool_name <span class="token operator">=</span> event<span class="token punctuation">.</span>item<span class="token punctuation">.</span>raw_item<span class="token punctuation">.</span>name
+                tool_args <span class="token operator">=</span> event<span class="token punctuation">.</span>item<span class="token punctuation">.</span>raw_item<span class="token punctuation">.</span>arguments
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;\n\n 调用工具: </span><span class="token interpolation"><span class="token punctuation">{</span>tool_name<span class="token punctuation">}</span></span><span class="token string"> args=</span><span class="token interpolation"><span class="token punctuation">{</span>tool_args<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+
+            <span class="token comment"># 2.2 工具输出</span>
+            <span class="token keyword">elif</span> name <span class="token operator">==</span> <span class="token string">&quot;tool_output&quot;</span> <span class="token keyword">and</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>item<span class="token punctuation">,</span> ToolCallOutputItem<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;\n 工具输出: </span><span class="token interpolation"><span class="token punctuation">{</span>event<span class="token punctuation">.</span>item<span class="token punctuation">.</span>output<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+
+            <span class="token comment"># 2.3 生成了一条对话消息（最终给用户看的那种）</span>
+            <span class="token keyword">elif</span> name <span class="token operator">==</span> <span class="token string">&quot;message_output_created&quot;</span> <span class="token keyword">and</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>item<span class="token punctuation">,</span> MessageOutputItem<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token comment"># 注意：不同版本的字段可能略有差异，这里给最通用的打印方式</span>
+                <span class="token keyword">try</span><span class="token punctuation">:</span>
+                    msg <span class="token operator">=</span> event<span class="token punctuation">.</span>item<span class="token punctuation">.</span>raw_item
+                    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;\n message_output_created: role=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">getattr</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> <span class="token string">'role'</span><span class="token punctuation">,</span> <span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+                <span class="token keyword">except</span> Exception<span class="token punctuation">:</span>
+                    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;\n message_output_created&quot;</span><span class="token punctuation">)</span>
+
+            <span class="token comment"># 2.4 生成了一条推理项（Execution Plane 的“事实记录”）</span>
+            <span class="token keyword">elif</span> name <span class="token operator">==</span> <span class="token string">&quot;reasoning_item_created&quot;</span> <span class="token keyword">and</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>item<span class="token punctuation">,</span> ReasoningItem<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">try</span><span class="token punctuation">:</span>
+                    summary <span class="token operator">=</span> event<span class="token punctuation">.</span>item<span class="token punctuation">.</span>raw_item<span class="token punctuation">.</span>summary
+                    <span class="token keyword">if</span> summary<span class="token punctuation">:</span>
+                        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;\n reasoning_item_created:&quot;</span><span class="token punctuation">,</span> summary<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">200</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">&quot;...&quot;</span><span class="token punctuation">)</span>
+                    <span class="token keyword">else</span><span class="token punctuation">:</span>
+                        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;\n reasoning_item_created (no summary)&quot;</span><span class="token punctuation">)</span>
+                <span class="token keyword">except</span> Exception<span class="token punctuation">:</span>
+                    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;\n reasoning_item_created&quot;</span><span class="token punctuation">)</span>
+
+            <span class="token comment"># 2.5 多 Agent 交接（如果你只有单 Agent，通常不会触发）</span>
+            <span class="token keyword">elif</span> name <span class="token keyword">in</span> <span class="token punctuation">(</span><span class="token string">&quot;handoff_occured&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;handoff_requested&quot;</span><span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>item<span class="token punctuation">,</span> HandoffOutputItem<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">try</span><span class="token punctuation">:</span>
+                    src <span class="token operator">=</span> event<span class="token punctuation">.</span>item<span class="token punctuation">.</span>raw_item<span class="token punctuation">.</span>source_agent<span class="token punctuation">.</span>name
+                    tgt <span class="token operator">=</span> event<span class="token punctuation">.</span>item<span class="token punctuation">.</span>raw_item<span class="token punctuation">.</span>target_agent<span class="token punctuation">.</span>name
+                    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;\n </span><span class="token interpolation"><span class="token punctuation">{</span>name<span class="token punctuation">}</span></span><span class="token string">: </span><span class="token interpolation"><span class="token punctuation">{</span>src<span class="token punctuation">}</span></span><span class="token string"> -&gt; </span><span class="token interpolation"><span class="token punctuation">{</span>tgt<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+                <span class="token keyword">except</span> Exception<span class="token punctuation">:</span>
+                    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;\n </span><span class="token interpolation"><span class="token punctuation">{</span>name<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token comment"># 你想看全量事件名时可打开</span>
+                <span class="token comment"># print(&quot;\n[run_item_stream_event]&quot;, name, type(event.item))</span>
+                <span class="token keyword">pass</span>
+
+        <span class="token comment"># ---------------------------------------------------------------------</span>
+        <span class="token comment"># 3) AgentUpdatedStreamEvent：当前运行 Agent 更新（多 Agent 编排更明显）</span>
+        <span class="token comment"># ---------------------------------------------------------------------</span>
+        <span class="token keyword">elif</span> event<span class="token punctuation">.</span><span class="token builtin">type</span> <span class="token operator">==</span> <span class="token string">&quot;agent_updated_stream_event&quot;</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;\n\n👤 agent_updated_stream_event: </span><span class="token interpolation"><span class="token punctuation">{</span>event<span class="token punctuation">.</span>new_agent<span class="token punctuation">.</span>name<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;\n\nfinal_output:&quot;</span><span class="token punctuation">,</span> result<span class="token punctuation">.</span>final_output<span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span><span class="token punctuation">:</span>
+    asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+</code></pre></div><h5 id="_4、-stream-event使用场景"><a href="#_4、-stream-event使用场景" class="header-anchor">#</a> 4、 Stream Event使用场景</h5> <table><thead><tr><th>场景</th> <th>用 Stream Event</th></tr></thead> <tbody><tr><td>Web 前端流式输出</td> <td>✔</td></tr> <tr><td>Agent 工作进度条</td> <td>✔</td></tr> <tr><td>实时日志</td> <td>✔</td></tr> <tr><td>Agent 监控面板</td> <td>✔</td></tr> <tr><td>可视化执行流水线</td> <td>✔</td></tr></tbody></table> <blockquote><p>一句话总结：</p> <p><strong>RawResponsesStreamEvent</strong> 给你“模型在吐字”；<strong>RunItemStreamEvent</strong> 给你“系统在执行什么”； <strong>AgentUpdatedStreamEvent</strong> 给你“现在是谁在处理”。</p> <p>一句话在总结Output Items 是 Run 的“事实记录”，Stream Event 是 Run 的“时间播放”，它们共同构成 Execution Plane 的核心可观测接口。</p></blockquote> <h4 id="_4、-历史对话-conversation"><a href="#_4、-历史对话-conversation" class="header-anchor">#</a> 4、 历史对话（Conversation）</h4> <h5 id="_1-什么是conversation"><a href="#_1-什么是conversation" class="header-anchor">#</a> 1.什么是Conversation</h5> <p>在 OpenAI Agents SDK 中：</p> <p>官网链接：https://openai.github.io/openai-agents-python/sessions/</p> <blockquote><p><strong>Conversation = 一次 Run 的完整记忆时间线（Memory Timeline）</strong></p></blockquote> <p>它不是一段文本，而是一个<strong>结构化执行日志集合</strong>，内部包含：</p> <table><thead><tr><th>顺序</th> <th>产生者</th> <th>内容</th></tr></thead> <tbody><tr><td>1</td> <td>用户</td> <td>用户输入问题</td></tr> <tr><td>2</td> <td>Agent</td> <td>模型推理（ReasoningItem）</td></tr> <tr><td>3</td> <td>Agent</td> <td>决定调用工具（ToolCallItem）</td></tr> <tr><td>4</td> <td>Tool</td> <td>工具执行结果（ToolCallOutputItem）</td></tr> <tr><td>5</td> <td>Agent</td> <td>生成最终回复（MessageOutputItem）</td></tr></tbody></table> <p>它本质是：<strong>Output Items</strong> 的时间有序集合</p> <h5 id="_2-为什么要用conversation"><a href="#_2-为什么要用conversation" class="header-anchor">#</a> 2.为什么要用Conversation</h5> <ol><li><strong>保持上下文</strong>：记住之前的对话内容</li> <li><strong>连贯性</strong>：确保回复逻辑一致</li> <li><strong>分析调试</strong>：便于问题排查和优化</li></ol> <p>如果没有 Conversation：</p> <ul><li>每一轮都是“失忆 Agent”</li> <li>工具调用、历史输入全部丢失</li> <li>多轮对话无法成立</li></ul> <p>使用 Conversation 后，Agent 拥有了：</p> <table><thead><tr><th>能力</th> <th>说明</th></tr></thead> <tbody><tr><td>记忆能力</td> <td>自动携带历史输入</td></tr> <tr><td>多轮对话</td> <td>Run 自动拼接上下文</td></tr> <tr><td>可回溯</td> <td>所有 Tool / 消息都可查询</td></tr> <tr><td>可调试</td> <td>支持事后审计、行为回放</td></tr> <tr><td>可持久化</td> <td>写入 SQLite / JSON / Redis</td></tr></tbody></table> <h5 id="_3-如何使用conversation"><a href="#_3-如何使用conversation" class="header-anchor">#</a> 3.如何使用Conversation</h5> <p>OpenAI Agents SDK 通过 <strong>Session 对象</strong> 管理 Conversation。</p> <p><strong>1. 核心代码骨架</strong></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> agents <span class="token keyword">import</span> SQLiteSession
+session <span class="token operator">=</span> SQLiteSession<span class="token punctuation">(</span><span class="token string">&quot;user_001_weather_chat&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;conversations.db&quot;</span><span class="token punctuation">)</span>
+result <span class="token operator">=</span> Runner<span class="token punctuation">.</span>run_streamed<span class="token punctuation">(</span>
+    agent<span class="token punctuation">,</span>
+    <span class="token string">&quot;武汉的天气怎么样？&quot;</span><span class="token punctuation">,</span>
+    session<span class="token operator">=</span>session
+<span class="token punctuation">)</span>
+</code></pre></div><p>SDK 会自动将&quot;用户输入&quot; &quot;Agent 输出&quot; &quot;工具调用&quot; &quot;工具返回结果&quot;全部写入 <code>conversations.db</code></p> <p><strong>2. Conversation 的自动续写机制</strong></p> <p>同一个 <code>session_id</code>，Conversation 会自动续写。你<strong>不需要自己拼 history</strong>，SDK 内部已经做了。历史消息 + 新用户输入 → 新一轮推理</p> <div class="language-python extra-class"><pre class="language-python"><code>result2 <span class="token operator">=</span> <span class="token keyword">await</span> Runner<span class="token punctuation">.</span>run<span class="token punctuation">(</span>
+    agent<span class="token punctuation">,</span>
+    <span class="token string">&quot;我刚刚问了你什么问题？&quot;</span><span class="token punctuation">,</span>
+    session<span class="token operator">=</span>session<span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+</code></pre></div><p><strong>3.如何读取历史对话</strong></p> <div class="language-python extra-class"><pre class="language-python"><code>items <span class="token operator">=</span> <span class="token keyword">await</span> session<span class="token punctuation">.</span>get_items<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> it <span class="token keyword">in</span> items<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span>
+</code></pre></div><p>你会看到这些类型的数据：</p> <table><thead><tr><th>type</th> <th>含义</th></tr></thead> <tbody><tr><td><code>message</code></td> <td>用户 / Agent 消息</td></tr> <tr><td><code>function_call</code></td> <td>工具调用</td></tr> <tr><td><code>function_call_output</code></td> <td>工具返回结果</td></tr> <tr><td><code>reasoning</code></td> <td>推理摘要</td></tr></tbody></table> <p><strong>也即它是Run 执行全过程的结构化日志仓库</strong></p> <h5 id="_4-conversation使用场景"><a href="#_4-conversation使用场景" class="header-anchor">#</a> 4.Conversation使用场景</h5> <table><thead><tr><th>场景</th> <th>用 Conversation</th></tr></thead> <tbody><tr><td>多轮聊天</td> <td>✔</td></tr> <tr><td>Agent 长期记忆</td> <td>✔</td></tr> <tr><td>工具链调试</td> <td>✔</td></tr> <tr><td>线上日志审计</td> <td>✔</td></tr> <tr><td>用户行为分析</td> <td>✔</td></tr></tbody></table> <h2 id="_4、agent进阶"><a href="#_4、agent进阶" class="header-anchor">#</a> 4、Agent进阶</h2> <p>本节将深入探讨Agent的高级特性和设计模式，帮助你构建更强大、更灵活的AI应用系统。</p> <h3 id="_4-1-agent集成mcp"><a href="#_4-1-agent集成mcp" class="header-anchor">#</a> 4.1 Agent集成MCP</h3> <h4 id="_1、什么是mcp"><a href="#_1、什么是mcp" class="header-anchor">#</a> 1、什么是MCP</h4> <p><strong>MCP</strong>（Model Context Protocol，模型上下文协议）是一个<strong>标准化的&quot;工具注册与发现协议&quot;</strong>，核心目标是让Agent在运行时从外部MCP Server动态加载工具，而不是将工具硬编码在代码中。</p> <p>对比传统方式：</p> <table><thead><tr><th style="text-align:left;">方式</th> <th style="text-align:left;">特点</th> <th style="text-align:left;">问题</th></tr></thead> <tbody><tr><td style="text-align:left;"><strong>传统方式（function_tool）</strong></td> <td style="text-align:left;">工具必须在代码中注册和定义</td> <td style="text-align:left;">代码臃肿，难以维护，更新需要重新部署</td></tr> <tr><td style="text-align:left;"><strong>MCP方式</strong></td> <td style="text-align:left;">工具由<strong>外部服务动态提供</strong>，Agent启动时自动发现</td> <td style="text-align:left;">解耦工具和Agent，支持热更新和动态扩展</td></tr></tbody></table> <p><strong>核心概念：</strong></p> <ul><li><strong>MCP Server</strong>：提供工具的外部服务</li> <li><strong>MCP Client</strong>：Agent中连接MCP Server的组件</li> <li><strong>工具动态发现</strong>：Agent运行时自动获取可用工具列表</li></ul> <h4 id="_2、为什么要用mcp"><a href="#_2、为什么要用mcp" class="header-anchor">#</a> 2、为什么要用MCP</h4> <p><strong>现实系统面临的挑战：</strong></p> <ol><li><strong>工具数量众多</strong>：企业可能有几十甚至上百个工具</li> <li><strong>工具来源分散</strong>：不同部门提供不同类型的工具</li> <li><strong>工具频繁变更</strong>：业务需求变化导致工具需要不断更新</li></ol> <p><strong>传统方式的问题：</strong></p> <ul><li>每增加一个工具就要修改Agent代码并重新部署</li> <li>Agent与具体业务系统强耦合，难以复用</li> <li>多Agent系统无法共享统一的工具生态</li> <li>权限控制和安全管理变得复杂</li></ul> <p><strong>MCP的核心价值：</strong></p> <ul><li><strong>解耦设计</strong>：将工具从Agent中分离，变成独立的&quot;插件&quot;</li> <li><strong>动态扩展</strong>：新工具上线无需修改Agent代码</li> <li><strong>统一管理</strong>：集中管控工具权限和版本</li> <li><strong>生态共享</strong>：多Agent可以共享同一套工具生态</li></ul> <p>MCP 的价值就是一句话：<strong>工具从 Agent 中解耦，变成“插件生态”</strong>。</p> <h4 id="_3、agent如何集成mcp"><a href="#_3、agent如何集成mcp" class="header-anchor">#</a> 3、Agent如何集成MCP</h4> <p>官网链接：https://openai.github.io/openai-agents-python/mcp/</p> <h5 id="_3-1-基本集成步骤"><a href="#_3-1-基本集成步骤" class="header-anchor">#</a> 3.1 基本集成步骤</h5> <p><strong>步骤1：启动MCP Server</strong>
+首先需要一个提供工具的MCP服务器：</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># 示例：简单的MCP Server</span>
+<span class="token keyword">from</span> agents<span class="token punctuation">.</span>mcp <span class="token keyword">import</span> MCPServer
+<span class="token keyword">import</span> uvicorn
+<span class="token keyword">from</span> fastapi <span class="token keyword">import</span> FastAPI
+
+app <span class="token operator">=</span> FastAPI<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 注册工具</span>
+<span class="token decorator annotation punctuation">@tool</span>
+<span class="token keyword">def</span> <span class="token function">get_weather</span><span class="token punctuation">(</span>city<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;获取指定城市的天气&quot;&quot;&quot;</span>
+    <span class="token comment"># 实现天气查询逻辑</span>
+    <span class="token keyword">return</span> <span class="token string-interpolation"><span class="token string">f&quot;</span><span class="token interpolation"><span class="token punctuation">{</span>city<span class="token punctuation">}</span></span><span class="token string">的天气是晴天，25℃&quot;</span></span>
+
+<span class="token decorator annotation punctuation">@tool</span>  
+<span class="token keyword">def</span> <span class="token function">query_order</span><span class="token punctuation">(</span>order_id<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">dict</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;查询订单状态&quot;&quot;&quot;</span>
+    <span class="token comment"># 实现订单查询逻辑</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token string">&quot;status&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;已发货&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;tracking&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;123456&quot;</span><span class="token punctuation">}</span>
+
+<span class="token comment"># 创建MCP Server</span>
+mcp_server <span class="token operator">=</span> MCPServer<span class="token punctuation">(</span>
+    name<span class="token operator">=</span><span class="token string">&quot;企业工具服务&quot;</span><span class="token punctuation">,</span>
+    description<span class="token operator">=</span><span class="token string">&quot;提供企业内部各种业务工具&quot;</span><span class="token punctuation">,</span>
+    tools<span class="token operator">=</span><span class="token punctuation">[</span>get_weather<span class="token punctuation">,</span> query_order<span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 将MCP Server挂载到FastAPI应用</span>
+app<span class="token punctuation">.</span>mount<span class="token punctuation">(</span><span class="token string">&quot;/mcp&quot;</span><span class="token punctuation">,</span> mcp_server<span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span><span class="token punctuation">:</span>
+    uvicorn<span class="token punctuation">.</span>run<span class="token punctuation">(</span>app<span class="token punctuation">,</span> host<span class="token operator">=</span><span class="token string">&quot;0.0.0.0&quot;</span><span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">3333</span><span class="token punctuation">)</span>
+</code></pre></div><p><strong>步骤2：Agent通过MCP Client连接</strong></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> agents <span class="token keyword">import</span> Agent
+<span class="token keyword">from</span> agents<span class="token punctuation">.</span>mcp <span class="token keyword">import</span> MCPClient
+
+<span class="token comment"># 创建MCP Client连接MCP Server</span>
+mcp_client <span class="token operator">=</span> MCPClient<span class="token punctuation">(</span>
+    server_url<span class="token operator">=</span><span class="token string">&quot;http://localhost:3333/mcp&quot;</span><span class="token punctuation">,</span>
+    name<span class="token operator">=</span><span class="token string">&quot;企业工具客户端&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 创建使用MCP工具的Agent</span>
+agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+    name<span class="token operator">=</span><span class="token string">&quot;企业助手&quot;</span><span class="token punctuation">,</span>
+    instructions<span class="token operator">=</span><span class="token string">&quot;你可以使用企业系统提供的各种工具来帮助用户解决问题。&quot;</span><span class="token punctuation">,</span>
+    mcp_servers<span class="token operator">=</span><span class="token punctuation">[</span>mcp_client<span class="token punctuation">]</span>  <span class="token comment"># 关键：通过mcp_servers参数连接</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 运行Agent - 会自动发现并加载MCP Server提供的所有工具</span>
+<span class="token keyword">from</span> agents <span class="token keyword">import</span> Runner
+
+result <span class="token operator">=</span> Runner<span class="token punctuation">.</span>run_sync<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> <span class="token string">&quot;帮我查一下订单123456的状态&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>final_output<span class="token punctuation">)</span>
+</code></pre></div><h5 id="_3-2-通过sse集成mcp"><a href="#_3-2-通过sse集成mcp" class="header-anchor">#</a> 3.2 通过SSE集成MCP</h5> <p><strong>1. 概念</strong>：SSE（Server-Sent Events）是一种用于服务器向浏览器推送实时更新的标准技术。它通过 HTTP 协议建立一个单向的持久连接，允许服务器将数据推送到客户端。</p> <p><strong>2.为什么要使用SSE来集成MCP？</strong></p> <p>在 <strong>Agent 与 MCP 集成</strong> 的场景下，SSE 提供了一种实时流式的方式来接收来自模型的工具调用结果、推理过程、以及最终输出等信息。</p> <ul><li><p><strong>实时数据流</strong>：SSE 使得后端系统能够实时推送数据到前端，适用于实时应用程序，特别是在需要模型调用外部工具并即时返回结果的场景中。</p></li> <li><p><strong>简洁高效</strong>：与 WebSocket 相比，SSE 更加简单，不需要双向通信，仅支持从服务器到客户端的单向流数据，适用于大多数实时数据场景。</p></li> <li><p><strong>易于实现</strong>：SSE 通过标准的 HTTP 协议工作，不需要复杂的配置或依赖，因此实现起来较为直接</p></li></ul> <p><strong>3.Agent如何使用SSE集成MCP？</strong></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> agents <span class="token keyword">import</span> Agent<span class="token punctuation">,</span> Runner
+<span class="token keyword">from</span> agents<span class="token punctuation">.</span>model_settings <span class="token keyword">import</span> ModelSettings
+<span class="token keyword">from</span> agents<span class="token punctuation">.</span>mcp <span class="token keyword">import</span> MCPServerSse
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    workspace_id <span class="token operator">=</span> <span class="token string">&quot;demo-workspace&quot;</span>
+    
+    <span class="token comment"># 创建SSE连接的MCP Server</span>
+    <span class="token keyword">async</span> <span class="token keyword">with</span> MCPServerSse<span class="token punctuation">(</span>
+        name<span class="token operator">=</span><span class="token string">&quot;SSE Python Server&quot;</span><span class="token punctuation">,</span>
+        params<span class="token operator">=</span><span class="token punctuation">{</span>
+            <span class="token string">&quot;url&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;http://localhost:8000/sse&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;headers&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&quot;X-Workspace&quot;</span><span class="token punctuation">:</span> workspace_id<span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        cache_tools_list<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>  <span class="token comment"># 缓存工具列表提升性能</span>
+    <span class="token punctuation">)</span> <span class="token keyword">as</span> server<span class="token punctuation">:</span>
+        
+        <span class="token comment"># 创建使用MCP的Agent</span>
+        agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+            name<span class="token operator">=</span><span class="token string">&quot;智能助手&quot;</span><span class="token punctuation">,</span>
+            mcp_servers<span class="token operator">=</span><span class="token punctuation">[</span>server<span class="token punctuation">]</span><span class="token punctuation">,</span>
+            model_settings<span class="token operator">=</span>ModelSettings<span class="token punctuation">(</span>
+                model<span class="token operator">=</span><span class="token string">&quot;gpt-4o&quot;</span><span class="token punctuation">,</span>
+                tool_choice<span class="token operator">=</span><span class="token string">&quot;required&quot;</span>  <span class="token comment"># 要求必须使用工具</span>
+            <span class="token punctuation">)</span><span class="token punctuation">,</span>
+            instructions<span class="token operator">=</span><span class="token string">&quot;使用提供的工具回答用户问题。&quot;</span>
+        <span class="token punctuation">)</span>
+        
+        <span class="token comment"># 运行Agent</span>
+        result <span class="token operator">=</span> <span class="token keyword">await</span> Runner<span class="token punctuation">.</span>run<span class="token punctuation">(</span>
+            agent<span class="token punctuation">,</span> 
+            <span class="token string">&quot;东京现在的天气怎么样？&quot;</span>
+        <span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>final_output<span class="token punctuation">)</span>
+
+<span class="token comment"># 运行</span>
+<span class="token keyword">import</span> asyncio
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><h5 id="_3-3-多mcp-server集成"><a href="#_3-3-多mcp-server集成" class="header-anchor">#</a> 3.3 多MCP Server集成</h5> <p>一个Agent可以同时连接多个MCP Server：</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> agents <span class="token keyword">import</span> Agent
+<span class="token keyword">from</span> agents<span class="token punctuation">.</span>mcp <span class="token keyword">import</span> MCPClient
+
+<span class="token comment"># 连接多个MCP Server</span>
+weather_mcp <span class="token operator">=</span> MCPClient<span class="token punctuation">(</span>
+    server_url<span class="token operator">=</span><span class="token string">&quot;http://weather-service:3333/mcp&quot;</span><span class="token punctuation">,</span>
+    name<span class="token operator">=</span><span class="token string">&quot;天气服务&quot;</span>
+<span class="token punctuation">)</span>
+
+order_mcp <span class="token operator">=</span> MCPClient<span class="token punctuation">(</span>
+    server_url<span class="token operator">=</span><span class="token string">&quot;http://order-service:3334/mcp&quot;</span><span class="token punctuation">,</span> 
+    name<span class="token operator">=</span><span class="token string">&quot;订单服务&quot;</span>
+<span class="token punctuation">)</span>
+
+finance_mcp <span class="token operator">=</span> MCPClient<span class="token punctuation">(</span>
+    server_url<span class="token operator">=</span><span class="token string">&quot;http://finance-service:3335/mcp&quot;</span><span class="token punctuation">,</span>
+    name<span class="token operator">=</span><span class="token string">&quot;财务服务&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 集成多个MCP Server的Agent</span>
+super_agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+    name<span class="token operator">=</span><span class="token string">&quot;全能助手&quot;</span><span class="token punctuation">,</span>
+    instructions<span class="token operator">=</span><span class="token string">&quot;你可以使用公司的所有系统工具来解决问题。&quot;</span><span class="token punctuation">,</span>
+    mcp_servers<span class="token operator">=</span><span class="token punctuation">[</span>weather_mcp<span class="token punctuation">,</span> order_mcp<span class="token punctuation">,</span> finance_mcp<span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+</code></pre></div><h4 id="_4、mcp使用场景"><a href="#_4、mcp使用场景" class="header-anchor">#</a> 4、MCP使用场景</h4> <table><thead><tr><th style="text-align:left;">场景</th> <th style="text-align:left;">需求</th> <th style="text-align:left;">MCP解决方案</th></tr></thead> <tbody><tr><td style="text-align:left;"><strong>企业级应用</strong></td> <td style="text-align:left;">集成多个部门系统（CRM、ERP、OA）</td> <td style="text-align:left;">每个系统提供独立的MCP Server，Agent统一接入</td></tr> <tr><td style="text-align:left;"><strong>微服务架构</strong></td> <td style="text-align:left;">工具分散在不同微服务中</td> <td style="text-align:left;">每个微服务暴露MCP接口，Agent动态发现</td></tr> <tr><td style="text-align:left;"><strong>第三方集成</strong></td> <td style="text-align:left;">需要接入外部API（天气、支付、地图）</td> <td style="text-align:left;">通过MCP包装第三方API，统一管理</td></tr> <tr><td style="text-align:left;"><strong>权限控制</strong></td> <td style="text-align:left;">不同用户/角色可用工具不同</td> <td style="text-align:left;">MCP Server根据权限动态返回工具列表</td></tr> <tr><td style="text-align:left;"><strong>A/B测试</strong></td> <td style="text-align:left;">需要测试不同版本的工具</td> <td style="text-align:left;">MCP Server根据实验分组返回不同工具</td></tr></tbody></table> <h3 id="_4-2-多agent-设计模式"><a href="#_4-2-多agent-设计模式" class="header-anchor">#</a> 4.2 多Agent 设计模式</h3> <h4 id="_1、什么是多agent"><a href="#_1、什么是多agent" class="header-anchor">#</a> 1、什么是多Agent</h4> <p><strong>多Agent系统</strong>是由多个专业化Agent组成的&quot;专家团队&quot;，每个Agent负责特定领域的任务，通过协作完成复杂工作。</p> <p><strong>单Agent vs 多Agent对比：</strong></p> <table><thead><tr><th style="text-align:left;">维度</th> <th style="text-align:left;">单Agent系统</th> <th style="text-align:left;">多Agent系统</th></tr></thead> <tbody><tr><td style="text-align:left;"><strong>架构</strong></td> <td style="text-align:left;">单体式，所有功能集中</td> <td style="text-align:left;">分布式，功能分散到多个Agent</td></tr> <tr><td style="text-align:left;"><strong>复杂度</strong></td> <td style="text-align:left;">指令冗长，逻辑复杂</td> <td style="text-align:left;">每个Agent职责单一，逻辑清晰</td></tr> <tr><td style="text-align:left;"><strong>维护</strong></td> <td style="text-align:left;">修改影响整个系统</td> <td style="text-align:left;">模块化，局部修改不影响其他</td></tr> <tr><td style="text-align:left;"><strong>扩展</strong></td> <td style="text-align:left;">困难，需要重写大量代码</td> <td style="text-align:left;">容易，添加新Agent即可</td></tr></tbody></table> <p>多 Agent 架构：一个 Agent 只干一件事，像<strong>微服务</strong>一样协作。</p> <p><strong>典型多Agent结构：</strong></p> <table><thead><tr><th style="text-align:left;">Agent角色</th> <th style="text-align:left;">职责</th> <th style="text-align:left;">类比</th></tr></thead> <tbody><tr><td style="text-align:left;"><strong>路由Agent</strong></td> <td style="text-align:left;">接收请求，分发给合适专家</td> <td style="text-align:left;">前台接待</td></tr> <tr><td style="text-align:left;"><strong>查询Agent</strong></td> <td style="text-align:left;">处理信息查询类问题</td> <td style="text-align:left;">信息台</td></tr> <tr><td style="text-align:left;"><strong>执行Agent</strong></td> <td style="text-align:left;">执行具体操作和任务</td> <td style="text-align:left;">操作员</td></tr> <tr><td style="text-align:left;"><strong>审核Agent</strong></td> <td style="text-align:left;">校验结果和安全性</td> <td style="text-align:left;">质检员</td></tr> <tr><td style="text-align:left;"><strong>报告Agent</strong></td> <td style="text-align:left;">生成最终输出和报告</td> <td style="text-align:left;">报告员</td></tr></tbody></table> <h4 id="_2、为什么要用多agent"><a href="#_2、为什么要用多agent" class="header-anchor">#</a> 2、为什么要用多Agent</h4> <p><strong>单Agent系统的局限性：</strong></p> <ol><li><strong>指令过载</strong>：单一Agent需要理解所有领域的知识</li> <li><strong>性能瓶颈</strong>：复杂任务导致响应时间变长</li> <li><strong>错误传播</strong>：一个功能出错可能影响整个系统</li> <li><strong>难以维护</strong>：代码庞大，修改风险高</li> <li><strong>难以扩展</strong>：添加新功能需要重构整个Agent</li></ol> <p><strong>多Agent系统的优势：</strong></p> <ol><li><strong>专业分工</strong>：每个Agent专注特定领域，效果更好</li> <li><strong>并行处理</strong>：多个Agent可以同时工作，提升效率</li> <li><strong>错误隔离</strong>：一个Agent出错不影响其他Agent</li> <li><strong>易于维护</strong>：模块化设计，可以独立更新每个Agent</li> <li><strong>灵活扩展</strong>：需要新功能时添加新Agent即可</li></ol> <p><strong>设计原则：</strong></p> <ul><li><strong>单一职责</strong>：每个Agent只做一件事，并做到最好</li> <li><strong>松耦合</strong>：Agent之间通过标准接口通信</li> <li><strong>可替换</strong>：每个Agent都可以被同类型的其他Agent替换</li></ul> <h4 id="_3、如何使用多agent"><a href="#_3、如何使用多agent" class="header-anchor">#</a> 3、如何使用多Agent</h4> <p>OpenAI Agents SDK支持两种主要的多Agent设计模式：<strong>Manager模式（Agents as Tools）<strong>和</strong>Handoff模式（交接接管）</strong>。</p> <h5 id="_1-中心化-agents-as-tools"><a href="#_1-中心化-agents-as-tools" class="header-anchor">#</a> 1.中心化(Agents as Tools)</h5> <blockquote><p><strong>Manager</strong>经理模式（中心化）</p></blockquote> <p><strong>概念</strong>：一个&quot;经理Agent&quot;作为总控制器，将其他专业Agent当作&quot;工具&quot;来调用。经理负责所有用户交互和最终决策。</p> <p><strong>工作流程：</strong></p> <ol><li>用户与经理Agent对话</li> <li>经理分析需求，决定调用哪个专家Agent</li> <li>经理调用专家Agent（作为工具）</li> <li>专家返回结果给经理</li> <li>经理整合结果，回复用户</li></ol> <p><strong>控制权</strong>：始终在经理Agent手中（中心化）</p> <p><strong>核心代码骨架：</strong></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> agents <span class="token keyword">import</span> Agent
+
+booking_agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+refund_agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+
+customer_facing_agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+    name<span class="token operator">=</span><span class="token string">&quot;Customer-facing agent&quot;</span><span class="token punctuation">,</span>
+    instructions<span class="token operator">=</span><span class="token punctuation">(</span>
+        <span class="token string">&quot;处理所有与用户的直接沟通。&quot;</span>
+        <span class="token string">&quot;当需要专门知识时，调用相关工具。&quot;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tools<span class="token operator">=</span><span class="token punctuation">[</span>
+        booking_agent<span class="token punctuation">.</span>as_tool<span class="token punctuation">(</span>
+            tool_name<span class="token operator">=</span><span class="token string">&quot;订票专家&quot;</span><span class="token punctuation">,</span>
+            tool_description<span class="token operator">=</span><span class="token string">&quot;处理所有预定请求.&quot;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        refund_agent<span class="token punctuation">.</span>as_tool<span class="token punctuation">(</span>
+            tool_name<span class="token operator">=</span><span class="token string">&quot;退款专家&quot;</span><span class="token punctuation">,</span>
+            tool_description<span class="token operator">=</span><span class="token string">&quot;处理所有退款请求.&quot;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+</code></pre></div><p><strong>Manager模式适用场景：</strong></p> <ul><li>需要统一话术和品牌形象</li> <li>需要集中权限控制和审计</li> <li>专家输出需要二次加工和美化</li> <li>希望用户感知为单一客服</li></ul> <p><strong>优点：</strong></p> <ul><li>统一的用户体验和话术风格</li> <li>集中控制，易于管理和监控</li> <li>专家Agent可以专注于技术实现</li> <li>可以隐藏系统的复杂性</li></ul> <p><strong>缺点：</strong></p> <ul><li>经理Agent可能成为瓶颈</li> <li>增加了一层调用开销</li> <li>专家输出的细微信息可能丢失</li></ul> <h5 id="_2-去中心化-handoffs"><a href="#_2-去中心化-handoffs" class="header-anchor">#</a> 2.去中心化（Handoffs）</h5> <p><strong>概念</strong>：一个路由Agent分析用户需求，然后将整个对话&quot;交接&quot;给最合适的专家Agent。专家Agent接管后负责后续所有对话。</p> <p><strong>工作流程：</strong></p> <ol><li>用户与路由Agent对话</li> <li>路由Agent判断问题类型</li> <li>路由Agent触发handoff，将会话转移给专家Agent</li> <li>专家Agent接管，直接与用户对话</li> <li>专家Agent完成任务或再次handoff给其他专家</li></ol> <p><strong>控制权</strong>：在Agent间转移（去中心化）</p> <p><strong>核心代码骨架：</strong></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> agents <span class="token keyword">import</span> Agent
+
+booking_agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+    name<span class="token operator">=</span><span class="token string">&quot;Booking agent&quot;</span><span class="token punctuation">,</span>
+    instructions<span class="token operator">=</span><span class="token string">&quot;你负责订票：需要用户提供日期、人数、舱位。&quot;</span>
+<span class="token punctuation">)</span>
+
+refund_agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+    name<span class="token operator">=</span><span class="token string">&quot;Refund agent&quot;</span><span class="token punctuation">,</span>
+    instructions<span class="token operator">=</span><span class="token string">&quot;你负责退款：需要用户提供订单号、原因，并解释规则。&quot;</span>
+<span class="token punctuation">)</span>
+
+triage_agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+    name<span class="token operator">=</span><span class="token string">&quot;Triage agent&quot;</span><span class="token punctuation">,</span>
+    instructions<span class="token operator">=</span><span class="token punctuation">(</span>
+        <span class="token string">&quot;你负责分流。&quot;</span>
+        <span class="token string">&quot;如果用户问订票 -&gt; 交接给 booking_agent。&quot;</span>
+        <span class="token string">&quot;如果用户问退款 -&gt; 交接给 refund_agent。&quot;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    handoffs<span class="token operator">=</span><span class="token punctuation">[</span>booking_agent<span class="token punctuation">,</span> refund_agent<span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+</code></pre></div><p><strong>Handoff模式适用场景：</strong></p> <ul><li>需要深度专业知识的多轮对话</li> <li>专家需要完整上下文沉浸</li> <li>问题类型明确，可以清晰路由</li> <li>希望模拟真实部门的转接体验</li></ul> <p><strong>优点：</strong></p> <ul><li>专家可以深度处理问题</li> <li>减少中间层，响应更直接</li> <li>每个Agent职责清晰</li> <li>更接近人类协作模式</li></ul> <p><strong>缺点：</strong></p> <ul><li>用户可能感知到&quot;换人&quot;</li> <li>需要处理交接时的上下文传递</li> <li>专家之间的输出风格可能不一致</li></ul> <h4 id="_4、多agent使用场景"><a href="#_4、多agent使用场景" class="header-anchor">#</a> 4、多Agent使用场景</h4> <table><thead><tr><th style="text-align:left;">场景</th> <th style="text-align:left;">Agent架构</th> <th style="text-align:left;">实现方式</th></tr></thead> <tbody><tr><td style="text-align:left;"><strong>电商客服</strong></td> <td style="text-align:left;">路由Agent → 售前/售后/物流Agent</td> <td style="text-align:left;">Handoff模式，模拟部门转接</td></tr> <tr><td style="text-align:left;"><strong>数据分析</strong></td> <td style="text-align:left;">需求分析Agent → SQL生成Agent → 可视化Agent</td> <td style="text-align:left;">Manager模式，流水线处理</td></tr> <tr><td style="text-align:left;"><strong>内容创作</strong></td> <td style="text-align:left;">大纲Agent → 写作Agent → 润色Agent → 审核Agent</td> <td style="text-align:left;">混合模式，分工协作</td></tr> <tr><td style="text-align:left;"><strong>智能家居</strong></td> <td style="text-align:left;">语音识别Agent → 意图理解Agent → 设备控制Agent</td> <td style="text-align:left;">Handoff模式，实时响应</td></tr> <tr><td style="text-align:left;"><strong>企业办公</strong></td> <td style="text-align:left;">邮件分类Agent → 日程安排Agent → 会议记录Agent</td> <td style="text-align:left;">Manager模式，自动化流程</td></tr> <tr><td style="text-align:left;"><strong>教育辅导</strong></td> <td style="text-align:left;">水平评估Agent → 知识点讲解Agent → 练习题生成Agent</td> <td style="text-align:left;">混合模式，个性化教学</td></tr></tbody></table> <p><strong>多Agent系统设计最佳实践：</strong></p> <ol><li><strong>明确职责边界</strong>：每个Agent应有清晰的输入、处理、输出定义</li> <li><strong>标准化接口</strong>：Agent之间通过标准化消息格式通信</li> <li><strong>错误处理</strong>：设计降级策略，当某个Agent失败时如何应对</li> <li><strong>性能监控</strong>：监控每个Agent的响应时间和成功率</li> <li><strong>版本管理</strong>：每个Agent应有版本号，支持灰度发布</li> <li><strong>测试策略</strong>：单元测试每个Agent，集成测试整个工作流</li></ol> <p>通过合理设计多Agent系统，你可以构建出既能处理简单查询，又能应对复杂任务的可扩展AI应用。</p> <h2 id="_5、综合案例实战"><a href="#_5、综合案例实战" class="header-anchor">#</a> 5、综合案例实战</h2> <h3 id="_5-1-案例实战目标"><a href="#_5-1-案例实战目标" class="header-anchor">#</a> 5.1. 案例实战目标</h3> <p>通过前面学习的基础知识，我们将构建一个交互系统：</p> <ol><li><strong>后端服务</strong>：FastAPI + Agents SDK</li> <li><strong>流式通信</strong>：Server-Sent Events (SSE)</li> <li><strong>前端界面</strong>：实时聊天界面</li> <li><strong>完整流程</strong>：从用户输入到AI响应的端到端实现</li></ol> <div class="language- extra-class"><pre class="language-text"><code>┌─────────────┐    HTTP/SSE    ┌─────────────┐    OpenAI API    ┌─────────────┐
+│   前端      │───────────────▶│   FastAPI   │─────────────────▶│   Agent     │
+│  (浏览器)   │◀───────────────│   后端      │◀─────────────────│   SDK       │
+└─────────────┘  实时流式响应   └─────────────┘  异步流式调用    └─────────────┘
+</code></pre></div><h3 id="_5-2-后端接口设计"><a href="#_5-2-后端接口设计" class="header-anchor">#</a> 5.2 后端接口设计</h3> <h4 id="_5-2-1-接口契约设计"><a href="#_5-2-1-接口契约设计" class="header-anchor">#</a> 5.2.1 接口契约设计</h4> <p><strong>设计原则：</strong></p> <ol><li><strong>简单性</strong>：接口设计要直观易用</li> <li><strong>实时性</strong>：支持流式响应，提升用户体验</li></ol> <h4 id="_5-2-2-核心接口定义"><a href="#_5-2-2-核心接口定义" class="header-anchor">#</a> 5.2.2 核心接口定义</h4> <p>GET /api/chat/sse（流式聊天接口）</p> <p><strong>请求参数：</strong></p> <div class="language-python extra-class"><pre class="language-python"><code>query<span class="token punctuation">:</span> <span class="token builtin">str</span>             <span class="token comment"># 用户输入的问题</span>
+</code></pre></div><p><strong>响应格式：</strong></p> <ul><li><p>媒体类型：<code>text/event-stream</code></p></li> <li><p>事件类型：<code>text_delta</code>、<code>tool_started</code>、<code>tool_completed</code>、<code>run_completed</code>、<code>error</code></p></li></ul> <p><strong>事件说明：</strong></p> <table><thead><tr><th style="text-align:left;">事件类型</th> <th style="text-align:left;">数据格式</th> <th style="text-align:left;">说明</th></tr></thead> <tbody><tr><td style="text-align:left;"><code>text_delta</code></td> <td style="text-align:left;"><code>{&quot;text&quot;: &quot;增量文本&quot;}</code></td> <td style="text-align:left;">Agent回复的文本增量</td></tr> <tr><td style="text-align:left;"><code>tool_started</code></td> <td style="text-align:left;"><code>{&quot;tool_name&quot;: &quot;工具名&quot;, &quot;call_id&quot;: &quot;调用ID&quot;}</code></td> <td style="text-align:left;">开始调用工具</td></tr> <tr><td style="text-align:left;"><code>tool_completed</code></td> <td style="text-align:left;"><code>{&quot;tool_name&quot;: &quot;工具名&quot;, &quot;tool_result&quot;: &quot;结果&quot;}</code></td> <td style="text-align:left;">工具调用完成</td></tr> <tr><td style="text-align:left;"><code>run_completed</code></td> <td style="text-align:left;"><code>{&quot;final_output&quot;: &quot;完整回复&quot;}</code></td> <td style="text-align:left;">运行完成</td></tr> <tr><td style="text-align:left;"><code>error</code></td> <td style="text-align:left;"><code>{&quot;message&quot;: &quot;错误信息&quot;}</code></td> <td style="text-align:left;">发生错误</td></tr></tbody></table> <h3 id="_5-3-后端实现详解"><a href="#_5-3-后端实现详解" class="header-anchor">#</a> 5.3 后端实现详解</h3> <h4 id="_5-3-1-环境准备与配置"><a href="#_5-3-1-环境准备与配置" class="header-anchor">#</a> 5.3.1 环境准备与配置</h4> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># 1. 安装依赖</span>
+<span class="token comment"># requirements.txt</span>
+fastapi
+uvicorn
+openai<span class="token operator">-</span>agents
+python<span class="token operator">-</span>dotenv
+
+<span class="token comment"># 2. 环境配置</span>
+<span class="token comment"># .env 文件</span>
+OPENAI_API_KEY<span class="token operator">=</span>your_api_key_here
+OPENAI_BASE_URL<span class="token operator">=</span>https<span class="token punctuation">:</span><span class="token operator">//</span>api<span class="token punctuation">.</span>openai<span class="token punctuation">.</span>com<span class="token operator">/</span>v1
+MODEL_NAME<span class="token operator">=</span>“”
+</code></pre></div><h4 id="_5-3-2-关键点解析"><a href="#_5-3-2-关键点解析" class="header-anchor">#</a> 5.3.2 关键点解析</h4> <p><strong>1. StreamingResponse的核心作用</strong></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># StreamingResponse是FastAPI中处理流式响应的关键类</span>
+<span class="token comment"># 它允许我们逐段发送数据，而不是一次性发送所有内容</span>
+StreamingResponse<span class="token punctuation">(</span>
+    generate_sse<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>           <span class="token comment"># 异步生成器，逐段产生数据</span>
+    media_type<span class="token operator">=</span><span class="token string">&quot;text/event-stream&quot;</span><span class="token punctuation">,</span>  <span class="token comment"># 指定SSE媒体类型</span>
+    headers<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span>             <span class="token comment"># 头信息</span>
+<span class="token punctuation">)</span>
+</code></pre></div><p><strong>2.Agent运行模式的对比</strong></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># 同步运行（一次性获取所有结果）</span>
+result <span class="token operator">=</span> Runner<span class="token punctuation">.</span>run_sync<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> query<span class="token punctuation">)</span>
+<span class="token comment"># 返回：RunResult（包含最终输出）</span>
+
+<span class="token comment"># 异步运行（一次性获取所有结果）</span>
+result <span class="token operator">=</span> <span class="token keyword">await</span> Runner<span class="token punctuation">.</span>run<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> query<span class="token punctuation">)</span>
+<span class="token comment"># 返回：RunResult（包含最终输出）</span>
+
+<span class="token comment"># 流式运行（边执行边获取结果）</span>
+result <span class="token operator">=</span> Runner<span class="token punctuation">.</span>run_streamed<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> query<span class="token punctuation">)</span>
+<span class="token comment"># 返回：RunResultStreaming（支持异步迭代事件）</span>
+</code></pre></div><p><strong>3.SSE事件映射关系</strong></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># Agents SDK的事件类型 -&gt; SSE事件名称</span>
+<span class="token comment"># 这种映射关系是我们自己定义的，不是SDK内置的</span>
+
+<span class="token comment"># 文本增量事件</span>
+ResponseTextDeltaEvent <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">&quot;text_delta&quot;</span>
+
+<span class="token comment"># 工具调用事件</span>
+ToolCallItem <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">&quot;tool_started&quot;</span>
+
+<span class="token comment"># 工具结果事件</span>
+ToolCallOutputItem <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">&quot;tool_completed&quot;</span>
+
+<span class="token comment"># 运行完成事件</span>
+run_completed <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">&quot;run_completed&quot;</span>
+</code></pre></div><h3 id="_5-4-启动步骤"><a href="#_5-4-启动步骤" class="header-anchor">#</a> 5.4 启动步骤</h3> <h4 id="步骤1-准备后端环境"><a href="#步骤1-准备后端环境" class="header-anchor">#</a> 步骤1：准备后端环境</h4> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># 1. 进入后端目录</span>
+cd backend
+
+<span class="token comment"># 2. 创建虚拟环境（可选但推荐）</span>
+python <span class="token operator">-</span>m venv venv
+source venv<span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>activate  <span class="token comment"># Linux/Mac</span>
+<span class="token comment"># 或</span>
+venv\Scripts\activate     <span class="token comment"># Windows</span>
+
+<span class="token comment"># 3. 安装依赖</span>
+pip install <span class="token operator">-</span>r requirements<span class="token punctuation">.</span>txt
+
+<span class="token comment"># 4. 配置环境变量</span>
+<span class="token comment"># 创建 .env 文件，填入你的API密钥</span>
+echo <span class="token string">&quot;OPENAI_API_KEY=your_api_key_here&quot;</span> <span class="token operator">&gt;</span> <span class="token punctuation">.</span>env
+echo <span class="token string">&quot;BASE_URL=https://api.siliconflow.cn/v1&quot;</span> <span class="token operator">&gt;&gt;</span> <span class="token punctuation">.</span>env
+echo <span class="token string">&quot;MODEL_NAME=Qwen/Qwen3-32B&quot;</span> <span class="token operator">&gt;&gt;</span> <span class="token punctuation">.</span>env
+
+<span class="token comment"># 5. 启动后端服务</span>
+python app<span class="token punctuation">.</span>py
+<span class="token comment"># 或使用uvicorn直接启动</span>
+uvicorn app<span class="token punctuation">:</span>app <span class="token operator">-</span><span class="token operator">-</span>host <span class="token number">0.0</span><span class="token number">.0</span><span class="token number">.0</span> <span class="token operator">-</span><span class="token operator">-</span>port <span class="token number">8200</span> <span class="token operator">-</span><span class="token operator">-</span><span class="token builtin">reload</span>
+</code></pre></div><h4 id="步骤2-准备前端环境"><a href="#步骤2-准备前端环境" class="header-anchor">#</a> 步骤2：准备前端环境</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># 1. 进入前端目录</span>
+<span class="token builtin class-name">cd</span> frontend
+
+<span class="token comment"># 2. 由于前端是纯HTML/JS文件，可以直接用浏览器打开</span>
+</code></pre></div><h4 id="步骤3-访问系统"><a href="#步骤3-访问系统" class="header-anchor">#</a> 步骤3：访问系统</h4> <ol><li>打开浏览器，访问 <code>http://localhost:8080</code>（前端）</li> <li>在前端界面中输入消息</li> <li>观察前端界面更新</li></ol> <p><img src="images/5%E3%80%81sse%E6%A1%88%E4%BE%8B%E6%BC%94%E7%A4%BA%E6%95%88%E6%9E%9C.png" alt=""></p></div></div> <!----> <div class="page-edit"><!----> <!----> <!----></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/LLMBlog/pages/8c47f3/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">接入OpenAI_Agents_SDK</div></a> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/LLMBlog/pages/8c47f3/" class="prev">接入OpenAI_Agents_SDK</a></span> <!----></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/LLMBlog/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/LLMBlog/pages/f276a4/"><div>
+            langChain的学习大纲总结
+            <!----></div></a> <span class="date">05-09</span></dt></dl><dl><dd>02</dd> <dt><a href="/LLMBlog/pages/6ecd50/"><div>
+            Dify&amp;Coze的使用
+            <!----></div></a> <span class="date">05-09</span></dt></dl><dl><dd>03</dd> <dt><a href="/LLMBlog/pages/e20b40/"><div>
+            模型声明&amp;输入&amp;输出解析器&amp;链式调用
+            <!----></div></a> <span class="date">05-09</span></dt></dl> <dl><dd></dd> <dt><a href="/LLMBlog/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><!----> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> <!----></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <!----></div><div class="global-ui"></div></div>
+    <script src="/LLMBlog/assets/js/app.2e1329e9.js" defer></script><script src="/LLMBlog/assets/js/2.ffdddade.js" defer></script><script src="/LLMBlog/assets/js/143.763c3465.js" defer></script>
+  </body>
+</html>
