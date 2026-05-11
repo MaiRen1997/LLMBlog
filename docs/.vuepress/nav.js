@@ -10,6 +10,30 @@ module.exports = [
       // { text: '博客搭建', link: '/pages/41f87d890d0a02af/' },
     ],
   },
+  { text: '基本使用', link: '/' ,
+    items: [
+      {
+        text: 'RAG',
+        link: '/RAG/',
+      },
+      {
+        text: 'LangChain',
+        link: '/LangChain/',
+      },
+      {
+        text: 'Agent&工作流',
+        link: '/Agent/',
+      },
+    ]
+  },
+  {
+    text: 'ProjectDesc',
+    link: '/ProjectDesc/',
+  },
+  {
+    text: '知识复盘',
+    link: '/reviewKnnowledge/',
+  },
   {
     text: 'RAG',
     link: '/RAG/',
@@ -21,14 +45,6 @@ module.exports = [
   {
     text: 'Agent&工作流',
     link: '/Agent/',
-  },
-  {
-    text: 'ProjectDesc',
-    link: '/ProjectDesc/',
-  },
-  {
-    text: '知识复盘',
-    link: '/reviewKnnowledge/',
   },
   {
     text: '微调',
