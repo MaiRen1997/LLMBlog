@@ -35,18 +35,6 @@ module.exports = [
     link: '/reviewKnnowledge/',
   },
   {
-    text: 'RAG',
-    link: '/RAG/',
-  },
-  {
-    text: 'LangChain',
-    link: '/LangChain/',
-  },
-  {
-    text: 'Agent&工作流',
-    link: '/Agent/',
-  },
-  {
     text: '微调',
     link: '/Fine-tuning/',
   },
