@@ -37,6 +37,10 @@ module.exports = [
     link: '/ProjectDesc/',
   },
   {
+    text: 'projectArch',
+    link: '/项目化搭建/',
+  },
+  {
     text: '知识复盘',
     link: '/reviewKnnowledge/',
   },
