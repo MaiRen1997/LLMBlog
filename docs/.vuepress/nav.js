@@ -33,8 +33,8 @@ module.exports = [
     ]
   },
   {
-    text: 'projectArch',
-    link: '/项目化搭建/',
+    text: '项目化搭建',
+    link: '/projectArch/',
   },
   {
     text: 'ProjectDesc',
