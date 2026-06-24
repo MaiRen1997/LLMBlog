@@ -41,6 +41,10 @@ module.exports = [
     link: '/ProjectDesc/',
   },
   {
+    text: 'playwright',
+    link: '/playwright/',
+  },
+  {
     text: '知识复盘',
     link: '/reviewKnnowledge/',
   },
